@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="be.ardu.scoutsardu.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enenDrinkenFragment"
+        android:name="be.ardu.scoutsardu.EnenDrinkenFragment"
+        android:label="EnenDrinkenFragment" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="be.ardu.scoutsardu.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_enenDrinkenFragment"
+            app:destination="@id/enenDrinkenFragment" />
+    </fragment>
+</navigation>
