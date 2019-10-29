@@ -1,4 +1,4 @@
-package be.ardu.scoutsardu
+package be.ardu.scoutsardu.Stam.EnenDrinken
 
 
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenBinding
 
 /**
@@ -19,7 +20,8 @@ class EnenDrinkenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentEnenDrinkenBinding>(inflater, R.layout.fragment_enen_drinken, container, false)
+        val binding = DataBindingUtil.inflate<FragmentEnenDrinkenBinding>(inflater,
+            R.layout.fragment_enen_drinken, container, false)
         return binding.root
     }
 

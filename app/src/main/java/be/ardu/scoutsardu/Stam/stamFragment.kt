@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import be.ardu.scoutsardu.databinding.FragmentLoginBinding
 import be.ardu.scoutsardu.databinding.FragmentStamBinding
 

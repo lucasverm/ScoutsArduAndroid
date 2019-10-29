@@ -12,10 +12,6 @@
             app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
-        android:id="@+id/enenDrinkenFragment"
-        android:name="be.ardu.scoutsardu.EnenDrinkenFragment"
-        android:label="EnenDrinkenFragment" />
-    <fragment
         android:id="@+id/dashboardFragment"
         android:name="be.ardu.scoutsardu.DashboardFragment"
         android:label="DashboardFragment" >
@@ -23,4 +19,8 @@
             android:id="@+id/action_dashboardFragment_to_enenDrinkenFragment"
             app:destination="@id/enenDrinkenFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/enenDrinkenFragment"
+        android:name="be.ardu.scoutsardu.Stam.EnenDrinken.EnenDrinkenFragment"
+        android:label="EnenDrinkenFragment" />
 </navigation>
