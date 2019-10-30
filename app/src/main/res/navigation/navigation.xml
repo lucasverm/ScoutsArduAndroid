@@ -21,6 +21,14 @@
     </fragment>
     <fragment
         android:id="@+id/enenDrinkenFragment"
-        android:name="be.ardu.scoutsardu.Stam.EnenDrinken.EnenDrinkenFragment"
-        android:label="EnenDrinkenFragment" />
+        android:name="be.ardu.scoutsardu.enen_drinken.EnenDrinkenFragment"
+        android:label="EnenDrinkenFragment" >
+        <action
+            android:id="@+id/action_enenDrinkenFragment_to_checkWinkelwagenFragment"
+            app:destination="@id/checkWinkelwagenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkWinkelwagenFragment"
+        android:name="be.ardu.scoutsardu.stam.checkWinkelwagenFragment"
+        android:label="checkWinkelwagenFragment" />
 </navigation>

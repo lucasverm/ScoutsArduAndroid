@@ -1,0 +1,120 @@
+package be.ardu.scoutsardu.enen_drinken
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import be.ardu.scoutsardu.R
+import be.ardu.scoutsardu.WinkelwagenItem
+import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenRecycleviewRowBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+
+private val ITEM_VIEW_TYPE_HEADER = 0
+private val ITEM_VIEW_TYPE_ITEM = 1
+
+class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
+    ListAdapter<DataItem, RecyclerView.ViewHolder>(EnenDrinkenDiffCallBack()) {
+
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
+
+    fun addHeaderAndSubmitList(list: List<WinkelwagenItem>?) {
+        adapterScope.launch {
+            val items = when (list?.size) {
+                null  -> listOf(DataItem.Header)
+                0 -> listOf(DataItem.Header)
+                else -> list.map { DataItem.WinkelwagenDataItem(it) }
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
+        }
+    }
+
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is ViewHolder -> {
+                val winkelwagenItem = getItem(position) as DataItem.WinkelwagenDataItem
+                holder.bind(clickListener, winkelwagenItem.winkelwagenItem)
+            }
+        }
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            ITEM_VIEW_TYPE_HEADER -> TextViewHolder.from(parent)
+            ITEM_VIEW_TYPE_ITEM -> ViewHolder.from(parent)
+            else -> throw ClassCastException("unknow viewtype ${viewType}")
+        }
+    }
+
+    class TextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        companion object {
+            fun from(parent: ViewGroup): TextViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater.inflate(R.layout.header, parent, false)
+                return TextViewHolder(view)
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            is DataItem.Header -> ITEM_VIEW_TYPE_HEADER
+            is DataItem.WinkelwagenDataItem -> ITEM_VIEW_TYPE_ITEM
+        }
+    }
+
+    class ViewHolder private constructor(val binding: FragmentEnenDrinkenRecycleviewRowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(clickListener: EnenDrinkenClickListener?, winkelwagenItem: WinkelwagenItem) {
+            binding.winkelwagenItem = winkelwagenItem
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = FragmentEnenDrinkenRecycleviewRowBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
+        }
+    }
+
+}
+
+class EnenDrinkenDiffCallBack : DiffUtil.ItemCallback<DataItem>() {
+    override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+        return oldItem.equals(newItem)
+    }
+
+}
+
+class EnenDrinkenClickListener(val clickListener: (winkelwagenItem: WinkelwagenItem) -> Unit) {
+    fun onClick(winkelwagenItem: WinkelwagenItem) = clickListener(winkelwagenItem)
+}
+
+sealed class DataItem {
+    data class WinkelwagenDataItem(val winkelwagenItem: WinkelwagenItem) : DataItem() {
+        override val id = winkelwagenItem.Id
+    }
+
+    object Header : DataItem() {
+        override val id = 0
+    }
+
+    abstract val id: Int
+}
