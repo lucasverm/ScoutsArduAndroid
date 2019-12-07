@@ -1,5 +1,7 @@
 package be.ardu.scoutsardu.enen_drinken
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import be.ardu.scoutsardu.R
-import be.ardu.scoutsardu.WinkelwagenItem
+import be.ardu.scoutsardu.models.WinkelwagenItem
 import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenRecycleviewRowBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,7 +48,6 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ITEM_VIEW_TYPE_HEADER -> TextViewHolder.from(parent)
@@ -75,9 +76,42 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
     class ViewHolder private constructor(val binding: FragmentEnenDrinkenRecycleviewRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListener: EnenDrinkenClickListener?, winkelwagenItem: WinkelwagenItem) {
+        fun fixSubTotaal(winkelwagenItem: WinkelwagenItem){
+            val totaal = Math.round(winkelwagenItem.Prijs * winkelwagenItem.Aantal * 100.0) / 100.0
+            binding.totaal.setText(totaal.toString())
+        }
+
+        fun bind(clickListener: EnenDrinkenClickListener, winkelwagenItem: WinkelwagenItem) {
             binding.winkelwagenItem = winkelwagenItem
-            binding.clickListener = clickListener
+            binding.aantal.addTextChangedListener( object : TextWatcher{
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun afterTextChanged(s: Editable?) {
+                    winkelwagenItem.Aantal = Integer.parseInt(s.toString())
+                    fixSubTotaal(winkelwagenItem)
+                }
+
+            })
+
+            binding.min.setOnClickListener {
+                winkelwagenItem.verminderrDrank()
+                binding.aantal.setText(winkelwagenItem.Aantal.toString())
+                if(winkelwagenItem.Aantal < 1) {
+                    it.isEnabled = false
+                }
+                fixSubTotaal(winkelwagenItem)
+            }
+
+            binding.plus.setOnClickListener {
+                winkelwagenItem.vermeerderDrank()
+                binding.aantal.setText(winkelwagenItem.Aantal.toString())
+                if(winkelwagenItem.Aantal > 0) {
+                    binding.min.isEnabled = true
+                }
+                fixSubTotaal(winkelwagenItem)
+            }
+            //binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 

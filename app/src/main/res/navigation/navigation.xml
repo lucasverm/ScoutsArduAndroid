@@ -29,6 +29,10 @@
     </fragment>
     <fragment
         android:id="@+id/checkWinkelwagenFragment"
-        android:name="be.ardu.scoutsardu.stam.checkWinkelwagenFragment"
-        android:label="checkWinkelwagenFragment" />
+        android:name="be.ardu.scoutsardu.checkWinkelwagen.checkWinkelwagenFragment"
+        android:label="checkWinkelwagenFragment" >
+        <argument
+            android:name="winkelwagen"
+            app:argType="be.ardu.scoutsardu.models.Winkelwagen" />
+    </fragment>
 </navigation>

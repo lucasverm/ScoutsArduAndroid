@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="button_style_colored_background">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:bottomRightRadius">10dp</item>
+
+    </style>
+
+    <style name="button_style_white_background">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@drawable/button_border</item>
+    </style>
+
 </resources>
