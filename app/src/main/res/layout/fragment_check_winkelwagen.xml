@@ -30,7 +30,8 @@
             android:text="Betaal nu!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/button_style_colored_background"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
