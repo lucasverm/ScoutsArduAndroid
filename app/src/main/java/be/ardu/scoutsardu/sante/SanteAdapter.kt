@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import be.ardu.scoutsardu.R
-import be.ardu.scoutsardu.models.WinkelwagenItem
+import be.ardu.scoutsardu.network.WinkelwagenItem
+
 
 class SanteAdapter : RecyclerView.Adapter<SanteAdapter.ViewHolder>() {
     var data = listOf<WinkelwagenItem>()

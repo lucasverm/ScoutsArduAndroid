@@ -3,7 +3,7 @@ package be.ardu.scoutsardu.enen_drinken
 import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import be.ardu.scoutsardu.models.WinkelwagenItem
+import be.ardu.scoutsardu.network.WinkelwagenItem
 
 @BindingAdapter("naamWinkelwagenItem")
 fun TextView.setNaamWinkelwagenItem(winkelwagenItem: WinkelwagenItem){

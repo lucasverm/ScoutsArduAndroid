@@ -7,7 +7,7 @@
 
         <variable
             name="winkelwagenItem"
-            type="be.ardu.scoutsardu.models.WinkelwagenItem" />
+            type="be.ardu.scoutsardu.network.WinkelwagenItem" />
 
         <variable
             name="clickListener"

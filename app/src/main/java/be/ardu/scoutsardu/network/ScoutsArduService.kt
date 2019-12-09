@@ -22,7 +22,7 @@ private val retrofit = Retrofit.Builder()
 
 interface ScoutsArduApiService{
     @GET("api/Winkelwagen/WinkelwagenItems")
-    fun getWinkelwagenItems(): Deferred<List<WinkelwagenItemProperty>>
+    fun getWinkelwagenItems(): Deferred<List<WinkelwagenItem>>
 }
 
 //singleton

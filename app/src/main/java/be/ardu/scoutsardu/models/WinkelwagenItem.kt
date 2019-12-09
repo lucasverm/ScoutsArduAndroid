@@ -2,7 +2,7 @@ package be.ardu.scoutsardu.models
 
 import android.util.Log
 
-class WinkelwagenItem (id: Int, naam:String, prijs:Double, aantal: Int){
+class WinkelwagenItem2 (id: Int, naam:String, prijs:Double, aantal: Int){
     var id: Int = id
     var naam: String = naam
     var prijs: Double = prijs

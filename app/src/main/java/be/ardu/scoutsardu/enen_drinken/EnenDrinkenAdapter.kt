@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import be.ardu.scoutsardu.R
-import be.ardu.scoutsardu.models.WinkelwagenItem
+import be.ardu.scoutsardu.network.WinkelwagenItem
 import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenRecycleviewRowBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

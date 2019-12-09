@@ -1,6 +1,6 @@
 package be.ardu.scoutsardu.enen_drinken
 
-import be.ardu.scoutsardu.models.WinkelwagenItem
+import be.ardu.scoutsardu.network.WinkelwagenItem
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -34,7 +34,7 @@ class EnenDrinkenViewModel : ViewModel() {
             var g = WinkelwagenItem(1, "cola", 0.65, 1)
             lst.add(g)
         }
-        _items.value = lst
+        //_items.value = lst
         getWinkelwagenItems()
     }
 
@@ -48,6 +48,7 @@ class EnenDrinkenViewModel : ViewModel() {
                 // Await the completion of our Retrofit request
                 var listResult = getPropertiesDeferred.await()
               println("Success: ${listResult.size} winkelwagen properties retrieved")
+                _items.value = listResult
             } catch (e: Exception) {
                 println("Failure: ${e.message}")
             }

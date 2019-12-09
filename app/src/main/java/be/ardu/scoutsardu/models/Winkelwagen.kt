@@ -4,6 +4,7 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableArrayMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import be.ardu.scoutsardu.network.WinkelwagenItem
 import java.io.Serializable
 
 class Winkelwagen : Serializable {
