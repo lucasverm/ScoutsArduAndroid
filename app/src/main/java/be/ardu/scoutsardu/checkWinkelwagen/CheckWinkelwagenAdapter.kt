@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.models.WinkelwagenItem
 
-class checkWinkelwagenAdapter : RecyclerView.Adapter<checkWinkelwagenAdapter.ViewHolder>() {
+class CheckWinkelwagenAdapter : RecyclerView.Adapter<CheckWinkelwagenAdapter.ViewHolder>() {
     var data = listOf<WinkelwagenItem>()
         set(value) {
             field = value
@@ -25,7 +24,7 @@ class checkWinkelwagenAdapter : RecyclerView.Adapter<checkWinkelwagenAdapter.Vie
 
         holder.aantal.text = item.Aantal.toString()
         holder.naam.text = item.Naam
-        holder.totaal.text = "€ " + (item.Aantal * item.Prijs).toString()
+        holder.totaal.text = "€ " + (Math.round(item.Prijs * item.Aantal * 100.0) / 100.0).toString()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

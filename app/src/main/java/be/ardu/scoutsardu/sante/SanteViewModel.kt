@@ -1,13 +1,12 @@
-package be.ardu.scoutsardu.checkWinkelwagen
+package be.ardu.scoutsardu.sante
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.models.Winkelwagen
-import be.ardu.scoutsardu.models.WinkelwagenItem
 
-class CheckWinkelwagenViewModel : ViewModel() {
+class SanteViewModel : ViewModel() {
     val winkelwagen = MutableLiveData<Winkelwagen>()
+
 
 
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
     app:startDestination="@id/loginFragment">
 
     <fragment
@@ -25,12 +27,24 @@
         android:label="EnenDrinkenFragment" >
         <action
             android:id="@+id/action_enenDrinkenFragment_to_checkWinkelwagenFragment"
-            app:destination="@id/checkWinkelwagenFragment" />
+            app:destination="@+id/checkWinkelwagenFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkWinkelwagenFragment"
-        android:name="be.ardu.scoutsardu.checkWinkelwagen.checkWinkelwagenFragment"
-        android:label="checkWinkelwagenFragment" >
+        android:name="be.ardu.scoutsardu.checkWinkelwagen.CheckWinkelwagenFragment"
+        android:label="checkWinkelwagenFragment">
+        <argument
+            android:name="winkelwagen"
+            app:argType="be.ardu.scoutsardu.models.Winkelwagen" />
+        <action
+            android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment2"
+            app:destination="@id/santeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/santeFragment2"
+        android:name="be.ardu.scoutsardu.sante.santeFragment"
+        android:label="fragment_sante"
+        tools:layout="@layout/fragment_sante" >
         <argument
             android:name="winkelwagen"
             app:argType="be.ardu.scoutsardu.models.Winkelwagen" />

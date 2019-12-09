@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,6 +16,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenBinding
 import be.ardu.scoutsardu.models.Winkelwagen
+import android.widget.TextView
+import android.graphics.Color
+
 
 /**
  * A simple [Fragment] subclass.
@@ -56,16 +60,6 @@ class EnenDrinkenFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        /*viewModel.navigateToCheckFragemt.observe(this, Observer {winkelwagenItem ->
-            winkelwagenItem?.let {
-                println("))))))))))))))))))))")
-                this.findNavController().navigate(
-                    EnenDrinkenFragmentDirections.actionEnenDrinkenFragmentToCheckWinkelwagenFragment(/*hier parameters meegeven naar vlgnd scherm*/)
-                )
-                viewModel.onWinkelwagenToCheckFragmentNavigated()
-            }
-        })*/
-
         val adapter = EnenDrinkenAdapter(EnenDrinkenClickListener { winkelwagenItem ->
             viewModel.onWinkelwagenItemClicked(winkelwagenItem)
         })
@@ -81,22 +75,25 @@ class EnenDrinkenFragment : Fragment() {
 
         //navigation: altijd in fragment
         binding.Verder.setOnClickListener {
+            var verderGaanToegestaan = false
             var wagen = Winkelwagen()
             viewModel.items.value?.forEach {
                 if (it.Aantal > 0) {
+                    verderGaanToegestaan = true
                     wagen.winkelwagenItems.add(it)
                 }
 
             }
-            val action =
-                EnenDrinkenFragmentDirections.actionEnenDrinkenFragmentToCheckWinkelwagenFragment(
-                    wagen
-                )
-            Navigation.findNavController(it).navigate(action)
+            if(verderGaanToegestaan){
+                val action =
+                    EnenDrinkenFragmentDirections.actionEnenDrinkenFragmentToCheckWinkelwagenFragment(
+                        wagen
+                    )
+                Navigation.findNavController(it).navigate(action)
+            } else {
+                Toast.makeText(getActivity(), "Koop minstens 1 product!", Toast.LENGTH_SHORT).show();
+            }
         }
-
-
-
 
         return binding.root
     }

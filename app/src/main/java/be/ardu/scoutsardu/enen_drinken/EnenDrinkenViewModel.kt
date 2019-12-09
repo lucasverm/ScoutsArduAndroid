@@ -16,12 +16,18 @@ class EnenDrinkenViewModel: ViewModel() {
         get() = _navigateToCheckFragment
 
     init {
-        var g = WinkelwagenItem(1, "cola", 0.65, 0)
-        var g2 = WinkelwagenItem(2, "pils", 0.65, 0)
-        var g3 = WinkelwagenItem(2, "fanta", 0.65, 0)
+        //
+        var lst:ArrayList<WinkelwagenItem> = ArrayList<WinkelwagenItem>()
+        for (x in 0..30) {
+            var g = WinkelwagenItem(1, "cola", 0.65, 1)
+            lst.add(g)
+        }
+        _items.value = lst
 
 
-        _items.value = mutableListOf<WinkelwagenItem>(g, g2, g3)
+
+
+
         //_leden.value = mutableListOf<Gebruiker>()
     }
 
