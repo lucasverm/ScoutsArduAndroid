@@ -13,7 +13,7 @@ class Winkelwagen : Serializable {
     public fun getTotaal(): Double {
         var totaal = 0.00
         for (item in winkelwagenItems){
-            totaal += item.Prijs * item.Aantal
+            totaal += item.prijs * item.aantal
         }
         return (Math.round(totaal * 100.0) / 100.0)
     }

@@ -22,9 +22,9 @@ class CheckWinkelwagenAdapter : RecyclerView.Adapter<CheckWinkelwagenAdapter.Vie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        holder.aantal.text = item.Aantal.toString()
-        holder.naam.text = item.Naam
-        holder.totaal.text = "€ " + (Math.round(item.Prijs * item.Aantal * 100.0) / 100.0).toString()
+        holder.aantal.text = item.aantal.toString()
+        holder.naam.text = item.naam
+        holder.totaal.text = "€ " + (Math.round(item.prijs * item.aantal * 100.0) / 100.0).toString()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

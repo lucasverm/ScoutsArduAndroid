@@ -22,9 +22,9 @@ class SanteAdapter : RecyclerView.Adapter<SanteAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        holder.aantal.text = item.Aantal.toString()
-        holder.naam.text = item.Naam
-        holder.totaal.text = "€ " + (item.Aantal * item.Prijs).toString()
+        holder.aantal.text = item.aantal.toString()
+        holder.naam.text = item.naam
+        holder.totaal.text = "€ " + (item.aantal * item.prijs).toString()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -8,20 +8,20 @@ import be.ardu.scoutsardu.models.WinkelwagenItem
 @BindingAdapter("naamWinkelwagenItem")
 fun TextView.setNaamWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
     winkelwagenItem.let{
-        text = winkelwagenItem.Naam
+        text = winkelwagenItem.naam
     }
 }
 
 @BindingAdapter("prijsWinkelwagenItem")
 fun TextView.setPrijsWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
     winkelwagenItem.let{
-        text = winkelwagenItem.Prijs.toString()
+        text = winkelwagenItem.prijs.toString()
     }
 }
 
 @BindingAdapter("aantalWinkelwagenItem")
 fun EditText.setAantalWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
     winkelwagenItem.let{
-        setText(winkelwagenItem.Aantal.toString(), TextView.BufferType.EDITABLE);
+        setText(winkelwagenItem.aantal.toString(), TextView.BufferType.EDITABLE);
     }
 }

@@ -1,59 +1,70 @@
 package be.ardu.scoutsardu.enen_drinken
 
+import be.ardu.scoutsardu.models.WinkelwagenItem
+import be.ardu.scoutsardu.network.ScoutsArduApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import be.ardu.scoutsardu.models.WinkelwagenItem
-import be.ardu.scoutsardu.network.ScoutsArduApi
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class EnenDrinkenViewModel: ViewModel() {
+
+enum class ScoutsArduApiStatus { LOADING, ERROR, DONE }
+
+class EnenDrinkenViewModel : ViewModel() {
     private val _items = MutableLiveData<List<WinkelwagenItem>>()
     private val _navigateToCheckFragment = MutableLiveData<WinkelwagenItem>()
 
-    val items : LiveData<List<WinkelwagenItem>>
+    val items: LiveData<List<WinkelwagenItem>>
         get() = _items
 
-    val navigateToCheckFragemt : LiveData<WinkelwagenItem>
+    val navigateToCheckFragemt: LiveData<WinkelwagenItem>
         get() = _navigateToCheckFragment
+
+    private var viewModelJob = Job()
+
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
     init {
         //
-        var lst:ArrayList<WinkelwagenItem> = ArrayList<WinkelwagenItem>()
+        var lst: ArrayList<WinkelwagenItem> = ArrayList<WinkelwagenItem>()
         for (x in 0..30) {
             var g = WinkelwagenItem(1, "cola", 0.65, 1)
             lst.add(g)
         }
         _items.value = lst
         getWinkelwagenItems()
-
-        //_leden.value = mutableListOf<Gebruiker>()
     }
 
-    fun getWinkelwagenItems(){
-        println("---------------------------")
-        ScoutsArduApi.retrofitService.getWinkelwagenItems().enqueue( object: Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                println("---------------------------")
-                println("Failure: " + t.message)
-                // _items.value = "Failure: " + t.message
-            }
 
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                println("---------------------------")
-                println(response.body())
-                //_items.value = response.body()
+    fun getWinkelwagenItems() {
+
+        coroutineScope.launch {
+            // Get the Deferred object for our Retrofit request
+            var getPropertiesDeferred = ScoutsArduApi.retrofitService.getWinkelwagenItems()
+            try {
+                // Await the completion of our Retrofit request
+                var listResult = getPropertiesDeferred.await()
+              println("Success: ${listResult.size} winkelwagen properties retrieved")
+            } catch (e: Exception) {
+                println("Failure: ${e.message}")
             }
-        })
+        }
+
     }
 
-    fun onWinkelwagenItemClicked(winkelwagenItem: WinkelwagenItem){
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
+    fun onWinkelwagenItemClicked(winkelwagenItem: WinkelwagenItem) {
         _navigateToCheckFragment.value = winkelwagenItem
     }
 
-    fun onWinkelwagenToCheckFragmentNavigated(){
+    fun onWinkelwagenToCheckFragmentNavigated() {
         _navigateToCheckFragment.value = null
     }
 }

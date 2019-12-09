@@ -77,7 +77,7 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun fixSubTotaal(winkelwagenItem: WinkelwagenItem){
-            val totaal = Math.round(winkelwagenItem.Prijs * winkelwagenItem.Aantal * 100.0) / 100.0
+            val totaal = Math.round(winkelwagenItem.prijs * winkelwagenItem.aantal * 100.0) / 100.0
             binding.totaal.setText(totaal.toString())
         }
 
@@ -88,7 +88,7 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun afterTextChanged(s: Editable?) {
-                    winkelwagenItem.Aantal = Integer.parseInt(s.toString())
+                    winkelwagenItem.aantal = Integer.parseInt(s.toString())
                     fixSubTotaal(winkelwagenItem)
                 }
 
@@ -96,8 +96,8 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
 
             binding.min.setOnClickListener {
                 winkelwagenItem.verminderrDrank()
-                binding.aantal.setText(winkelwagenItem.Aantal.toString())
-                if(winkelwagenItem.Aantal < 1) {
+                binding.aantal.setText(winkelwagenItem.aantal.toString())
+                if(winkelwagenItem.aantal < 1) {
                     it.isEnabled = false
                 }
                 fixSubTotaal(winkelwagenItem)
@@ -105,8 +105,8 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
 
             binding.plus.setOnClickListener {
                 winkelwagenItem.vermeerderDrank()
-                binding.aantal.setText(winkelwagenItem.Aantal.toString())
-                if(winkelwagenItem.Aantal > 0) {
+                binding.aantal.setText(winkelwagenItem.aantal.toString())
+                if(winkelwagenItem.aantal > 0) {
                     binding.min.isEnabled = true
                 }
                 fixSubTotaal(winkelwagenItem)
@@ -143,7 +143,7 @@ class EnenDrinkenClickListener(val clickListener: (winkelwagenItem: WinkelwagenI
 
 sealed class DataItem {
     data class WinkelwagenDataItem(val winkelwagenItem: WinkelwagenItem) : DataItem() {
-        override val id = winkelwagenItem.Id
+        override val id = winkelwagenItem.id
     }
 
     object Header : DataItem() {

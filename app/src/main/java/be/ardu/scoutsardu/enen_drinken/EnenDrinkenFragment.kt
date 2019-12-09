@@ -41,6 +41,7 @@ class EnenDrinkenFragment : Fragment() {
                 container,
                 false
             )
+
         //viewmodel initialisatie voor het fragment
         viewModelFactory = EnenDrinkenViewModelFactory()
         viewModel =
@@ -78,20 +79,21 @@ class EnenDrinkenFragment : Fragment() {
             var verderGaanToegestaan = false
             var wagen = Winkelwagen()
             viewModel.items.value?.forEach {
-                if (it.Aantal > 0) {
+                if (it.aantal > 0) {
                     verderGaanToegestaan = true
                     wagen.winkelwagenItems.add(it)
                 }
 
             }
-            if(verderGaanToegestaan){
+            if (verderGaanToegestaan) {
                 val action =
                     EnenDrinkenFragmentDirections.actionEnenDrinkenFragmentToCheckWinkelwagenFragment(
                         wagen
                     )
                 Navigation.findNavController(it).navigate(action)
             } else {
-                Toast.makeText(getActivity(), "Koop minstens 1 product!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Koop minstens 1 product!", Toast.LENGTH_SHORT)
+                    .show();
             }
         }
 

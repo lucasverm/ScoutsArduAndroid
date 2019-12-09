@@ -1,23 +1,28 @@
 package be.ardu.scoutsardu.network
 
-import android.view.animation.ScaleAnimation
-import retrofit2.Call
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import java.util.*
 
 private const val BASE_URL = "http://scoutsarduapi.azurewebsites.net/"
 
+private val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .build()
 
 interface ScoutsArduApiService{
     @GET("api/Winkelwagen/WinkelwagenItems")
-    fun getWinkelwagenItems(): Call<String>
+    fun getWinkelwagenItems(): Deferred<List<WinkelwagenItemProperty>>
 }
 
 //singleton
