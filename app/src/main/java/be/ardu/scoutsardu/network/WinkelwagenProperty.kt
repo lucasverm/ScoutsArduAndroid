@@ -1,6 +1,7 @@
 package be.ardu.scoutsardu.network
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
@@ -8,7 +9,9 @@ import java.util.*
 
 @Parcelize
 data class Winkelwagen(
-    @Json(name="items") var winkelwagenItems: ArrayList<WinkelwagenItem>,
+    @Json(name="items")
+    @SerializedName("items")
+    var winkelwagenItems: ArrayList<WinkelwagenItem>,
     var betaald: Boolean
 
 ): Serializable, Parcelable {
@@ -20,5 +23,9 @@ data class Winkelwagen(
         }
         return (Math.round(totaal * 100.0) / 100.0)
     }
+
+
 }
+
+
 

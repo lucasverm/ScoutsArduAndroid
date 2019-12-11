@@ -9,11 +9,12 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.GET
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Types
 import com.squareup.moshi.Types.newParameterizedType
+import okhttp3.ResponseBody
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.*
 
 
 private const val BASE_URL = "https://scoutsarduapinew.azurewebsites.net/"
@@ -36,6 +37,12 @@ interface ScoutsArduApiService{
 
     @GET("api/Winkelwagen/stamhistoriek")
     suspend fun getStamHistory(): List<Winkelwagen>
+
+    @POST("api/Winkelwagen")
+    suspend fun postWinkelwagen(
+        @Body winkelwagen: Winkelwagen
+    ): Winkelwagen
+
 }
 
 //singleton

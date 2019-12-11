@@ -54,8 +54,10 @@ class CheckWinkelwagenFragment : Fragment() {
         arguments?.let {
             viewModel.winkelwagen.value = it.get("winkelwagen") as Winkelwagen
         }
+
         binding.Verder.text =  "Totaal: € " + viewModel.winkelwagen.value!!.getTotaal().toString()
         binding.Verder.setOnClickListener {
+            viewModel.postWinkelwagen()
             var action = CheckWinkelwagenFragmentDirections.actionCheckWinkelwagenFragmentToSanteFragment2(
                 viewModel.winkelwagen.value!!
             )
