@@ -5,23 +5,21 @@ import be.ardu.scoutsardu.network.ScoutsArduApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import kotlinx.coroutines.*
-import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
-
-
-enum class ScoutsArduApiStatus { LOADING, ERROR, DONE }
+import java.lang.Thread.sleep
 
 class EnenDrinkenViewModel : ViewModel() {
-    private val _status = MutableLiveData<ScoutsArduApiStatus>()
-    private val _items = MutableLiveData<List<WinkelwagenItem>>()
-    private val _navigateToCheckFragment = MutableLiveData<WinkelwagenItem>()
 
+    private val _items = MutableLiveData<List<WinkelwagenItem>>()
     val items: LiveData<List<WinkelwagenItem>>
         get() = _items
+
+    private val _status = MutableLiveData<ScoutsArduApiStatus>()
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
 
+    private val _navigateToCheckFragment = MutableLiveData<WinkelwagenItem>()
     val navigateToCheckFragemt: LiveData<WinkelwagenItem>
         get() = _navigateToCheckFragment
 
@@ -30,21 +28,15 @@ class EnenDrinkenViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        //
-        var lst: ArrayList<WinkelwagenItem> = ArrayList<WinkelwagenItem>()
-        for (x in 0..30) {
-            var g = WinkelwagenItem(1, "cola", 0.65, 1)
-            lst.add(g)
-        }
         getWinkelwagenItems()
-        getStamHistoriek()
+        //getStamHistoriek()
     }
 
 
     fun getWinkelwagenItems() {
         _status.value = ScoutsArduApiStatus.LOADING
-        coroutineScope.launch(Dispatchers.Main) {
-            try {
+        try {
+            coroutineScope.launch(Dispatchers.Main) {
                 var listResult = async(Dispatchers.IO) {
                     ScoutsArduApi.retrofitService.getWinkelwagenItems()
                 }.await()
@@ -52,11 +44,12 @@ class EnenDrinkenViewModel : ViewModel() {
                     _items.value = listResult
                 }
                 _status.value = ScoutsArduApiStatus.DONE
-            } catch (e: Exception) {
-                _items.value = ArrayList<WinkelwagenItem>()
-                _status.value = ScoutsArduApiStatus.ERROR
             }
+        } catch (t: Throwable) {
+            _items.value = ArrayList<WinkelwagenItem>()
+            _status.value = ScoutsArduApiStatus.ERROR
         }
+
 
     }
 

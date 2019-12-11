@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,9 +17,7 @@ import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.FragmentCheckWinkelwagenBinding
 import be.ardu.scoutsardu.network.Winkelwagen
 import androidx.recyclerview.widget.DividerItemDecoration
-
-
-
+import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 
 
 class CheckWinkelwagenFragment : Fragment() {
@@ -55,13 +54,13 @@ class CheckWinkelwagenFragment : Fragment() {
             viewModel.winkelwagen.value = it.get("winkelwagen") as Winkelwagen
         }
 
-        binding.Verder.text =  "Totaal: € " + viewModel.winkelwagen.value!!.getTotaal().toString()
+        binding.Verder.text = "Totaal: € " + viewModel.winkelwagen.value!!.getTotaal().toString()
         binding.Verder.setOnClickListener {
-            viewModel.postWinkelwagen()
-            var action = CheckWinkelwagenFragmentDirections.actionCheckWinkelwagenFragmentToSanteFragment2(
-                viewModel.winkelwagen.value!!
-            )
-            Navigation.findNavController(it).navigate(action)
+            var action =
+                CheckWinkelwagenFragmentDirections.actionCheckWinkelwagenFragmentToSanteFragment2(
+                    viewModel.winkelwagen.value!!
+                )
+            Navigation.findNavController(view!!).navigate(action)
         }
 
         return binding.root

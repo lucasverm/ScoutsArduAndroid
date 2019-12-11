@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation
 import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.checkWinkelwagen.*
 import be.ardu.scoutsardu.databinding.FragmentSanteBinding
+import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
 
 /**
@@ -55,10 +57,29 @@ class santeFragment : Fragment() {
             viewModel.winkelwagen.value = it.get("winkelwagen") as Winkelwagen
         }
 
-        /*----------------*/
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+           if(it == ScoutsArduApiStatus.LOADING){
+               binding.betaaldOverzichtLijst.visibility = View.GONE
+               binding.bestelling.visibility = View.GONE
+               binding.betaaldDatum.visibility = View.GONE
+               binding.naam.visibility = View.GONE
+               binding.tijdstip.visibility = View.GONE
+               binding.statusImage.setImageResource(R.drawable.loading_animation)
+               binding.statusImage.visibility = View.VISIBLE
 
-
-
+           }
+            if(it == ScoutsArduApiStatus.DONE){
+                binding.betaaldOverzichtLijst.visibility = View.VISIBLE
+                binding.bestelling.visibility = View.VISIBLE
+                binding.betaaldDatum.visibility = View.VISIBLE
+                binding.naam.visibility = View.VISIBLE
+                binding.tijdstip.visibility = View.VISIBLE
+                binding.statusImage.visibility = View.GONE
+            }
+            if(it == ScoutsArduApiStatus.ERROR){
+                getFragmentManager()!!.popBackStack()
+            }
+        })
 
         return binding.root
     }

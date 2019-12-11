@@ -1,11 +1,11 @@
-package be.ardu.scoutsardu.enen_drinken
+package be.ardu.scoutsardu
 
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import be.ardu.scoutsardu.R
+import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.WinkelwagenItem
 
 @BindingAdapter("naamWinkelwagenItem")
@@ -39,6 +39,7 @@ fun bindStatus(statusImageView: ImageView, status: ScoutsArduApiStatus?){
         ScoutsArduApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
+
         }
         ScoutsArduApiStatus.DONE -> {
             statusImageView.visibility = View.GONE

@@ -19,7 +19,6 @@ import retrofit2.http.*
 
 private const val BASE_URL = "https://scoutsarduapinew.azurewebsites.net/"
 
-
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -51,4 +50,6 @@ object ScoutsArduApi {
         retrofit.create(ScoutsArduApiService::class.java)
     }
 }
+
+enum class ScoutsArduApiStatus { LOADING, ERROR, DONE }
 

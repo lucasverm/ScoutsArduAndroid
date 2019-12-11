@@ -13,8 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/loading_animation"
+
+            />
+
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/betaaldDatum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -25,34 +37,34 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tijdstip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Tijdstip: 19:20"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/betaaldDatum"
+            app:layout_constraintTop_toBottomOf="@+id/betaaldDatum" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/naam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Naam: Lucas Vermeulen"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintStart_toStartOf="@+id/tijdstip"
+            app:layout_constraintTop_toBottomOf="@+id/tijdstip" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/bestelling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Uw bestelling: "
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintStart_toStartOf="@+id/naam"
+            app:layout_constraintTop_toBottomOf="@+id/naam" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/betaaldOverzichtLijst"
@@ -63,7 +75,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/bestelling" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
