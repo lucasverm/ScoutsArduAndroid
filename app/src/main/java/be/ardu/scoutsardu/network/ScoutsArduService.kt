@@ -32,7 +32,7 @@ private val retrofit = Retrofit.Builder()
 
 interface ScoutsArduApiService{
     @GET("api/Winkelwagen/WinkelwagenItems")
-    fun getWinkelwagenItems(): Deferred<List<WinkelwagenItem>>
+    suspend fun getWinkelwagenItems(): List<WinkelwagenItem>
 
     @GET("api/Winkelwagen/stamhistoriek")
     suspend fun getStamHistory(): List<Winkelwagen>

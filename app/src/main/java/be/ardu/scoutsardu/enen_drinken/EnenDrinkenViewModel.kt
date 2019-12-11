@@ -10,7 +10,6 @@ import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 
-
 enum class ScoutsArduApiStatus { LOADING, ERROR, DONE }
 
 class EnenDrinkenViewModel : ViewModel() {
@@ -28,7 +27,7 @@ class EnenDrinkenViewModel : ViewModel() {
 
     private var viewModelJob = Job()
 
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         //
@@ -37,7 +36,6 @@ class EnenDrinkenViewModel : ViewModel() {
             var g = WinkelwagenItem(1, "cola", 0.65, 1)
             lst.add(g)
         }
-        //_items.value = lst
         getWinkelwagenItems()
         getStamHistoriek()
     }
@@ -45,60 +43,30 @@ class EnenDrinkenViewModel : ViewModel() {
 
     fun getWinkelwagenItems() {
         _status.value = ScoutsArduApiStatus.LOADING
-        coroutineScope.launch {
-            // Get the Deferred object for our Retrofit request
-            var getWinkelwagenItemsDeferred = ScoutsArduApi.retrofitService.getWinkelwagenItems()
+        coroutineScope.launch(Dispatchers.Main) {
             try {
-                // Await the completion of our Retrofit request
-                var listResult = getWinkelwagenItemsDeferred.await()
+                var listResult = async(Dispatchers.IO) {
+                    ScoutsArduApi.retrofitService.getWinkelwagenItems()
+                }.await()
                 if (listResult.size > 0) {
                     _items.value = listResult
                 }
-              println("Success: ${listResult.size} winkelwagenItems gevonden")
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
-                _items.value =  ArrayList<WinkelwagenItem>()
-                println("Failure: ${e.message}")
+                _items.value = ArrayList<WinkelwagenItem>()
                 _status.value = ScoutsArduApiStatus.ERROR
-
             }
         }
 
     }
 
     fun getStamHistoriek() {
-       // [{"id":1,"items":[{"id":1,"naam":"Cola","prijs":1.0,"aantal":2,"winkelwagens":null},{"id":3,"naam":"Cola","prijs":1.0,"aantal":1,"winkelwagens":null}],"betaald":false,"datum":null,"gebruiker":null},{"id":2,"items":[{"id":1,"naam":"Cola","prijs":1.0,"aantal":2,"winkelwagens":null},{"id":2,"naam":"Bier","prijs":2.0,"aantal":1,"winkelwagens":null},{"id":8,"naam":"Bier","prijs":2.0,"aantal":1,"winkelwagens":null}],"betaald":false,"datum":null,"gebruiker":null}]
-        /*ScoutsArduApi.retrofitService.getStamHistory().enqueue(object: Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                println("fail " + t)
-            }
-
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                response.body()
-            }
-
-        })
-        coroutineScope.launch {
-            // Get the Deferred object for our Retrofit request
-            var getStamHistoriekDeferred = ScoutsArduApi.retrofitService.getStamHistory()
-            try {
-                // Await the completion of our Retrofit request
-                var listResult = getStamHistoriekDeferred
-                println("Success: ${listResult.size} winkelwagens gevonden")
-            } catch (e: Exception) {
-                println("Failure: ${e.message}")
-
-            }
-        }*/
-
         coroutineScope.launch(Dispatchers.Main) {
-            try{
-                var getPropertiesDeferred = async(Dispatchers.IO) {
+            try {
+                var listResult = async(Dispatchers.IO) {
                     ScoutsArduApi.retrofitService.getStamHistory()
                 }.await()
-                val listResult = getPropertiesDeferred
-                println("succes: " + listResult.size)
-            } catch (t: Throwable){
+            } catch (t: Throwable) {
                 println(t)
             }
         }
