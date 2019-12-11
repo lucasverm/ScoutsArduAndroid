@@ -60,7 +60,7 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
         companion object {
             fun from(parent: ViewGroup): TextViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.header, parent, false)
+                val view = layoutInflater.inflate(R.layout.fragment_no_winkelwagen_items_found, parent, false)
                 return TextViewHolder(view)
             }
         }
@@ -93,6 +93,12 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
                 }
 
             })
+
+            if(winkelwagenItem.aantal < 1) {
+                binding.min.isEnabled = false
+            }else{
+                binding.min.isEnabled = true
+            }
 
             binding.min.setOnClickListener {
                 winkelwagenItem.verminderrDrank()

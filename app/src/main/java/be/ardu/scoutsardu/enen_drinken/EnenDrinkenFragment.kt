@@ -50,13 +50,13 @@ class EnenDrinkenFragment : Fragment() {
 
         //grid layout settings
         val manager = GridLayoutManager(activity, 1)
-        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+        /*manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int) = when (viewModel.items.value?.size) {
                 null -> 3
                 0 -> 3
                 else -> 1
             }
-        }
+        }*/
         binding.winkelwagenItemsRecycleView.layoutManager = manager
 
         binding.setLifecycleOwner(this)
