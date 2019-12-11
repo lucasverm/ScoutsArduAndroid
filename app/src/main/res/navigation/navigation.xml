@@ -35,7 +35,7 @@
         android:label="checkWinkelwagenFragment">
         <argument
             android:name="winkelwagen"
-            app:argType="be.ardu.scoutsardu.models.Winkelwagen" />
+            app:argType="be.ardu.scoutsardu.network.Winkelwagen" />
         <action
             android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment2"
             app:destination="@id/santeFragment2" />
@@ -47,6 +47,6 @@
         tools:layout="@layout/fragment_sante" >
         <argument
             android:name="winkelwagen"
-            app:argType="be.ardu.scoutsardu.models.Winkelwagen" />
+            app:argType="be.ardu.scoutsardu.network.Winkelwagen" />
     </fragment>
 </navigation>

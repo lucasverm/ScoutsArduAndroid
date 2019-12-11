@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenBinding
-import be.ardu.scoutsardu.models.Winkelwagen
+import be.ardu.scoutsardu.network.Winkelwagen
 import android.widget.TextView
 import android.graphics.Color
 
@@ -77,7 +77,7 @@ class EnenDrinkenFragment : Fragment() {
         //navigation: altijd in fragment
         binding.Verder.setOnClickListener {
             var verderGaanToegestaan = false
-            var wagen = Winkelwagen()
+            var wagen = Winkelwagen(ArrayList(),false)
             viewModel.items.value?.forEach {
                 if (it.aantal > 0) {
                     verderGaanToegestaan = true

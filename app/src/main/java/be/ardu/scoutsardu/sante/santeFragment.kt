@@ -13,7 +13,7 @@ import androidx.navigation.Navigation
 import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.checkWinkelwagen.*
 import be.ardu.scoutsardu.databinding.FragmentSanteBinding
-import be.ardu.scoutsardu.models.Winkelwagen
+import be.ardu.scoutsardu.network.Winkelwagen
 
 /**
  * A simple [Fragment] subclass.

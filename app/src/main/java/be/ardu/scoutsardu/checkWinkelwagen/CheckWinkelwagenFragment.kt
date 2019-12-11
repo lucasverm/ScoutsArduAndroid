@@ -14,7 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.FragmentCheckWinkelwagenBinding
-import be.ardu.scoutsardu.models.Winkelwagen
+import be.ardu.scoutsardu.network.Winkelwagen
 import androidx.recyclerview.widget.DividerItemDecoration
 
 

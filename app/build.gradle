@@ -1,11 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'androidx.navigation.safeargs'
 
 android {
@@ -24,6 +20,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    androidExtensions {
+        experimental = true
     }
 
     dataBinding {
@@ -48,11 +48,28 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation "com.squareup.retrofit2:retrofit: $version_retrofit"
-    implementation "com.squareup.moshi:moshi:$version_moshi"
-    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
-    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+
+    //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+
+
+    //Recyclerview
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+
+    //Moshi for converting JSON
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+
+    implementation "com.squareup.retrofit2:converter-gson:2.1.0"
 }

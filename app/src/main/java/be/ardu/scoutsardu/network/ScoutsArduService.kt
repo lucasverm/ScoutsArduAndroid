@@ -1,20 +1,30 @@
 package be.ardu.scoutsardu.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Types
+import com.squareup.moshi.Types.newParameterizedType
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 private const val BASE_URL = "https://scoutsarduapinew.azurewebsites.net/"
+
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
 private val retrofit = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
@@ -23,6 +33,9 @@ private val retrofit = Retrofit.Builder()
 interface ScoutsArduApiService{
     @GET("api/Winkelwagen/WinkelwagenItems")
     fun getWinkelwagenItems(): Deferred<List<WinkelwagenItem>>
+
+    @GET("api/Winkelwagen/stamhistoriek")
+    suspend fun getStamHistory(): List<Winkelwagen>
 }
 
 //singleton
