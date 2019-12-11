@@ -57,7 +57,7 @@ class CheckWinkelwagenFragment : Fragment() {
         binding.Verder.text = "Totaal: € " + viewModel.winkelwagen.value!!.getTotaal().toString()
         binding.Verder.setOnClickListener {
             var action =
-                CheckWinkelwagenFragmentDirections.actionCheckWinkelwagenFragmentToSanteFragment2(
+                CheckWinkelwagenFragmentDirections.actionCheckWinkelwagenFragmentToSanteFragment(
                     viewModel.winkelwagen.value!!
                 )
             Navigation.findNavController(view!!).navigate(action)

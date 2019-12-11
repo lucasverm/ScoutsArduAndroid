@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import kotlinx.coroutines.*
-import java.lang.Thread.sleep
 
 class EnenDrinkenViewModel : ViewModel() {
 
@@ -32,34 +31,38 @@ class EnenDrinkenViewModel : ViewModel() {
         //getStamHistoriek()
     }
 
-
     fun getWinkelwagenItems() {
         _status.value = ScoutsArduApiStatus.LOADING
-        try {
-            coroutineScope.launch(Dispatchers.Main) {
-                var listResult = async(Dispatchers.IO) {
+        coroutineScope.launch(Dispatchers.Main) {
+            try {
+                // Get the Deferred object for our Retrofit request
+                var getWinkelwagenItemsDeferred = async(Dispatchers.IO) {
                     ScoutsArduApi.retrofitService.getWinkelwagenItems()
                 }.await()
+                // Await the completion of our Retrofit request
+                var listResult = getWinkelwagenItemsDeferred.await()
                 if (listResult.size > 0) {
                     _items.value = listResult
                 }
                 _status.value = ScoutsArduApiStatus.DONE
+            } catch (e: Exception) {
+                _status.value = ScoutsArduApiStatus.ERROR
+
             }
-        } catch (t: Throwable) {
-            _items.value = ArrayList<WinkelwagenItem>()
-            _status.value = ScoutsArduApiStatus.ERROR
         }
 
-
     }
+
 
     fun getStamHistoriek() {
         coroutineScope.launch(Dispatchers.Main) {
             try {
-                var listResult = async(Dispatchers.IO) {
+                var getStamHistoryDeferred = async(Dispatchers.IO) {
                     ScoutsArduApi.retrofitService.getStamHistory()
                 }.await()
-            } catch (t: Throwable) {
+                var listResult = getStamHistoryDeferred.await()
+
+            } catch (t: Exception) {
                 println(t)
             }
         }

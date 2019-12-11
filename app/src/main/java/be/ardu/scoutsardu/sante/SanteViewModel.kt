@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
+import be.ardu.scoutsardu.network.WinkelwagenItem
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.lang.Exception
@@ -27,19 +28,18 @@ class SanteViewModel : ViewModel() {
 
     fun postWinkelwagen() {
         _status.value = ScoutsArduApiStatus.LOADING
-        try {
-            coroutineScope.launch(Dispatchers.Main) {
-                winkelwagen.value = async(Dispatchers.IO) {
+
+        coroutineScope.launch(Dispatchers.Main) {
+            try {
+                var postWinkelwagenDeferred = async(Dispatchers.IO) {
                     ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen.value!!)
                 }.await()
+                var item = postWinkelwagenDeferred.await()
                 _status.value = ScoutsArduApiStatus.DONE
+            } catch (e: Exception) {
+                _status.value = ScoutsArduApiStatus.ERROR
             }
-        } catch (e: Throwable) {
-            _status.value = ScoutsArduApiStatus.ERROR
         }
 
-
     }
-
-
 }

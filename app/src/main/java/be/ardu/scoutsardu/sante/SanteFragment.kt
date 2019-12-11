@@ -20,7 +20,7 @@ import be.ardu.scoutsardu.network.Winkelwagen
 /**
  * A simple [Fragment] subclass.
  */
-class santeFragment : Fragment() {
+class SanteFragment : Fragment() {
     private lateinit var viewModel: SanteViewModel
     private lateinit var viewModelFactory: SanteViewModelFactory
     private var data: String? = null
@@ -77,7 +77,10 @@ class santeFragment : Fragment() {
                 binding.statusImage.visibility = View.GONE
             }
             if(it == ScoutsArduApiStatus.ERROR){
-                getFragmentManager()!!.popBackStack()
+                var action = SanteFragmentDirections.actionSanteFragmentToCheckWinkelwagenFragment(
+                        viewModel.winkelwagen.value!!
+                    )
+                Navigation.findNavController(view!!).navigate(action)
             }
         })
 

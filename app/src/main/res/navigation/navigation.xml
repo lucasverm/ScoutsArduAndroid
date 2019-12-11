@@ -37,16 +37,20 @@
             android:name="winkelwagen"
             app:argType="be.ardu.scoutsardu.network.Winkelwagen" />
         <action
-            android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment2"
-            app:destination="@id/santeFragment2" />
+            android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment"
+            app:destination="@id/santeFragment"
+            app:popUpTo="@+id/dashboardFragment" />
     </fragment>
     <fragment
-        android:id="@+id/santeFragment2"
-        android:name="be.ardu.scoutsardu.sante.santeFragment"
-        android:label="fragment_sante"
-        tools:layout="@layout/fragment_sante" >
+        android:id="@+id/santeFragment"
+        android:name="be.ardu.scoutsardu.sante.SanteFragment"
+        android:label="SanteFragment" >
         <argument
             android:name="winkelwagen"
             app:argType="be.ardu.scoutsardu.network.Winkelwagen" />
+        <action
+            android:id="@+id/action_santeFragment_to_checkWinkelwagenFragment"
+            app:destination="@id/checkWinkelwagenFragment"
+            app:popUpTo="@+id/enenDrinkenFragment" />
     </fragment>
 </navigation>
