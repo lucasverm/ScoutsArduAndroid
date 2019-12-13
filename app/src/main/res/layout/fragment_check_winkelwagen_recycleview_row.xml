@@ -21,6 +21,8 @@
         android:padding="10dp">
 
 
+
+
         <TextView
             android:id="@+id/overzichtNaam"
             android:layout_width="wrap_content"

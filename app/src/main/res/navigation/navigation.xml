@@ -27,7 +27,11 @@
         android:label="EnenDrinkenFragment" >
         <action
             android:id="@+id/action_enenDrinkenFragment_to_checkWinkelwagenFragment"
-            app:destination="@+id/checkWinkelwagenFragment" />
+            app:destination="@+id/checkWinkelwagenFragment" >
+            <argument
+                android:name="toonError"
+                android:defaultValue="false" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/checkWinkelwagenFragment"
@@ -40,6 +44,10 @@
             android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment"
             app:destination="@id/santeFragment"
             app:popUpTo="@+id/dashboardFragment" />
+        <argument
+            android:name="toonError"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/santeFragment"
@@ -51,6 +59,10 @@
         <action
             android:id="@+id/action_santeFragment_to_checkWinkelwagenFragment"
             app:destination="@id/checkWinkelwagenFragment"
-            app:popUpTo="@+id/enenDrinkenFragment" />
+            app:popUpTo="@+id/enenDrinkenFragment" >
+            <argument
+                android:name="toonError"
+                android:defaultValue="true" />
+        </action>
     </fragment>
 </navigation>

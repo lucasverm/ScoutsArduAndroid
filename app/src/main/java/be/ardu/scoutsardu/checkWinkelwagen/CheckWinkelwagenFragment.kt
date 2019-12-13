@@ -23,7 +23,6 @@ import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 class CheckWinkelwagenFragment : Fragment() {
     private lateinit var viewModel: CheckWinkelwagenViewModel
     private lateinit var viewModelFactory: CheckWinkelwagenViewModelFactory
-    private var data: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,6 +51,7 @@ class CheckWinkelwagenFragment : Fragment() {
 
         arguments?.let {
             viewModel.winkelwagen.value = it.get("winkelwagen") as Winkelwagen
+            binding.errorMessage.isVisible = it.get("toonError") as Boolean
         }
 
         binding.Verder.text = "Totaal: € " + viewModel.winkelwagen.value!!.getTotaal().toString()

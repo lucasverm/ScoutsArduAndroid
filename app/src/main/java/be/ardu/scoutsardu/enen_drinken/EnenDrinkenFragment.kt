@@ -18,6 +18,8 @@ import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenBinding
 import be.ardu.scoutsardu.network.Winkelwagen
 import android.widget.TextView
 import android.graphics.Color
+import be.ardu.scoutsardu.network.ScoutsArduApi
+import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 
 
 /**
@@ -74,16 +76,32 @@ class EnenDrinkenFragment : Fragment() {
             }
         })
 
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            binding.Verder.visibility = View.GONE
+            binding.statusImage.visibility = View.GONE
+            binding.errorMessage.visibility = View.GONE
+            if (it.equals(ScoutsArduApiStatus.ERROR)) {
+                binding.statusImage.setImageResource(R.drawable.ic_connection_error)
+                binding.errorMessage.visibility = View.VISIBLE
+                binding.statusImage.visibility = View.VISIBLE
+            }
+            if (it.equals(ScoutsArduApiStatus.LOADING)) {
+                binding.statusImage.setImageResource(R.drawable.loading_animation)
+                binding.statusImage.visibility = View.VISIBLE
+            }
+            if (it.equals(ScoutsArduApiStatus.DONE)) {
+                binding.Verder.visibility = View.VISIBLE
+            }
+        })
         //navigation: altijd in fragment
         binding.Verder.setOnClickListener {
             var verderGaanToegestaan = false
-            var wagen = Winkelwagen(ArrayList(),false)
+            var wagen = Winkelwagen(ArrayList(), false)
             viewModel.items.value?.forEach {
                 if (it.aantal > 0) {
                     verderGaanToegestaan = true
                     wagen.winkelwagenItems.add(it)
                 }
-
             }
             if (verderGaanToegestaan) {
                 val action =
@@ -92,11 +110,10 @@ class EnenDrinkenFragment : Fragment() {
                     )
                 Navigation.findNavController(it).navigate(action)
             } else {
-                Toast.makeText(getActivity(), "Koop minstens 1 product!", Toast.LENGTH_SHORT)
-                    .show();
+                binding.errorMessage.text = "Koop minstens 1 product!"
+                binding.errorMessage.visibility = View.VISIBLE
             }
         }
-
         return binding.root
     }
 

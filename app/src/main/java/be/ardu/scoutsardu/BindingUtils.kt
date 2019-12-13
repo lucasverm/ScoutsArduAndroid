@@ -29,6 +29,7 @@ fun EditText.setAantalWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
     }
 }
 
+/*
 @BindingAdapter("ScoutsArduApiStatus")
 fun bindStatus(statusImageView: ImageView, status: ScoutsArduApiStatus?){
     when(status){
@@ -45,4 +46,4 @@ fun bindStatus(statusImageView: ImageView, status: ScoutsArduApiStatus?){
             statusImageView.visibility = View.GONE
         }
     }
-}
+}*/

@@ -15,6 +15,10 @@ import com.squareup.moshi.Types.newParameterizedType
 import okhttp3.ResponseBody
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import com.google.gson.GsonBuilder
+import com.google.gson.Gson
+
+
 
 
 private const val BASE_URL = "https://scoutsarduapinew.azurewebsites.net/"
@@ -23,8 +27,13 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
+var gson = GsonBuilder()
+    .setLenient()
+    .create()
+
+
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(GsonConverterFactory.create())
+    .addConverterFactory(GsonConverterFactory.create(gson))
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
@@ -41,6 +50,11 @@ interface ScoutsArduApiService{
     fun postWinkelwagen(
         @Body winkelwagen: Winkelwagen
     ): Deferred<Winkelwagen>
+
+    @POST("api/Account/login")
+    suspend fun login(
+        @Body data: SendLoginData
+    ): String
 
 }
 
