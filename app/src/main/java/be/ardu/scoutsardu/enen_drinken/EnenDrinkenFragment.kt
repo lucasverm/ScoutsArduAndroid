@@ -18,6 +18,7 @@ import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenBinding
 import be.ardu.scoutsardu.network.Winkelwagen
 import android.widget.TextView
 import android.graphics.Color
+import be.ardu.scoutsardu.Repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 
@@ -96,7 +97,7 @@ class EnenDrinkenFragment : Fragment() {
         //navigation: altijd in fragment
         binding.Verder.setOnClickListener {
             var verderGaanToegestaan = false
-            var wagen = Winkelwagen(ArrayList(), false)
+            var wagen = Winkelwagen(ArrayList(), false, AccountRepository.gebruiker!!)
             viewModel.items.value?.forEach {
                 if (it.aantal > 0) {
                     verderGaanToegestaan = true

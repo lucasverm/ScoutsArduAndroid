@@ -48,13 +48,16 @@ interface ScoutsArduApiService{
 
     @POST("api/Winkelwagen")
     fun postWinkelwagen(
-        @Body winkelwagen: Winkelwagen
+        @Body winkelwagen: Winkelwagen, @Header("Authorization") bearerToken: String
     ): Deferred<Winkelwagen>
 
     @POST("api/Account/login")
     suspend fun login(
         @Body data: SendLoginData
     ): String
+
+    @GET("api/Account")
+    suspend fun getGebruiker(@Header("Authorization") bearerToken: String): Gebruiker
 
 }
 
@@ -65,5 +68,5 @@ object ScoutsArduApi {
     }
 }
 
-enum class ScoutsArduApiStatus { LOADING, ERROR, DONE }
+enum class ScoutsArduApiStatus { LOADING, ERROR, DONE, DEFAULT }
 

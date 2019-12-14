@@ -38,8 +38,6 @@ class SanteFragment : Fragment() {
                 false
             )
 
-
-        /*-------------------*/
         val adapter = SanteAdapter()
         binding.betaaldOverzichtLijst.adapter = adapter
                 viewModelFactory = SanteViewModelFactory()
@@ -56,6 +54,8 @@ class SanteFragment : Fragment() {
         arguments?.let {
             viewModel.winkelwagen.value = it.get("winkelwagen") as Winkelwagen
         }
+
+        binding.naam.text = "Naam: " + viewModel.winkelwagen.value?.gebruiker!!.getFullNaam()
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
            if(it == ScoutsArduApiStatus.LOADING){

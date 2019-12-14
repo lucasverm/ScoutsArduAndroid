@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
@@ -15,48 +21,22 @@
 
             <LinearLayout
                 android:id="@+id/enenDrinken"
-                android:clickable="true"
-                android:focusable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:contentDescription="@string/Stam"
-                    android:scaleType="fitStart"
-                    app:srcCompat="@drawable/cheers" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:text="@string/Stam"
-                    android:textAlignment="center" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:contentDescription="@string/Stam"
-                    android:scaleType="fitStart"
-                    app:srcCompat="@drawable/group" />
+                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                    android:id="@+id/logo1"
+                    android:text="&#xf0fc;"
+                    style="@style/fontAwesomeMenuItem"
+                    />
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:text="Ledenbeheer"
+                    android:text="@string/enen_drinken"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -65,23 +45,60 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:contentDescription="@string/Stam"
-                    android:scaleType="fitStart"
-                    app:srcCompat="@drawable/user" />
+                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                    android:id="@+id/logo2"
+                    android:text="&#xf1da;"
+                    style="@style/fontAwesomeMenuItem"/>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:text="@string/historiek"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                    android:id="@+id/logo3"
+                    android:text="&#xf555;"
+                    app:srcCompat="@drawable/cheers"
+                    style="@style/fontAwesomeMenuItem"/>
 
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:text="Account"
+                    android:text="@string/portemonnee"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                    android:id="@+id/logo4"
+                    android:text="&#xf007;"
+                    style="@style/fontAwesomeMenuItem"/>
+
+                <TextView
+                    android:id="@+id/textView55"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:text="@string/Account"
                     android:textAlignment="center" />
             </LinearLayout>
 
         </com.google.android.flexbox.FlexboxLayout>
     </ScrollView>
+
 </layout>

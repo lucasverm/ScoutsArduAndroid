@@ -22,19 +22,22 @@ class LoginViewModel : ViewModel(), CoroutineScope{
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
 
-    private val accountRepository = AccountRepository()
 
     fun login(email:String, password:String) {
         launch(Dispatchers.Main) {
             try{
-                var getPropertiesDeferred = async(Dispatchers.IO) {accountRepository.login(email,password)}.await()
-
+                _status.value = ScoutsArduApiStatus.LOADING
+                var getPropertiesDeferred = async(Dispatchers.IO) {
+                    AccountRepository.login(email,password)
+                    AccountRepository.getGebruiker()
+                }.await()
                 _status.value = ScoutsArduApiStatus.LOADING
                 val listResult = getPropertiesDeferred
                 println(listResult)
                 _status.value = ScoutsArduApiStatus.DONE
-
-            } catch (t: Throwable){
+                _status.value = ScoutsArduApiStatus.DEFAULT
+            } catch (e: Exception){
+                println(e)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

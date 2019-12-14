@@ -28,4 +28,16 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="fontAwesomeMenuItem">
+
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:scaleType">fitStart</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">140sp</item>
+        <item name="android:contentDescription">@string/Stam</item>
+    </style>
+
 </resources>

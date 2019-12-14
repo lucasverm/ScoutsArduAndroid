@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.Observer
@@ -20,6 +22,7 @@ import be.ardu.scoutsardu.checkWinkelwagen.CheckWinkelwagenViewModelFactory
 import be.ardu.scoutsardu.databinding.FragmentLoginBinding
 import be.ardu.scoutsardu.login.LoginViewModel
 import be.ardu.scoutsardu.login.LoginViewModelFactory
+import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.sante.SanteFragmentDirections
 
@@ -45,16 +48,22 @@ class LoginFragment : Fragment() {
             viewModel.login("user@example.com", "string")
         }
 
+        binding.errorMessage.visibility = View.GONE
         viewModel.status.observe(viewLifecycleOwner, Observer {
+            println(it)
             if(it == ScoutsArduApiStatus.DONE){
-                binding.errorMessage.visibility = View.GONE
+
+                binding.errorMessage.text ="Welkom!"
+                binding.errorMessage.setBackgroundColor(Color.GREEN)
+                binding.errorMessage.visibility = View.VISIBLE
                 var action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment()
                 Navigation.findNavController(view!!).navigate(action)
             }
             if(it == ScoutsArduApiStatus.LOADING){
-                binding.errorMessage.text ="Verbinding met server..."
-                binding.errorMessage.setBackgroundColor(Color.CYAN)
                 binding.errorMessage.visibility = View.VISIBLE
+                binding.errorMessage.text ="Verbinding met server..."
+                binding.errorMessage.setBackgroundColor(ContextCompat.getColor(context!!, R.color.orange))
+                println("loading done")
             }
 
             if(it == ScoutsArduApiStatus.ERROR){

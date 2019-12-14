@@ -12,8 +12,8 @@ data class Winkelwagen(
     @Json(name="items")
     @SerializedName("items")
     var winkelwagenItems: ArrayList<WinkelwagenItem>,
-    var betaald: Boolean
-
+    var betaald: Boolean,
+    var gebruiker: Gebruiker
 ): Serializable, Parcelable {
 
     fun getTotaal(): Double {

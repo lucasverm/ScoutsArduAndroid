@@ -3,6 +3,7 @@ package be.ardu.scoutsardu.sante
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import be.ardu.scoutsardu.Repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
@@ -32,11 +33,12 @@ class SanteViewModel : ViewModel() {
         coroutineScope.launch(Dispatchers.Main) {
             try {
                 var postWinkelwagenDeferred = async(Dispatchers.IO) {
-                    ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen.value!!)
+                    ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen.value!!, AccountRepository.bearerToken)
                 }.await()
                 var item = postWinkelwagenDeferred.await()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
+                println(e)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
