@@ -53,6 +53,11 @@ class SanteFragment : Fragment() {
 
         arguments?.let {
             viewModel.winkelwagen.value = it.get("winkelwagen") as Winkelwagen
+            viewModel.winkelwagenIsHistory = it.get("history") as Boolean
+        }
+
+        if(viewModel.winkelwagenIsHistory){
+            viewModel.postWinkelwagen()
         }
 
         binding.naam.text = "Naam: " + viewModel.winkelwagen.value?.gebruiker!!.getFullNaam()

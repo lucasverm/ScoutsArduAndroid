@@ -28,7 +28,7 @@ class HistoriekViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init{
-        getStamHistoriek()
+       getStamHistoriek()
     }
 
     fun getStamHistoriek() {
@@ -73,7 +73,6 @@ class HistoriekViewModel : ViewModel() {
     }
 
     fun onWinkelwagenItemClicked(winkelwagen: Winkelwagen) {
-        println(winkelwagen)
         _navigateToSanteFragment.value = winkelwagen
     }
 

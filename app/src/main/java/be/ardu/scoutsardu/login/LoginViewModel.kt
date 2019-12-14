@@ -35,8 +35,6 @@ class LoginViewModel : ViewModel(), CoroutineScope{
                     AccountRepository.login(email,password)
                     AccountRepository.getGebruiker()
                 }.await()
-                _status.value = ScoutsArduApiStatus.LOADING
-                val listResult = getPropertiesDeferred
                 _status.value = ScoutsArduApiStatus.DONE
                 _status.value = ScoutsArduApiStatus.DEFAULT
             } catch (e: Exception){

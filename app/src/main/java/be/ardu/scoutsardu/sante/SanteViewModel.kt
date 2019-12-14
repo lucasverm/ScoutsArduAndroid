@@ -16,6 +16,7 @@ import java.lang.Thread.sleep
 class SanteViewModel : ViewModel() {
     val winkelwagen = MutableLiveData<Winkelwagen>()
 
+    var winkelwagenIsHistory:Boolean = true
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -24,10 +25,10 @@ class SanteViewModel : ViewModel() {
         get() = _status
 
     init {
-        postWinkelwagen()
     }
 
     fun postWinkelwagen() {
+
         _status.value = ScoutsArduApiStatus.LOADING
 
         coroutineScope.launch(Dispatchers.Main) {
@@ -42,5 +43,10 @@ class SanteViewModel : ViewModel() {
             }
         }
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }

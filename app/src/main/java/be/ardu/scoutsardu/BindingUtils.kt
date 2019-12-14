@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
+import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.network.WinkelwagenItem
 
 @BindingAdapter("naamWinkelwagenItem")
@@ -29,21 +30,16 @@ fun EditText.setAantalWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
     }
 }
 
-/*
-@BindingAdapter("ScoutsArduApiStatus")
-fun bindStatus(statusImageView: ImageView, status: ScoutsArduApiStatus?){
-    when(status){
-        ScoutsArduApiStatus.LOADING -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.loading_animation)
-        }
-        ScoutsArduApiStatus.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.ic_connection_error)
-
-        }
-        ScoutsArduApiStatus.DONE -> {
-            statusImageView.visibility = View.GONE
-        }
+@BindingAdapter("naamWinkelwagen")
+fun TextView.setNaamWinkelwagen(winkelwagen: Winkelwagen){
+    winkelwagen.let{
+        text = winkelwagen.gebruiker.voornaam + " " +winkelwagen.gebruiker.achternaam + " (14/12/2019 - 13:13)"
     }
-}*/
+}
+
+@BindingAdapter("totaalPrijsWinkelwagen")
+fun TextView.setTotaalPrijsWinkelwagen(winkelwagen: Winkelwagen){
+    winkelwagen.let{
+        text = winkelwagen.getTotaal().toString()
+    }
+}

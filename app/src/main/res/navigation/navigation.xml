@@ -46,7 +46,11 @@
         <action
             android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment"
             app:destination="@id/santeFragment"
-            app:popUpTo="@+id/dashboardFragment" />
+            app:popUpTo="@+id/dashboardFragment" >
+            <argument
+                android:name="history"
+                android:defaultValue="true" />
+        </action>
         <argument
             android:name="toonError"
             app:argType="boolean"
@@ -67,10 +71,21 @@
                 android:name="toonError"
                 android:defaultValue="true" />
         </action>
+        <argument
+            android:name="history"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/historiekFragment"
         android:name="be.ardu.scoutsardu.historiek.HistoriekFragment"
         android:label="fragment_historiek"
-        tools:layout="@layout/fragment_historiek" />
+        tools:layout="@layout/fragment_historiek" >
+        <action
+            android:id="@+id/action_historiekFragment_to_santeFragment"
+            app:destination="@id/santeFragment" >
+            <argument
+                android:name="history"
+                android:defaultValue="false" />
+        </action>
+    </fragment>
 </navigation>

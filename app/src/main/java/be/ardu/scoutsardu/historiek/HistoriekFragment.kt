@@ -10,13 +10,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.FragmentHistoriekBinding
-import be.ardu.scoutsardu.enen_drinken.EnenDrinkenAdapter
-import be.ardu.scoutsardu.enen_drinken.EnenDrinkenClickListener
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
-import kotlinx.android.synthetic.main.fragment_historiek.*
 
 
 /**
@@ -38,20 +35,12 @@ class HistoriekFragment : Fragment() {
                 false
             )
 
-        val adapter = HistoriekAdapter(HistoriekClickListener { winkelwagen ->
-            viewModel.onWinkelwagenItemClicked(winkelwagen)
-        })
-        binding.winkelwagens.adapter = adapter
         viewModelFactory = HistoriekViewModelFactory()
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(HistoriekViewModel::class.java)
         binding.historiekViewModel = viewModel
 
-        viewModel.winkelwagens.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.data = it
-            }
-        })
+        binding.setLifecycleOwner(this)
 
         val displayMetrics = context!!.getResources().displayMetrics
         binding.mijnHistoriek.width = displayMetrics.widthPixels/2
@@ -88,6 +77,34 @@ class HistoriekFragment : Fragment() {
 
             }
         })
+
+
+       /* viewModel.winkelwagens.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })*/
+
+        viewModel.navigateToSanteFragemt.observe(this, Observer {winkelwagen ->
+            winkelwagen?.let {
+                this.findNavController().navigate(
+                    HistoriekFragmentDirections.actionHistoriekFragmentToSanteFragment(it)
+                )
+                viewModel.onWinkelwagenToSanteFragmentNavigated()
+            }
+        })
+
+        val adapter = HistoriekAdapter(HistoriekClickListener { winkelwagen ->
+            viewModel.onWinkelwagenItemClicked(winkelwagen)
+        })
+        binding.winkelwagens.adapter = adapter
+
+        viewModel.winkelwagens.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.addHeaderAndSubmitList(it)
+            }
+        })
+
        return binding.root
     }
 

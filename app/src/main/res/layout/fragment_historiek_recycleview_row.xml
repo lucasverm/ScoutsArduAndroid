@@ -16,8 +16,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(winkelwagen)}"
+        android:layout_height="40dp"
+        android:onClick="@{() -> clickListener.onClick(winkelwagen)}">
         android:padding="10dp">
 
 
@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.51"
-            app:prijsWinkelwagenItem="@{winkelwagenItem}"
+            app:totaalPrijsWinkelwagen="@{winkelwagen}"
             tools:text="@string/_0_65" />
 
         <TextView
@@ -43,7 +43,8 @@
             android:text="Lucas Vermeulen (14-12-2019 - 20:13)"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:naamWinkelwagen="@{winkelwagen}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

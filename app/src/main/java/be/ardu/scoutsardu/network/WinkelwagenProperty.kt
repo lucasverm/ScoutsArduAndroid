@@ -9,6 +9,7 @@ import java.util.*
 
 @Parcelize
 data class Winkelwagen(
+    var id: Int,
     @Json(name="items")
     @SerializedName("items")
     var winkelwagenItems: ArrayList<WinkelwagenItem>,
