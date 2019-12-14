@@ -26,13 +26,11 @@
                 android:orientation="vertical">
 
                 <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
-                    android:id="@+id/logo1"
                     android:text="&#xf0fc;"
                     style="@style/fontAwesomeMenuItem"
                     />
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -43,15 +41,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/historiek">
 
                 <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
-                    android:id="@+id/logo2"
                     android:text="&#xf1da;"
                     style="@style/fontAwesomeMenuItem"/>
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -62,35 +59,32 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/portefeuille">
 
                 <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
-                    android:id="@+id/logo3"
                     android:text="&#xf555;"
-                    app:srcCompat="@drawable/cheers"
                     style="@style/fontAwesomeMenuItem"/>
 
                 <TextView
-                    android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:text="@string/portemonnee"
+                    android:text="@string/portefeuille"
                     android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/account">>
 
                 <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
-                    android:id="@+id/logo4"
                     android:text="&#xf007;"
                     style="@style/fontAwesomeMenuItem"/>
 
                 <TextView
-                    android:id="@+id/textView55"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"

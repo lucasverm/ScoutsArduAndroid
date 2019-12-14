@@ -38,7 +38,6 @@ class SanteViewModel : ViewModel() {
                 var item = postWinkelwagenDeferred.await()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
-                println(e)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

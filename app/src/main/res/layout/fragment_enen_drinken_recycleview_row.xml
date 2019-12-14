@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="winkelwagenItem"
             type="be.ardu.scoutsardu.network.WinkelwagenItem" />

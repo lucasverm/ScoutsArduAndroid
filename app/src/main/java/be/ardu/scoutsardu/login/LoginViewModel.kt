@@ -22,6 +22,10 @@ class LoginViewModel : ViewModel(), CoroutineScope{
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 
     fun login(email:String, password:String) {
         launch(Dispatchers.Main) {
@@ -33,11 +37,9 @@ class LoginViewModel : ViewModel(), CoroutineScope{
                 }.await()
                 _status.value = ScoutsArduApiStatus.LOADING
                 val listResult = getPropertiesDeferred
-                println(listResult)
                 _status.value = ScoutsArduApiStatus.DONE
                 _status.value = ScoutsArduApiStatus.DEFAULT
             } catch (e: Exception){
-                println(e)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

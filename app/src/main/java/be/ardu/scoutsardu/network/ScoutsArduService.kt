@@ -44,7 +44,10 @@ interface ScoutsArduApiService{
     fun getWinkelwagenItems(): Deferred<List<WinkelwagenItem>>
 
     @GET("api/Winkelwagen/stamhistoriek")
-    fun getStamHistory(): Deferred<List<Winkelwagen>>
+    fun getStamHistory(@Header("Authorization") bearerToken: String): Deferred<ArrayList<Winkelwagen>>
+
+    @GET("api/Winkelwagen/winkelwagens")
+    fun getMijnHistory(@Header("Authorization") bearerToken: String): Deferred<ArrayList<Winkelwagen>>
 
     @POST("api/Winkelwagen")
     fun postWinkelwagen(

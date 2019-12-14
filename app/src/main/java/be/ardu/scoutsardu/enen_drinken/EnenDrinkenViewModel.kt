@@ -28,7 +28,6 @@ class EnenDrinkenViewModel : ViewModel() {
 
     init {
         getWinkelwagenItems()
-        //getStamHistoriek()
     }
 
     fun getWinkelwagenItems() {
@@ -53,21 +52,6 @@ class EnenDrinkenViewModel : ViewModel() {
 
     }
 
-
-    fun getStamHistoriek() {
-        coroutineScope.launch(Dispatchers.Main) {
-            try {
-                var getStamHistoryDeferred = async(Dispatchers.IO) {
-                    ScoutsArduApi.retrofitService.getStamHistory()
-                }.await()
-                var listResult = getStamHistoryDeferred.await()
-
-            } catch (t: Exception) {
-                println(t)
-            }
-        }
-
-    }
 
     override fun onCleared() {
         super.onCleared()

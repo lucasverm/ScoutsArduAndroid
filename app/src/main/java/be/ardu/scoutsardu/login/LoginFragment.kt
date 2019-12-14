@@ -50,7 +50,6 @@ class LoginFragment : Fragment() {
 
         binding.errorMessage.visibility = View.GONE
         viewModel.status.observe(viewLifecycleOwner, Observer {
-            println(it)
             if(it == ScoutsArduApiStatus.DONE){
 
                 binding.errorMessage.text ="Welkom!"
@@ -63,7 +62,6 @@ class LoginFragment : Fragment() {
                 binding.errorMessage.visibility = View.VISIBLE
                 binding.errorMessage.text ="Verbinding met server..."
                 binding.errorMessage.setBackgroundColor(ContextCompat.getColor(context!!, R.color.orange))
-                println("loading done")
             }
 
             if(it == ScoutsArduApiStatus.ERROR){

@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_enenDrinkenFragment"
             app:destination="@id/enenDrinkenFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_historiekFragment"
+            app:destination="@id/historiekFragment" />
     </fragment>
     <fragment
         android:id="@+id/enenDrinkenFragment"
@@ -65,4 +68,9 @@
                 android:defaultValue="true" />
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/historiekFragment"
+        android:name="be.ardu.scoutsardu.historiek.HistoriekFragment"
+        android:label="fragment_historiek"
+        tools:layout="@layout/fragment_historiek" />
 </navigation>

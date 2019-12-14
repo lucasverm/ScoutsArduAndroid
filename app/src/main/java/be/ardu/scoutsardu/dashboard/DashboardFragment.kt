@@ -23,6 +23,8 @@ class DashboardFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentDashboardBinding>(inflater, R.layout.fragment_dashboard, container, false)
         binding.enenDrinken.setOnClickListener (
             Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_enenDrinkenFragment))
+        binding.historiek.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_historiekFragment))
         return binding.root
     }
 
