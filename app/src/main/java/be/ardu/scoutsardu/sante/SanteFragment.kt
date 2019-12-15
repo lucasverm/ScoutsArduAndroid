@@ -60,10 +60,7 @@ class SanteFragment : Fragment() {
             viewModel.postWinkelwagen()
         }
 
-        binding.naam.text = "Naam: " + viewModel.winkelwagen.value?.gebruiker!!.getFullNaam()
-        binding.betaald.text = if(viewModel.winkelwagen.value!!.betaald) "Betaald: Ja!" else "Betaald: Neen!"
-        binding.datum.text = "Datum: " + viewModel.winkelwagen.value!!.getDatum()
-        binding.tijdstip.text = "Tijdstip: " + viewModel.winkelwagen.value!!.getTijd()
+        updateVelden(binding, viewModel)
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
            if(it == ScoutsArduApiStatus.LOADING){
@@ -78,6 +75,7 @@ class SanteFragment : Fragment() {
 
            }
             if(it == ScoutsArduApiStatus.DONE){
+                updateVelden(binding, viewModel)
                 binding.betaaldOverzichtLijst.visibility = View.VISIBLE
                 binding.bestelling.visibility = View.VISIBLE
                 binding.betaald.visibility = View.VISIBLE
@@ -95,6 +93,13 @@ class SanteFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    fun updateVelden(binding: FragmentSanteBinding, viewModel: SanteViewModel){
+        binding.naam.text = "Naam: " + viewModel.winkelwagen.value?.gebruiker!!.getFullNaam()
+        binding.betaald.text = if(viewModel.winkelwagen.value!!.betaald) "Betaald: Ja!" else "Betaald: Neen!"
+        binding.datum.text = "Datum: " + viewModel.winkelwagen.value!!.getDatum()
+        binding.tijdstip.text = "Tijdstip: " + viewModel.winkelwagen.value!!.getTijd()
     }
 
 

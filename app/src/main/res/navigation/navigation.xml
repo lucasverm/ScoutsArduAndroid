@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="be.ardu.scoutsardu.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="Login" >
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="be.ardu.scoutsardu.DashboardFragment"
-        android:label="DashboardFragment" >
+        android:label="Dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_enenDrinkenFragment"
             app:destination="@id/enenDrinkenFragment" />
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/enenDrinkenFragment"
         android:name="be.ardu.scoutsardu.enen_drinken.EnenDrinkenFragment"
-        android:label="EnenDrinkenFragment" >
+        android:label="Enen drinken ?!" >
         <action
             android:id="@+id/action_enenDrinkenFragment_to_checkWinkelwagenFragment"
             app:destination="@+id/checkWinkelwagenFragment" >
@@ -45,7 +45,7 @@
     <fragment
         android:id="@+id/checkWinkelwagenFragment"
         android:name="be.ardu.scoutsardu.checkWinkelwagen.CheckWinkelwagenFragment"
-        android:label="checkWinkelwagenFragment">
+        android:label="Controleer winkelwagen">
         <argument
             android:name="winkelwagen"
             app:argType="be.ardu.scoutsardu.network.Winkelwagen" />
@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/santeFragment"
         android:name="be.ardu.scoutsardu.sante.SanteFragment"
-        android:label="SanteFragment" >
+        android:label="Santé!" >
         <argument
             android:name="winkelwagen"
             app:argType="be.ardu.scoutsardu.network.Winkelwagen" />
@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/historiekFragment"
         android:name="be.ardu.scoutsardu.historiek.HistoriekFragment"
-        android:label="fragment_historiek"
+        android:label="Historiek"
         tools:layout="@layout/fragment_historiek" >
         <action
             android:id="@+id/action_historiekFragment_to_santeFragment"
@@ -97,7 +97,7 @@
     <fragment
         android:id="@+id/registreerFragment"
         android:name="be.ardu.scoutsardu.registreer.RegistreerFragment"
-        android:label="RegistreerFragment" >
+        android:label="Registreer" >
         <action
             android:id="@+id/action_registreerFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />

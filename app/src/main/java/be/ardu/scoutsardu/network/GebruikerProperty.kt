@@ -25,7 +25,7 @@ data class Gebruiker(
     var winkelwagens: ArrayList<Winkelwagen>
 ) : Serializable, Parcelable {
     fun getFullNaam(): String {
-        return this.voornaam + " " + this.achternaam
+        return this.voornaam.capitalize() + " " + this.achternaam.capitalize()
     }
 }
 

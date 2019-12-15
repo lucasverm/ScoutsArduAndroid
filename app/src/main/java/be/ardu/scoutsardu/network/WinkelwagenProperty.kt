@@ -31,11 +31,24 @@ data class Winkelwagen(
     }
 
     fun getDatum(): String {
-        return this.datumDag.toString() + "/" + this.datumMaand.toString() + "/" + this.datumJaar.toString()
+        var dag = addAdditionalZero(datumDag.toString())
+        var maand = addAdditionalZero(datumMaand.toString())
+        return dag + "/" + maand + "/" + this.datumJaar.toString()
     }
 
     fun getTijd(): String {
-        return this.datumUur.toString() + ":" + this.datumMinuten.toString()
+        var uur = addAdditionalZero(datumUur.toString())
+        var minuten = addAdditionalZero(datumMinuten.toString())
+        return uur + ":" + minuten
+    }
+
+    fun addAdditionalZero(item: String):String{
+        var uitvoer = ""
+        if(item.length == 1){
+            uitvoer += "0"
+        }
+        uitvoer += item
+        return uitvoer
     }
 }
 

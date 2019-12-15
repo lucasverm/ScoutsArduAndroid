@@ -29,7 +29,6 @@
     </style>
 
     <style name="fontAwesomeMenuItem">
-
         <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">150dp</item>
         <item name="android:gravity">bottom</item>

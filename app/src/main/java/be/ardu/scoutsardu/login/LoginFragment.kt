@@ -34,6 +34,8 @@ class LoginFragment : Fragment() {
     private lateinit var viewModelFactory: LoginViewModelFactory
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+
         val binding = DataBindingUtil.inflate<FragmentLoginBinding>(inflater, R.layout.fragment_login, container, false)
         //binding.loginButton.setOnClickListener (
            // Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_dashboardFragment))
