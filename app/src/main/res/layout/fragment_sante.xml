@@ -26,15 +26,25 @@
             />
 
         <TextView
-            android:id="@+id/betaaldDatum"
+        android:id="@+id/betaald"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Betaald: Ja!"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/datum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="Betaald: 30/01/2019"
+            android:text="Datum: 13/12/2019"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/betaald"
+            app:layout_constraintTop_toBottomOf="@+id/betaald" />
 
         <TextView
             android:id="@+id/tijdstip"
@@ -43,8 +53,8 @@
             android:layout_marginTop="10dp"
             android:text="Tijdstip: 19:20"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/betaaldDatum"
-            app:layout_constraintTop_toBottomOf="@+id/betaaldDatum" />
+            app:layout_constraintStart_toStartOf="@+id/datum"
+            app:layout_constraintTop_toBottomOf="@+id/datum" />
 
         <TextView
             android:id="@+id/naam"
@@ -61,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Uw bestelling: "
+            android:text="Bestelling: "
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/naam"
             app:layout_constraintTop_toBottomOf="@+id/naam" />

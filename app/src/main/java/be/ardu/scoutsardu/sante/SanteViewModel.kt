@@ -35,7 +35,7 @@ class SanteViewModel : ViewModel() {
                 var postWinkelwagenDeferred = async(Dispatchers.IO) {
                     ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen.value!!, AccountRepository.bearerToken)
                 }.await()
-                var item = postWinkelwagenDeferred.await()
+                winkelwagen.value = postWinkelwagenDeferred.await()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
                 println(e)

@@ -30,7 +30,7 @@ fun EditText.setAantalWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAant
 @BindingAdapter("naamWinkelwagen")
 fun TextView.setNaamWinkelwagen(winkelwagen: Winkelwagen){
     winkelwagen.let{
-        text = winkelwagen.gebruiker.voornaam + " " +winkelwagen.gebruiker.achternaam + " (14/12/2019 - 13:13)"
+        text = winkelwagen.gebruiker.voornaam + " " +winkelwagen.gebruiker.achternaam + " (" + winkelwagen.getDatum() + " - " + winkelwagen.getTijd() + ")"
     }
 }
 

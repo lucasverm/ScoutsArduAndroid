@@ -61,12 +61,16 @@ class SanteFragment : Fragment() {
         }
 
         binding.naam.text = "Naam: " + viewModel.winkelwagen.value?.gebruiker!!.getFullNaam()
+        binding.betaald.text = if(viewModel.winkelwagen.value!!.betaald) "Betaald: Ja!" else "Betaald: Neen!"
+        binding.datum.text = "Datum: " + viewModel.winkelwagen.value!!.getDatum()
+        binding.tijdstip.text = "Tijdstip: " + viewModel.winkelwagen.value!!.getTijd()
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
            if(it == ScoutsArduApiStatus.LOADING){
                binding.betaaldOverzichtLijst.visibility = View.GONE
                binding.bestelling.visibility = View.GONE
-               binding.betaaldDatum.visibility = View.GONE
+               binding.betaald.visibility = View.GONE
+               binding.datum.visibility = View.GONE
                binding.naam.visibility = View.GONE
                binding.tijdstip.visibility = View.GONE
                binding.statusImage.setImageResource(R.drawable.loading_animation)
@@ -76,8 +80,9 @@ class SanteFragment : Fragment() {
             if(it == ScoutsArduApiStatus.DONE){
                 binding.betaaldOverzichtLijst.visibility = View.VISIBLE
                 binding.bestelling.visibility = View.VISIBLE
-                binding.betaaldDatum.visibility = View.VISIBLE
+                binding.betaald.visibility = View.VISIBLE
                 binding.naam.visibility = View.VISIBLE
+                binding.datum.visibility = View.VISIBLE
                 binding.tijdstip.visibility = View.VISIBLE
                 binding.statusImage.visibility = View.GONE
             }

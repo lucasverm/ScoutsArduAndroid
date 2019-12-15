@@ -103,7 +103,7 @@ class RegistreerFragment : Fragment() {
             }
             if (it == ScoutsArduApiStatus.LOADING) {
                 binding.errorMessage.visibility = View.VISIBLE
-                binding.errorMessage.text = "Verbinding met server..."
+                binding.errorMessage.text = "Verbinden met server..."
                 binding.errorMessage.setBackgroundColor(
                     ContextCompat.getColor(
                         context!!,

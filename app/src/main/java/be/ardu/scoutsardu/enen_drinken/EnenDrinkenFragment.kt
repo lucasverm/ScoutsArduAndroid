@@ -97,7 +97,7 @@ class EnenDrinkenFragment : Fragment() {
         //navigation: altijd in fragment
         binding.Verder.setOnClickListener {
             var verderGaanToegestaan = false
-            var wagen = Winkelwagen(0, ArrayList(), false, AccountRepository.gebruiker!!)
+            var wagen = Winkelwagen(0, 0,0,0,0,0, ArrayList(), false, AccountRepository.gebruiker!!)
             viewModel.items.value?.forEach {
                 if (it.aantal > 0) {
                     verderGaanToegestaan = true
