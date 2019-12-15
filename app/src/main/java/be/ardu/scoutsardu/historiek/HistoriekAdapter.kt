@@ -61,13 +61,6 @@ ListAdapter<DataItem, RecyclerView.ViewHolder>(HistoryDiffCallBack()) {
             }
         }
     }
-
-
-    /*class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val info: TextView = itemView.findViewById(id.info)
-        val totaal: TextView = itemView.findViewById(id.totaal)
-    }*/
-
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
             is DataItem.Header -> ITEM_VIEW_TYPE_HEADER
