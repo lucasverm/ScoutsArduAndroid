@@ -1,6 +1,7 @@
 package be.ardu.scoutsardu
 
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.InflateException
@@ -17,6 +18,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
+import be.ardu.scoutsardu.Activitys.LoginActivity
+import be.ardu.scoutsardu.Activitys.MainActivity
 import be.ardu.scoutsardu.checkWinkelwagen.CheckWinkelwagenViewModel
 import be.ardu.scoutsardu.checkWinkelwagen.CheckWinkelwagenViewModelFactory
 import be.ardu.scoutsardu.databinding.FragmentLoginBinding
@@ -58,7 +61,9 @@ class LoginFragment : Fragment() {
                 viewModel.login(binding.email.text.toString(), binding.password.text.toString())
 
             }*/
+            //
             viewModel.login("user@example.com", "string")
+
         }
 
         binding.aanmelden.setOnClickListener {
@@ -73,8 +78,8 @@ class LoginFragment : Fragment() {
                 binding.errorMessage.text ="Welkom!"
                 binding.errorMessage.setBackgroundColor(Color.GREEN)
                 binding.errorMessage.visibility = View.VISIBLE
-                var action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment()
-                Navigation.findNavController(view!!).navigate(action)
+                val intent:Intent = Intent(this.context, MainActivity::class.java)
+                startActivity(intent)
             }
             if(it == ScoutsArduApiStatus.LOADING){
                 binding.errorMessage.visibility = View.VISIBLE

@@ -3,22 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/dashboardFragment">
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="be.ardu.scoutsardu.LoginFragment"
-        android:label="Login" >
-        <action
-            android:id="@+id/action_loginFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
-            app:launchSingleTop="false"
-            app:popUpToInclusive="false" />
-        <action
-            android:id="@+id/action_loginFragment_to_registreerFragment"
-            app:destination="@id/registreerFragment"
-            app:popUpToInclusive="false" />
-    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="be.ardu.scoutsardu.DashboardFragment"
@@ -93,13 +79,5 @@
                 android:name="history"
                 android:defaultValue="false" />
         </action>
-    </fragment>
-    <fragment
-        android:id="@+id/registreerFragment"
-        android:name="be.ardu.scoutsardu.registreer.RegistreerFragment"
-        android:label="Registreer" >
-        <action
-            android:id="@+id/action_registreerFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>

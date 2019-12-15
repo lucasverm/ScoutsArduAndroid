@@ -1,11 +1,15 @@
-package be.ardu.scoutsardu
+package be.ardu.scoutsardu.Activitys
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.ActivityMainBinding
+import android.content.Intent
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +19,9 @@ class MainActivity : AppCompatActivity() {
         //setContentView(R.layout.fragment_picto)
         ///**
         @Suppress("UNUSED_VARIABLE")
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
+            R.layout.activity_main
+        )
         val navController = this.findNavController(R.id.navHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
         //**/
@@ -24,5 +30,12 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.navHostFragment)
         return navController.navigateUp()
+    }
+
+    override fun onBackPressed() {
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
     }
 }

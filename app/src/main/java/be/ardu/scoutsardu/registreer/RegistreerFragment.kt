@@ -37,7 +37,7 @@ class RegistreerFragment : Fragment() {
             false
         )
         binding.registreerButton.setOnClickListener {
-            var action = RegistreerFragmentDirections.actionRegistreerFragmentToDashboardFragment()
+            var action = RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
             Navigation.findNavController(view!!).navigate(action)
         }
 
@@ -97,8 +97,7 @@ class RegistreerFragment : Fragment() {
                 binding.errorMessage.text = "Welkom!"
                 binding.errorMessage.setBackgroundColor(Color.GREEN)
                 binding.errorMessage.visibility = View.VISIBLE
-                var action =
-                    RegistreerFragmentDirections.actionRegistreerFragmentToDashboardFragment()
+                var action = RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
                 Navigation.findNavController(view!!).navigate(action)
             }
             if (it == ScoutsArduApiStatus.LOADING) {

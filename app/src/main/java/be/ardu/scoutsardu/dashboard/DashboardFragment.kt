@@ -1,6 +1,7 @@
 package be.ardu.scoutsardu
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import be.ardu.scoutsardu.Activitys.LoginActivity
+import be.ardu.scoutsardu.Activitys.MainActivity
 import be.ardu.scoutsardu.databinding.FragmentDashboardBinding
 
 /**
@@ -25,6 +28,10 @@ class DashboardFragment : Fragment() {
             Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_enenDrinkenFragment))
         binding.historiek.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_historiekFragment))
+        binding.account.setOnClickListener{
+            val intent: Intent = Intent(this.context, LoginActivity::class.java)
+            startActivity(intent)
+        }
         return binding.root
     }
 
