@@ -10,7 +10,7 @@
 
         <variable
             name="clickListener"
-            type="be.ardu.scoutsardu.historiek.HistoriekClickListener" />
+            type="be.ardu.scoutsardu.portefeuille.PortefeuilleClickListener" />
     </data>
 
 
@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:onClick="@{() -> clickListener.onClick(winkelwagen)}"
-        android:padding="10dp">
+        android:padding="10dp"
+        app:setAchtergrondKleur="@{winkelwagen}">
 
 
         <TextView
@@ -40,7 +41,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            android:text="Lucas Vermeulen (14-12-2019 - 20:13)"
+            android:text="14-12-2019 - 20:13"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

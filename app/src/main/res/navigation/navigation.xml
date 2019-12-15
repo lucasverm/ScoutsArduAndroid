@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_historiekFragment"
             app:destination="@id/historiekFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_portefeuilleFragment"
+            app:destination="@id/portefeuilleFragment" />
     </fragment>
     <fragment
         android:id="@+id/enenDrinkenFragment"
@@ -78,6 +81,17 @@
             <argument
                 android:name="history"
                 android:defaultValue="false" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/portefeuilleFragment"
+        android:name="be.ardu.scoutsardu.portefeuille.PortefeuilleFragment"
+        android:label="PortefeuilleFragment" >
+        <action
+            android:id="@+id/action_portefeuilleFragment_to_santeFragment"
+            app:destination="@id/santeFragment" >
+            <argument android:defaultValue="false"
+                android:name="history" />
         </action>
     </fragment>
 </navigation>

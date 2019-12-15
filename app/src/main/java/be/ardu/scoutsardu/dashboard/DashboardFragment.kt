@@ -28,6 +28,8 @@ class DashboardFragment : Fragment() {
             Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_enenDrinkenFragment))
         binding.historiek.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_historiekFragment))
+        binding.portefeuille.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_portefeuilleFragment))
         binding.account.setOnClickListener{
             val intent: Intent = Intent(this.context, LoginActivity::class.java)
             startActivity(intent)

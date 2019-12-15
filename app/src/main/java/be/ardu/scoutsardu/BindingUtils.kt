@@ -1,7 +1,9 @@
 package be.ardu.scoutsardu
 
+import android.graphics.Color
 import android.widget.EditText
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
@@ -40,3 +42,16 @@ fun TextView.setTotaalPrijsWinkelwagen(winkelwagen: Winkelwagen){
         text = winkelwagen.getTotaal().toString()
     }
 }
+
+@BindingAdapter("setAchtergrondKleur")
+fun ConstraintLayout.setAchtergrond(winkelwagen: Winkelwagen){
+    winkelwagen.let{
+        if(it.betaald){
+            setBackgroundColor(Color.GREEN)
+        } else{
+            setBackgroundColor(Color.RED)
+        }
+
+    }
+}
+
