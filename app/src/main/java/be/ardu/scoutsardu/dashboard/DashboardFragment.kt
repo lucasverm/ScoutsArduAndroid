@@ -31,6 +31,7 @@ class DashboardFragment : Fragment() {
         binding.account.setOnClickListener{
             val intent: Intent = Intent(this.context, LoginActivity::class.java)
             startActivity(intent)
+            this.activity!!.finish()
         }
         return binding.root
     }

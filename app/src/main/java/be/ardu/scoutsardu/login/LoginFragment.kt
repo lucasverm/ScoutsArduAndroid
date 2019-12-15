@@ -80,6 +80,7 @@ class LoginFragment : Fragment() {
                 binding.errorMessage.visibility = View.VISIBLE
                 val intent:Intent = Intent(this.context, MainActivity::class.java)
                 startActivity(intent)
+                this.activity!!.finish()
             }
             if(it == ScoutsArduApiStatus.LOADING){
                 binding.errorMessage.visibility = View.VISIBLE
