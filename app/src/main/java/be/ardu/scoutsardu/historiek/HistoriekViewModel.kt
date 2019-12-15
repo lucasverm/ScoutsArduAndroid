@@ -7,7 +7,6 @@ import be.ardu.scoutsardu.Repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
-import be.ardu.scoutsardu.network.WinkelwagenItem
 import kotlinx.coroutines.*
 
 class HistoriekViewModel : ViewModel() {
@@ -28,7 +27,7 @@ class HistoriekViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init{
-       getStamHistoriek()
+        getMijnHistoriek()
     }
 
     fun getStamHistoriek() {

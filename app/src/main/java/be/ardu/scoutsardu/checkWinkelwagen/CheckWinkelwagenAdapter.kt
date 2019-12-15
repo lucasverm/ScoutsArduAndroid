@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import be.ardu.scoutsardu.R
-import be.ardu.scoutsardu.network.WinkelwagenItem
+import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 
 class CheckWinkelwagenAdapter : RecyclerView.Adapter<CheckWinkelwagenAdapter.ViewHolder>() {
-    var data = listOf<WinkelwagenItem>()
+    var data = listOf<WinkelwagenItemAantal>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -23,8 +23,8 @@ class CheckWinkelwagenAdapter : RecyclerView.Adapter<CheckWinkelwagenAdapter.Vie
         val item = data[position]
 
         holder.aantal.text = item.aantal.toString()
-        holder.naam.text = item.naam
-        holder.totaal.text = "€ " + (Math.round(item.prijs * item.aantal * 100.0) / 100.0).toString()
+        holder.naam.text = item.item.naam
+        holder.totaal.text = "€ " + (Math.round(item.item.prijs * item.aantal * 100.0) / 100.0).toString()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

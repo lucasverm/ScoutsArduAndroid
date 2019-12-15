@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="winkelwagenItem"
-            type="be.ardu.scoutsardu.network.WinkelwagenItem" />
+            name="winkelwagenItemAantal"
+            type="be.ardu.scoutsardu.network.WinkelwagenItemAantal" />
 
         <variable
             name="clickListener"
@@ -17,11 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(winkelwagenItem)}"
+        android:onClick="@{() -> clickListener.onClick(winkelwagenItemAantal)}"
         android:padding="10dp">
-
-
-
 
         <TextView
             android:id="@+id/overzichtNaam"
@@ -32,7 +28,7 @@
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.466"
-            app:naamWinkelwagenItem="@{winkelwagenItem}"
+            app:naamWinkelwagenItem="@{winkelwagenItemAantal}"
             tools:text="cola" />
 
         <TextView
@@ -44,7 +40,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.51"
-            app:prijsWinkelwagenItem="@{winkelwagenItem}"
+            app:prijsWinkelwagenItem="@{winkelwagenItemAantal}"
             tools:text="@string/_0_65" />
 
         <TextView
@@ -66,7 +62,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/overzichtAantal"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

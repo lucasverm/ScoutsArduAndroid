@@ -12,7 +12,7 @@ data class Winkelwagen(
     var id: Int,
     @Json(name="items")
     @SerializedName("items")
-    var winkelwagenItems: ArrayList<WinkelwagenItem>,
+    var winkelwagenItems: ArrayList<WinkelwagenItemAantal>,
     var betaald: Boolean,
     var gebruiker: Gebruiker
 ): Serializable, Parcelable {
@@ -20,12 +20,10 @@ data class Winkelwagen(
     fun getTotaal(): Double {
         var totaal = 0.00
         for (item in winkelwagenItems) {
-            totaal += item.prijs * item.aantal
+            totaal += item.item.prijs * item.aantal
         }
         return (Math.round(totaal * 100.0) / 100.0)
     }
-
-
 }
 
 

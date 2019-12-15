@@ -7,7 +7,6 @@ import be.ardu.scoutsardu.Repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
-import be.ardu.scoutsardu.network.WinkelwagenItem
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.lang.Exception
@@ -39,6 +38,7 @@ class SanteViewModel : ViewModel() {
                 var item = postWinkelwagenDeferred.await()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
+                println(e)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

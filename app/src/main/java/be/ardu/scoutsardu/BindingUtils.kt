@@ -1,32 +1,29 @@
 package be.ardu.scoutsardu
 
-import android.view.View
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
-import be.ardu.scoutsardu.network.WinkelwagenItem
+import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 
 @BindingAdapter("naamWinkelwagenItem")
-fun TextView.setNaamWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
-    winkelwagenItem.let{
-        text = winkelwagenItem.naam
+fun TextView.setNaamWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAantal){
+    winkelwagenItemAantal.let{
+        text = it.item.naam
     }
 }
 
 @BindingAdapter("prijsWinkelwagenItem")
-fun TextView.setPrijsWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
-    winkelwagenItem.let{
-        text = winkelwagenItem.prijs.toString()
+fun TextView.setPrijsWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAantal){
+    winkelwagenItemAantal.let{
+        text = "€ " + it.item.prijs.toString()
     }
 }
 
 @BindingAdapter("aantalWinkelwagenItem")
-fun EditText.setAantalWinkelwagenItem(winkelwagenItem: WinkelwagenItem){
-    winkelwagenItem.let{
-        setText(winkelwagenItem.aantal.toString(), TextView.BufferType.EDITABLE);
+fun EditText.setAantalWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAantal){
+    winkelwagenItemAantal.let{
+        setText(winkelwagenItemAantal.aantal.toString(), TextView.BufferType.EDITABLE);
     }
 }
 

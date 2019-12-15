@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@android:color/holo_red_dark"
     android:padding="8dp"
-    android:text="Er konden geen gebruikers worden gevonden!"
+    android:text="Er is geen data om weer te geven!"
     android:textAlignment="center"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:textColor="@color/white"

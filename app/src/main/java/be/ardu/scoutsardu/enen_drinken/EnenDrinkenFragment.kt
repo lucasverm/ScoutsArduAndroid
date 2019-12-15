@@ -64,8 +64,8 @@ class EnenDrinkenFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        val adapter = EnenDrinkenAdapter(EnenDrinkenClickListener { winkelwagenItem ->
-            viewModel.onWinkelwagenItemClicked(winkelwagenItem)
+        val adapter = EnenDrinkenAdapter(EnenDrinkenClickListener { winkelwagenItemAantal ->
+            viewModel.onWinkelwagenItemClicked(winkelwagenItemAantal)
         })
 
 

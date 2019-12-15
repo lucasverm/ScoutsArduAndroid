@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="winkelwagenItem"
-            type="be.ardu.scoutsardu.network.WinkelwagenItem" />
+            name="winkelwagenItemAantal"
+            type="be.ardu.scoutsardu.network.WinkelwagenItemAantal" />
 
         <variable
             name="clickListener"
@@ -16,9 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(winkelwagenItem)}"
         android:padding="10dp">
-
+        <!--android:onClick="@{() -> clickListener.onClick(winkelwagenItemAantal)}"-->
 
         <TextView
             android:id="@+id/overzichtNaam"
@@ -27,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:naamWinkelwagenItem="@{winkelwagenItem}"
+            app:naamWinkelwagenItem="@{winkelwagenItemAantal}"
             tools:text="cola" />
 
         <TextView
@@ -39,8 +38,9 @@
             app:layout_constraintEnd_toStartOf="@+id/min"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.51"
-            app:prijsWinkelwagenItem="@{winkelwagenItem}"
-            tools:text="@string/_0_65" />
+            app:prijsWinkelwagenItem="@{winkelwagenItemAantal}"
+            tools:text="kaka" />
+
 
         <Button
             android:id="@+id/min"
@@ -62,7 +62,7 @@
             android:inputType="number"
             android:labelFor="@id/min"
             android:textAlignment="center"
-            app:aantalWinkelwagenItem="@{winkelwagenItem}"
+            app:aantalWinkelwagenItem="@{winkelwagenItemAantal}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/plus"
             app:layout_constraintTop_toTopOf="parent"
