@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.Exchanger
 
 private val ITEM_VIEW_TYPE_HEADER = 0
 private val ITEM_VIEW_TYPE_ITEM = 1
@@ -86,7 +87,11 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun afterTextChanged(s: Editable?) {
-                    winkelwagenItemAantal.aantal = Integer.parseInt(s.toString())
+                    try{
+                        winkelwagenItemAantal.aantal = Integer.parseInt(s.toString())
+                    }catch(e:Exception){
+                        winkelwagenItemAantal.aantal = 0
+                    }
                     fixSubTotaal(winkelwagenItemAantal)
                 }
 

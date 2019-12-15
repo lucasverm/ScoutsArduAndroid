@@ -44,8 +44,24 @@ class LoginFragment : Fragment() {
         binding.loginViewModel = viewModel
 
         binding.loginButton.setOnClickListener{
-            //viewModel.login(binding.email.text.toString(), binding.password.text.toString())
+            /*if(binding.email.text.toString().isNullOrBlank()){
+                binding.errorMessage.text = "Vul je email adress in!"
+                binding.errorMessage.isVisible = true
+                binding.errorMessage.setBackgroundColor(Color.RED)
+            } else if(binding.password.text.toString().isNullOrBlank()){
+                binding.errorMessage.text = "Vul je wachtwoord in!"
+                binding.errorMessage.isVisible = true
+                binding.errorMessage.setBackgroundColor(Color.RED)
+            } else {
+                viewModel.login(binding.email.text.toString(), binding.password.text.toString())
+
+            }*/
             viewModel.login("user@example.com", "string")
+        }
+
+        binding.aanmelden.setOnClickListener {
+            var action = LoginFragmentDirections.actionLoginFragmentToRegistreerFragment()
+            Navigation.findNavController(view!!).navigate(action)
         }
 
         binding.errorMessage.visibility = View.GONE
@@ -67,6 +83,7 @@ class LoginFragment : Fragment() {
             if(it == ScoutsArduApiStatus.ERROR){
                 binding.errorMessage.text ="Er liep iets fout!"
                 binding.errorMessage.visibility = View.VISIBLE
+                binding.errorMessage.setBackgroundColor(Color.RED)
             }
 
         })

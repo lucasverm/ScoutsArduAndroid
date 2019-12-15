@@ -1,18 +1,14 @@
-package be.ardu.scoutsardu.login
+package be.ardu.scoutsardu.registreer
 
-import android.accounts.Account
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.Repositories.AccountRepository
-import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
-import be.ardu.scoutsardu.network.Winkelwagen
 import kotlinx.coroutines.*
-import java.lang.Exception
 import kotlin.coroutines.CoroutineContext
 
-class LoginViewModel : ViewModel(), CoroutineScope{
+class RegistreerViewModel : ViewModel(), CoroutineScope {
 
     private var viewModelJob = Job()
     override val coroutineContext: CoroutineContext
@@ -27,13 +23,12 @@ class LoginViewModel : ViewModel(), CoroutineScope{
         viewModelJob.cancel()
     }
 
-    fun login(email:String, password:String) {
-
+    fun registreer(email:String, voornaam:String, achternaam:String, telefoonNummer:String, password:String, passwordBevestiging:String) {
         launch(Dispatchers.Main) {
             try{
                 _status.value = ScoutsArduApiStatus.LOADING
-                var getPropertiesDeferred = async(Dispatchers.IO) {
-                    AccountRepository.login(email,password)
+                var register = async(Dispatchers.IO) {
+                    AccountRepository.registreer(email,voornaam,achternaam,telefoonNummer,password,passwordBevestiging)
                     AccountRepository.getGebruiker()
                 }.await()
                 _status.value = ScoutsArduApiStatus.DONE

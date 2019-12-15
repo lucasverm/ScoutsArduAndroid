@@ -10,11 +10,11 @@ data class WinkelwagenItemAantal(
 ):Parcelable{
     var id: Int = 0
 
-    fun vermeerderDrank(){
+    fun vermeerderDrank() {
         this.aantal += 1
     }
 
-    fun verminderrDrank(){
+    fun verminderrDrank() {
         this.aantal -= 1
     }
 }

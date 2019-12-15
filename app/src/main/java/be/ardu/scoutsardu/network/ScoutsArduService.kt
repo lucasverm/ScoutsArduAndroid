@@ -59,6 +59,11 @@ interface ScoutsArduApiService{
         @Body data: SendLoginData
     ): String
 
+    @POST("api/Account/register")
+    suspend fun registreer(
+        @Body data: SendRegistreerData
+    ): String
+
     @GET("api/Account")
     suspend fun getGebruiker(@Header("Authorization") bearerToken: String): Gebruiker
 

@@ -11,7 +11,13 @@
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            app:destination="@id/dashboardFragment"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_loginFragment_to_registreerFragment"
+            app:destination="@id/registreerFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -87,5 +93,13 @@
                 android:name="history"
                 android:defaultValue="false" />
         </action>
+    </fragment>
+    <fragment
+        android:id="@+id/registreerFragment"
+        android:name="be.ardu.scoutsardu.registreer.RegistreerFragment"
+        android:label="RegistreerFragment" >
+        <action
+            android:id="@+id/action_registreerFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>
