@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/registreerFragment"
-        android:name="be.ardu.scoutsardu.registreer.RegistreerFragment"
+        android:name="be.ardu.scoutsardu.RegistreerFragment"
         android:label="Registreer" >
         <action
             android:id="@+id/action_registreerFragment_to_loginFragment"

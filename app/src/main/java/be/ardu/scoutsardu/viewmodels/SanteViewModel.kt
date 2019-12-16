@@ -7,15 +7,17 @@ import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
+import be.ardu.scoutsardu.repositories.WinkelwagenRepository
 import kotlinx.coroutines.*
 import java.lang.Exception
 
 class SanteViewModel : ViewModel() {
     val winkelwagen = MutableLiveData<Winkelwagen>()
 
-    var winkelwagenIsHistory:Boolean = true
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    var winkelwagenIsHistory: Boolean = true
+
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _status = MutableLiveData<ScoutsArduApiStatus>()
     val status: LiveData<ScoutsArduApiStatus>
@@ -25,15 +27,10 @@ class SanteViewModel : ViewModel() {
     }
 
     fun postWinkelwagen() {
-
         _status.value = ScoutsArduApiStatus.LOADING
-
-        coroutineScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             try {
-                var postWinkelwagenDeferred = async(Dispatchers.IO) {
-                    ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen.value!!, AccountRepository.bearerToken)
-                }.await()
-                winkelwagen.value = postWinkelwagenDeferred.await()
+                winkelwagen.value = WinkelwagenRepository.postWinkelwagen(winkelwagen.value!!)
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
                 println(e)

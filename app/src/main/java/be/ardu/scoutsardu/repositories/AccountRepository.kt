@@ -51,5 +51,13 @@ object AccountRepository {
         bearerToken = ""
         gebruiker = null
     }
+
+    suspend fun putGebruiker(voornaam: String, achternaam: String, telefoon: String): Gebruiker {
+        var data = putGebruikerData(voornaam, achternaam, telefoon)
+        withContext(Dispatchers.IO) {
+            gebruiker = ScoutsArduApi.retrofitService.putGebruiker(data, bearerToken).await()
+        }
+        return gebruiker!!
+    }
 }
 

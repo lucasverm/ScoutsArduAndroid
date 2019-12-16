@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
+import be.ardu.scoutsardu.repositories.WinkelwagenRepository
 import kotlinx.coroutines.*
 
 class EnenDrinkenViewModel : ViewModel() {
@@ -21,9 +22,8 @@ class EnenDrinkenViewModel : ViewModel() {
     val navigateToCheckFragemt: LiveData<WinkelwagenItemAantal>
         get() = _navigateToCheckFragment
 
-    private var viewModelJob = Job()
-
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         getWinkelwagenItems()
@@ -31,30 +31,15 @@ class EnenDrinkenViewModel : ViewModel() {
 
     fun getWinkelwagenItems() {
         _status.value = ScoutsArduApiStatus.LOADING
-        coroutineScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             try {
-                // Get the Deferred object for our Retrofit request
-                var getWinkelwagenItemsDeferred = async(Dispatchers.IO) {
-                    ScoutsArduApi.retrofitService.getWinkelwagenItems()
-                }.await()
-                // Await the completion of our Retrofit request
-                var winkelWagenItems = getWinkelwagenItemsDeferred.await()
-                var itemsToPublish = ArrayList<WinkelwagenItemAantal>()
-                for (item in winkelWagenItems) {
-                    var w = WinkelwagenItemAantal(item, 0)
-                    itemsToPublish.add(w)
-                }
-                _items.value = itemsToPublish
+                _items.value = WinkelwagenRepository.getWinkelwagenItems()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ScoutsArduApiStatus.ERROR
-
             }
-
         }
-
     }
-
 
     override fun onCleared() {
         super.onCleared()

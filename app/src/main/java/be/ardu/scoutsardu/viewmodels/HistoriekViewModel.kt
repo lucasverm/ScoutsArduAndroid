@@ -7,6 +7,7 @@ import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApi
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
+import be.ardu.scoutsardu.repositories.WinkelwagenRepository
 import kotlinx.coroutines.*
 
 class HistoriekViewModel : ViewModel() {
@@ -22,9 +23,8 @@ class HistoriekViewModel : ViewModel() {
     val navigateToSanteFragemt: LiveData<Winkelwagen>
         get() = _navigateToSanteFragment
 
-    private var viewModelJob = Job()
-
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init{
         getMijnHistoriek()
@@ -32,13 +32,10 @@ class HistoriekViewModel : ViewModel() {
 
     fun getStamHistoriek() {
         _winkelwagens.value?.clear()
-        coroutineScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
-                var getStamHistoryDeferred = async(Dispatchers.IO) {
-                    ScoutsArduApi.retrofitService.getStamHistory(AccountRepository.bearerToken)
-                }.await()
-                _winkelwagens.value = getStamHistoryDeferred.await()
+                _winkelwagens.value = WinkelwagenRepository.getStamHistoriek()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (t: Exception) {
                 println(t)
@@ -50,20 +47,16 @@ class HistoriekViewModel : ViewModel() {
 
     fun getMijnHistoriek() {
         _winkelwagens.value?.clear()
-        coroutineScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
-                var getStamHistoryDeferred = async(Dispatchers.IO) {
-                    ScoutsArduApi.retrofitService.getMijnHistory(AccountRepository.bearerToken)
-                }.await()
-                _winkelwagens.value = getStamHistoryDeferred.await()
+                _winkelwagens.value = WinkelwagenRepository.getMijnHistoriek()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (t: Exception) {
                 println(t)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
-
     }
 
     override fun onCleared() {

@@ -64,7 +64,7 @@
         <action
             android:id="@+id/action_santeFragment_to_checkWinkelwagenFragment"
             app:destination="@id/checkWinkelwagenFragment"
-            app:popUpTo="@+id/enenDrinkenFragment" >
+            app:popUpTo="@+id/enenDrinkenFragment">
             <argument
                 android:name="toonError"
                 android:defaultValue="true" />

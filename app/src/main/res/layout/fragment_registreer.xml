@@ -7,7 +7,7 @@
 
         <variable
             name="registreerViewModel"
-            type="be.ardu.scoutsardu.registreer.RegistreerViewModel" />
+            type="be.ardu.scoutsardu.viewmodels.RegistreerViewModel" />
     </data>
 
     <ScrollView

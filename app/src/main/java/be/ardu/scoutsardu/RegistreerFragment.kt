@@ -1,4 +1,4 @@
-package be.ardu.scoutsardu.registreer
+package be.ardu.scoutsardu
 
 
 import android.graphics.Color
@@ -13,11 +13,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-
-import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.FragmentRegistreerBinding
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
-import kotlinx.android.synthetic.main.fragment_registreer.view.*
+import be.ardu.scoutsardu.viewmodels.RegistreerViewModel
+import be.ardu.scoutsardu.viewmodels.RegistreerViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -37,7 +36,8 @@ class RegistreerFragment : Fragment() {
             false
         )
         binding.registreerButton.setOnClickListener {
-            var action = RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
+            var action =
+                RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
             Navigation.findNavController(view!!).navigate(action)
         }
 
@@ -76,8 +76,6 @@ class RegistreerFragment : Fragment() {
                 binding.errorMessage.isVisible = true
                 binding.errorMessage.setBackgroundColor(Color.RED)
             } else {
-
-
                 viewModel.registreer(
                     binding.email.text.toString(),
                     binding.voornaamInput.text.toString(),
@@ -93,15 +91,14 @@ class RegistreerFragment : Fragment() {
         binding.errorMessage.visibility = View.GONE
         viewModel.status.observe(viewLifecycleOwner, Observer {
             if (it == ScoutsArduApiStatus.DONE) {
-
                 binding.errorMessage.text = "Welkom!"
                 binding.errorMessage.setBackgroundColor(Color.GREEN)
                 binding.errorMessage.visibility = View.VISIBLE
-                var action = RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
+                var action =
+                    RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
                 Navigation.findNavController(view!!).navigate(action)
             }
             if (it == ScoutsArduApiStatus.LOADING) {
-                binding.errorMessage.visibility = View.VISIBLE
                 binding.errorMessage.text = "Verbinden met server..."
                 binding.errorMessage.setBackgroundColor(
                     ContextCompat.getColor(
@@ -109,9 +106,11 @@ class RegistreerFragment : Fragment() {
                         R.color.orange
                     )
                 )
+                binding.errorMessage.visibility = View.VISIBLE
             }
 
             if (it == ScoutsArduApiStatus.ERROR) {
+                binding.errorMessage.setBackgroundColor(Color.RED)
                 binding.errorMessage.text = "Er liep iets fout: controleer je gegevens!"
                 binding.errorMessage.visibility = View.VISIBLE
             }

@@ -1,4 +1,4 @@
-package be.ardu.scoutsardu.registreer
+package be.ardu.scoutsardu.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

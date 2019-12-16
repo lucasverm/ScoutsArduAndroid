@@ -1,4 +1,4 @@
-package be.ardu.scoutsardu
+package be.ardu.scoutsardu.adapters
 
 import android.graphics.Color
 import android.widget.EditText

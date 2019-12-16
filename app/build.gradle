@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -71,6 +72,7 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
 
-
+    //gson converter
     implementation "com.squareup.retrofit2:converter-gson:2.1.0"
+
 }

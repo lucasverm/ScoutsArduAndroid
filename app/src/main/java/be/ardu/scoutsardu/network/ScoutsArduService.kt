@@ -68,8 +68,7 @@ interface ScoutsArduApiService {
 
     @PUT("api/Account")
     fun putGebruiker(
-        @Body data: putGebruikerData,
-        @Header("Authorization") bearerToken: String
+        @Body data: putGebruikerData, @Header("Authorization") bearerToken: String
     ): Deferred<Gebruiker>
 }
 

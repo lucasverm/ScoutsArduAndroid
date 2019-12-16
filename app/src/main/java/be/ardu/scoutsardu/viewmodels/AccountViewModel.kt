@@ -12,27 +12,20 @@ import kotlinx.coroutines.*
 import retrofit2.HttpException
 
 class AccountViewModel : ViewModel() {
-
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _status = MutableLiveData<ScoutsArduApiStatus>()
     val status: LiveData<ScoutsArduApiStatus>
-    get() = _status
+        get() = _status
 
-    fun wijzigenOpslaan(voornaam: String, achternaam:String, telefoon:String) {
-        var data = putGebruikerData(voornaam,achternaam,telefoon)
-        coroutineScope.launch(Dispatchers.Main) {
+    fun wijzigingenOpslaan(voornaam: String, achternaam: String, telefoon: String) {
+        viewModelScope.launch {
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
-                var getGebruiker = async(Dispatchers.IO) {
-                    ScoutsArduApi.retrofitService.putGebruiker(data,AccountRepository.bearerToken)
-                }.await()
-                AccountRepository.gebruiker = getGebruiker.await()
+                AccountRepository.putGebruiker(voornaam, achternaam, telefoon)
                 _status.value = ScoutsArduApiStatus.DONE
-            } catch (t: HttpException) {
-                println(t.code())
-                println(t.response())
+            } catch (e: Exception) {
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

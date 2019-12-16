@@ -52,8 +52,7 @@ class AccountFragment : Fragment() {
         }
 
         binding.wijzigingenOpslaan.setOnClickListener{
-
-            viewModel.wijzigenOpslaan(binding.voornaamInput.text.toString(), binding.achternaamInput.text.toString(), binding.telefoonNummerInput.text.toString())
+            viewModel.wijzigingenOpslaan(binding.voornaamInput.text.toString(), binding.achternaamInput.text.toString(), binding.telefoonNummerInput.text.toString())
         }
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
@@ -65,7 +64,7 @@ class AccountFragment : Fragment() {
             }
             if(it == ScoutsArduApiStatus.LOADING){
                 binding.errorMessage.visibility = View.VISIBLE
-                binding.errorMessage.text ="Wijziginen opslaan..."
+                binding.errorMessage.text ="Wijzigingen opslaan..."
                 binding.errorMessage.setBackgroundColor(ContextCompat.getColor(context!!, R.color.orange))
             }
 
