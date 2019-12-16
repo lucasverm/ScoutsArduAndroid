@@ -29,6 +29,8 @@
             <TextView
                 android:id="@+id/errorMessage"
                 style="@style/errorMessage"
+                android:paddingStart="@dimen/paddingEditFieldLabels"
+                android:paddingEnd="@dimen/paddingEditFieldLabels"
                 android:text="@string/er_liep_iets_fout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,11 +39,11 @@
             <ImageView
                 android:id="@+id/imageView4"
                 style="@style/arduLogo"
+                android:contentDescription="@string/ardulogo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ardu_logo"
-                android:contentDescription="@string/ardulogo" />
+                app:srcCompat="@drawable/ardu_logo" />
 
             <TextView
                 android:id="@+id/emailText"
@@ -51,6 +53,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:paddingStart="@dimen/paddingEditFieldLabels"
+                android:paddingEnd="@dimen/paddingEditFieldLabels"
                 android:text="@string/email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +82,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:paddingStart="@dimen/paddingEditFieldLabels"
+                android:paddingEnd="@dimen/paddingEditFieldLabels"
                 android:text="@string/voornaam"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,10 +99,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:hint="@string/tom"
+                android:importantForAutofill="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/voornaamText"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/voornaamText" />
 
             <TextView
                 android:id="@+id/achternaamText"
@@ -106,6 +112,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:paddingStart="@dimen/paddingEditFieldLabels"
+                android:paddingEnd="@dimen/paddingEditFieldLabels"
                 android:text="@string/achternaam"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,6 +143,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:paddingStart="@dimen/paddingEditFieldLabels"
+                android:paddingEnd="@dimen/paddingEditFieldLabels"
                 android:text="@string/telefoonnummer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +174,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/wachtwoord"
+                android:paddingStart="@dimen/paddingEditFieldLabels"
+                android:paddingEnd="@dimen/paddingEditFieldLabels"
+                android:text="@string/wachtwoord_dubbelpunt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/telefoonNummerInput" />
@@ -193,7 +205,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/wachtwoord_bevestiging"
+                android:paddingStart="@dimen/paddingEditFieldLabels"
+                android:paddingEnd="@dimen/paddingEditFieldLabels"
+                android:text="@string/wachtwoord_bevestiging_dubbelpunt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password" />

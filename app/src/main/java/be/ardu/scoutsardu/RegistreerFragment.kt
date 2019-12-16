@@ -1,6 +1,7 @@
 package be.ardu.scoutsardu
 
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,6 +37,12 @@ class RegistreerFragment : Fragment() {
             false
         )
         binding.registreerButton.setOnClickListener {
+            var action =
+                RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
+            Navigation.findNavController(view!!).navigate(action)
+        }
+
+        binding.alEenAccountButton.setOnClickListener {
             var action =
                 RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
             Navigation.findNavController(view!!).navigate(action)
@@ -94,9 +101,9 @@ class RegistreerFragment : Fragment() {
                 binding.errorMessage.text = "Welkom!"
                 binding.errorMessage.setBackgroundColor(Color.GREEN)
                 binding.errorMessage.visibility = View.VISIBLE
-                var action =
-                    RegistreerFragmentDirections.actionRegistreerFragmentToLoginFragment()
-                Navigation.findNavController(view!!).navigate(action)
+                val intent: Intent = Intent(this.context, MainActivity::class.java)
+                startActivity(intent)
+                this.activity!!.finish()
             }
             if (it == ScoutsArduApiStatus.LOADING) {
                 binding.errorMessage.text = "Verbinden met server..."

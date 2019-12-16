@@ -22,7 +22,8 @@
     <string name="min">-</string>
     <string name="mijn_historiek">Mijn Historiek</string>
     <string name="stam_historiek">Stam Historiek</string>
-    <string name="wachtwoord">Wachtwoord:</string>
+    <string name="wachtwoord_dubbelpunt">Wachtwoord:</string>
+    <string name="wachtwoord">Wachtwoord</string>
     <string name="email">Email:</string>
     <string name="log_in">Log in</string>
     <string name="registreer_nu">Registreer nu!</string>
@@ -31,7 +32,8 @@
     <string name="er_is_geen_data_om_weer_te_geven">Er is geen data om weer te geven!</string>
     <string name="tom">Tom</string>
     <string name="de_bakker">De Bakker</string>
-    <string name="wachtwoord_bevestiging">Wachtwoord bevestiging:</string>
+    <string name="wachtwoord_bevestiging">Wachtwoord bevestiging</string>
+    <string name="wachtwoord_bevestiging_dubbelpunt">Wachtwoord bevestiging:</string>
     <string name="registreren">Registreren</string>
     <string name="ik_heb_al_een_account">Ik heb al een account!</string>
 </resources>

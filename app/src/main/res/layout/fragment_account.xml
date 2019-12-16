@@ -32,6 +32,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:paddingStart="@dimen/paddingEditFieldLabels"
+            android:paddingEnd="@dimen/paddingEditFieldLabels"
             android:text="@string/voornaam"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,11 +43,11 @@
         <EditText
             android:id="@+id/voornaamInput"
             style="@style/defaultInputFieldNaam"
+            android:hint="@string/voornaamHint"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/voornaamText"
-            android:importantForAutofill="no"
-            android:hint="@string/voornaamHint"/>
+            app:layout_constraintTop_toBottomOf="@+id/voornaamText" />
 
         <TextView
             android:id="@+id/achternaamText"
@@ -55,21 +57,22 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:paddingStart="@dimen/paddingEditFieldLabels"
+            android:paddingEnd="@dimen/paddingEditFieldLabels"
             android:text="@string/achternaam"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/voornaamInput"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/voornaamInput" />
 
 
         <EditText
             android:id="@+id/achternaamInput"
             style="@style/defaultInputFieldNaam"
+            android:hint="@string/achternaamHint"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/achternaamText"
-            android:importantForAutofill="no"
-            android:hint="@string/achternaamHint"/>
+            app:layout_constraintTop_toBottomOf="@+id/achternaamText" />
 
 
         <TextView
@@ -80,6 +83,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:paddingStart="@dimen/paddingEditFieldLabels"
+            android:paddingEnd="@dimen/paddingEditFieldLabels"
             android:text="@string/telefoonnummer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,11 +94,11 @@
         <EditText
             android:id="@+id/telefoonNummerInput"
             style="@style/defaultInputFieldTelefoon"
+            android:hint="@string/telefoonHint"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/telefoonNummerText"
-            android:importantForAutofill="no"
-            android:hint="@string/telefoonHint"/>
+            app:layout_constraintTop_toBottomOf="@+id/telefoonNummerText" />
 
 
         <Button

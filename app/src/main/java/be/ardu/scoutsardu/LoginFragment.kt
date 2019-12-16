@@ -52,7 +52,6 @@ class LoginFragment : Fragment() {
             }*/
             //
             viewModel.login("user@example.com", "string")
-
         }
 
         binding.aanmelden.setOnClickListener {
