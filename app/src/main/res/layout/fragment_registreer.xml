@@ -29,8 +29,6 @@
             <TextView
                 android:id="@+id/errorMessage"
                 style="@style/errorMessage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:text="Er liep iets fout!"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,11 +36,7 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:contentDescription="@string/ardulogo"
-                android:scaleType="center"
+                style="@style/arduLogo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -50,6 +44,7 @@
 
             <TextView
                 android:id="@+id/emailText"
+                style="@style/standaardText"
                 android:layout_width="0dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="20dp"
@@ -62,13 +57,11 @@
 
             <EditText
                 android:id="@+id/email"
+                style="@style/defaultInputFieldEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailText" />
@@ -76,6 +69,7 @@
 
             <TextView
                 android:id="@+id/voornaamText"
+                style="@style/standaardText"
                 android:layout_width="0dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="20dp"
@@ -89,20 +83,19 @@
 
             <EditText
                 android:id="@+id/voornaamInput"
+                style="@style/defaultInputFieldNaam"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/voornaamText" />
 
             <TextView
                 android:id="@+id/achternaamText"
+                style="@style/standaardText"
                 android:layout_width="0dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="20dp"
@@ -116,24 +109,20 @@
 
             <EditText
                 android:id="@+id/achternaamInput"
+                style="@style/defaultInputFieldNaam"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/achternaamText" />
 
 
-
-
-
             <TextView
                 android:id="@+id/telefoonNummerText"
+                style="@style/standaardText"
                 android:layout_width="0dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="20dp"
@@ -147,24 +136,20 @@
 
             <EditText
                 android:id="@+id/telefoonNummerInput"
+                style="@style/defaultInputFieldTelefoon"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/telefoonNummerText" />
 
 
-
-
-
             <TextView
                 android:id="@+id/wachtwoordText"
+                style="@style/standaardText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -178,13 +163,12 @@
 
             <EditText
                 android:id="@+id/password"
+                style="@style/defaultInputFieldWachtwoord"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                android:ems="10"
-                android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -192,6 +176,7 @@
 
             <TextView
                 android:id="@+id/passwordBevestigingText"
+                style="@style/standaardText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -205,13 +190,12 @@
 
             <EditText
                 android:id="@+id/passwordBevestiging"
+                style="@style/defaultInputFieldWachtwoord"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                android:ems="10"
-                android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +204,7 @@
 
             <Button
                 android:id="@+id/registreerButton"
-                style="@style/button_style_colored_background"
+                style="@style/defaultButtonColored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -233,7 +217,7 @@
 
             <Button
                 android:id="@+id/alEenAccountButton"
-                style="@style/button_style_white_background"
+                style="@style/defaultButtonWhite"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

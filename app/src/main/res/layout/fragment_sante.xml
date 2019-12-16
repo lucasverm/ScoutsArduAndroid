@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="SanteViewModel"
-            type="be.ardu.scoutsardu.viewmodels.SanteViewModel"/>
+            type="be.ardu.scoutsardu.viewmodels.SanteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,34 +16,31 @@
 
         <ImageView
             android:id="@+id/status_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            style="@style/statusImage"
+            android:src="@drawable/loading_animation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/loading_animation"
-            android:visibility="gone"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-        android:id="@+id/betaald"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Betaald: Ja!"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/betaald"
+            style="@style/standaardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            tools:text="Betaald: Ja!"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/datum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Datum: 13/12/2019"
-            android:textSize="18dp"
+            tools:text="Datum: 13/12/2019"
+            style="@style/standaardText"
             app:layout_constraintStart_toStartOf="@+id/betaald"
             app:layout_constraintTop_toBottomOf="@+id/betaald" />
 
@@ -51,8 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Tijdstip: 19:20"
-            android:textSize="18dp"
+            tools:text="Tijdstip: 19:20"
+            style="@style/standaardText"
             app:layout_constraintStart_toStartOf="@+id/datum"
             app:layout_constraintTop_toBottomOf="@+id/datum" />
 
@@ -61,8 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Naam: Lucas Vermeulen"
-            android:textSize="18dp"
+            tools:text="Naam: Lucas Vermeulen"
+            style="@style/standaardText"
             app:layout_constraintStart_toStartOf="@+id/tijdstip"
             app:layout_constraintTop_toBottomOf="@+id/tijdstip" />
 
@@ -71,15 +69,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Bestelling: "
-            android:textSize="18dp"
+            tools:text="Bestelling:"
+            style="@style/standaardText"
             app:layout_constraintStart_toStartOf="@+id/naam"
             app:layout_constraintTop_toBottomOf="@+id/naam" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/betaaldOverzichtLijst"
-            android:layout_width="399dp"
-            android:layout_height="0dp"
+            style="@style/defaultRecycleView"
             android:layout_marginTop="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

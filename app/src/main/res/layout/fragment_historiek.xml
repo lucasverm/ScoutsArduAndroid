@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="historiekViewModel"
-            type="be.ardu.scoutsardu.viewmodels.HistoriekViewModel"/>
+            type="be.ardu.scoutsardu.viewmodels.HistoriekViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,56 +17,52 @@
 
         <ImageView
             android:id="@+id/status_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            style="@style/statusImage"
+            android:src="@drawable/loading_animation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/loading_animation"
-
-            />
-
-        <Button
-            android:id="@+id/mijnHistoriek"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mijn Historiek"
-            app:layout_constraintEnd_toStartOf="@+id/stamHistoriek"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/mijnHistoriek"
+            style="@style/defaultButtonColored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Mijn Historiek"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorMessage" />
+
+        <Button
             android:id="@+id/stamHistoriek"
-            android:layout_width="wrap_content"
+            style="@style/defaultButtonColored"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Stam Historiek"
             app:layout_constraintBottom_toBottomOf="@+id/mijnHistoriek"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/errorMessage" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/mijnHistoriek"
+            app:layout_constraintTop_toBottomOf="@+id/errorMessage"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_width="0dp" />
 
         <TextView
             android:id="@+id/errorMessage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/errorMessage"
             android:text="Er liep iets fout: probeer het later opnieuw!"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/errorMessage"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/winkelwagens"
-            android:layout_width="399dp"
-            android:layout_height="0dp"
+            style="@style/defaultRecycleView"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/Verder"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mijnHistoriek" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

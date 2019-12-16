@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
         <variable
@@ -18,11 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:onClick="@{() -> clickListener.onClick(winkelwagen)}"
-        android:padding="10dp"
-       >
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/totaal"
+            style="@style/standaardText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
@@ -35,29 +36,29 @@
 
         <TextView
             android:id="@+id/info"
+            style="@style/standaardText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            tools:text="14-12-2019 - 20:13"
+            app:datumWinkelwagen="@{winkelwagen}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent"
-            app:datumWinkelwagen="@{winkelwagen}" />
+            tools:text="14-12-2019 - 20:13" />
 
         <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
             android:id="@+id/textView"
+            style="@style/FontAwesomeSmallLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:width="25dp"
-            tools:text="&#xf0fc;"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setIcon="@{winkelwagen}" />
+            app:setIcon="@{winkelwagen}"
+            tools:text="&#xf0fc;" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

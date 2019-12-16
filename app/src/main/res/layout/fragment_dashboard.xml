@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,70 +25,57 @@
                 android:orientation="vertical">
 
                 <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
-                    android:text="&#xf0fc;"
                     style="@style/fontAwesomeMenuItem"
-                    />
+                    android:text="&#xf0fc;" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:text="@string/enen_drinken"
-                    android:textAlignment="center" />
+                    style="@style/MenuItemText"
+                    android:text="@string/enen_drinken" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/historiek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/historiek">
+                android:orientation="vertical">
 
                 <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
-                    android:text="&#xf1da;"
-                    style="@style/fontAwesomeMenuItem"/>
+                    style="@style/fontAwesomeMenuItem"
+                    android:text="&#xf1da;" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:text="@string/historiek"
-                    android:textAlignment="center" />
+                    style="@style/MenuItemText"
+                    android:text="@string/historiek" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/portefeuille"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/portefeuille">
+                android:orientation="vertical">
 
                 <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
-                    android:text="&#xf555;"
-                    style="@style/fontAwesomeMenuItem"/>
+                    style="@style/fontAwesomeMenuItem"
+                    android:text="&#xf555;" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:text="@string/portefeuille"
-                    android:textAlignment="center" />
+                    style="@style/MenuItemText"
+                    android:text="@string/portefeuille" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/account">>
+                android:orientation="vertical">>
 
                 <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
-                    android:text="&#xf007;"
-                    style="@style/fontAwesomeMenuItem"/>
+                    style="@style/fontAwesomeMenuItem"
+                    android:text="&#xf007;" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:text="@string/Account"
-                    android:textAlignment="center" />
+                    style="@style/MenuItemText"
+                    android:text="@string/Account" />
             </LinearLayout>
 
         </com.google.android.flexbox.FlexboxLayout>
