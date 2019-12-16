@@ -1,6 +1,8 @@
 package be.ardu.scoutsardu.Repositories
 
 import be.ardu.scoutsardu.network.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 object AccountRepository {
 
@@ -9,7 +11,9 @@ object AccountRepository {
 
     suspend fun login(email: String, password: String): String {
         var data = SendLoginData(email, password)
-        bearerToken = "Bearer " + ScoutsArduApi.retrofitService.login(data)
+        withContext(Dispatchers.IO) {
+            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.login(data).await()
+        }
         return bearerToken
     }
 
@@ -29,14 +33,17 @@ object AccountRepository {
             password,
             passwordBevestiging
         )
-
-        bearerToken = "Bearer " + ScoutsArduApi.retrofitService.registreer(data)
+        withContext(Dispatchers.IO) {
+            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.registreer(data).await()
+        }
         return bearerToken
     }
 
 
     suspend fun getGebruiker(): Gebruiker {
-        gebruiker = ScoutsArduApi.retrofitService.getGebruiker(bearerToken)
+        withContext(Dispatchers.IO) {
+            gebruiker = ScoutsArduApi.retrofitService.getGebruiker(bearerToken).await()
+        }
         return gebruiker!!
     }
 

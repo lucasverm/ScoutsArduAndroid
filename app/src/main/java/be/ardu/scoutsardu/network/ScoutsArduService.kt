@@ -53,17 +53,17 @@ interface ScoutsArduApiService {
     ): Deferred<Winkelwagen>
 
     @POST("api/Account/login")
-    suspend fun login(
+    fun login(
         @Body data: SendLoginData
-    ): String
+    ): Deferred<String>
 
     @POST("api/Account/register")
-    suspend fun registreer(
+    fun registreer(
         @Body data: SendRegistreerData
-    ): String
+    ): Deferred<String>
 
     @GET("api/Account")
-    suspend fun getGebruiker(@Header("Authorization") bearerToken: String): Gebruiker
+    fun getGebruiker(@Header("Authorization") bearerToken: String): Deferred<Gebruiker>
 
 
     @PUT("api/Account")

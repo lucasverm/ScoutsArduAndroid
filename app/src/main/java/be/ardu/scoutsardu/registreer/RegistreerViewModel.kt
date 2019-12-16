@@ -8,11 +8,10 @@ import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class RegistreerViewModel : ViewModel(), CoroutineScope {
+class RegistreerViewModel : ViewModel() {
 
-    private var viewModelJob = Job()
-    override val coroutineContext: CoroutineContext
-        get() = viewModelJob + Dispatchers.Main
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _status = MutableLiveData<ScoutsArduApiStatus>()
     val status: LiveData<ScoutsArduApiStatus>
@@ -23,17 +22,29 @@ class RegistreerViewModel : ViewModel(), CoroutineScope {
         viewModelJob.cancel()
     }
 
-    fun registreer(email:String, voornaam:String, achternaam:String, telefoonNummer:String, password:String, passwordBevestiging:String) {
-        launch(Dispatchers.Main) {
-            try{
+    fun registreer(
+        email: String,
+        voornaam: String,
+        achternaam: String,
+        telefoonNummer: String,
+        password: String,
+        passwordBevestiging: String
+    ) {
+        viewModelScope.launch {
+            try {
                 _status.value = ScoutsArduApiStatus.LOADING
-                var register = async(Dispatchers.IO) {
-                    AccountRepository.registreer(email,voornaam,achternaam,telefoonNummer,password,passwordBevestiging)
-                    AccountRepository.getGebruiker()
-                }.await()
+                AccountRepository.registreer(
+                    email,
+                    voornaam,
+                    achternaam,
+                    telefoonNummer,
+                    password,
+                    passwordBevestiging
+                )
+                AccountRepository.getGebruiker()
                 _status.value = ScoutsArduApiStatus.DONE
                 _status.value = ScoutsArduApiStatus.DEFAULT
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
