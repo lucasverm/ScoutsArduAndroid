@@ -14,8 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private val ITEM_VIEW_TYPE_HEADER = 0
-private val ITEM_VIEW_TYPE_ITEM = 1
+private const val ITEM_VIEW_TYPE_HEADER = 0
+private const val ITEM_VIEW_TYPE_ITEM = 1
 
 class HistoriekAdapter(val clickListener: HistoriekClickListener) :
 ListAdapter<HistoriekDataItem, RecyclerView.ViewHolder>(HistoryDiffCallBack()) {
@@ -52,7 +52,7 @@ ListAdapter<HistoriekDataItem, RecyclerView.ViewHolder>(HistoryDiffCallBack()) {
             ITEM_VIEW_TYPE_ITEM -> ViewHolder.from(
                 parent
             )
-            else -> throw ClassCastException("unknow viewtype ${viewType}")
+            else -> throw ClassCastException("unknow viewtype $viewType")
         }
     }
 
@@ -102,7 +102,7 @@ class HistoryDiffCallBack : DiffUtil.ItemCallback<HistoriekDataItem>() {
     }
 
     override fun areContentsTheSame(oldItem: HistoriekDataItem, newItem: HistoriekDataItem): Boolean {
-        return oldItem.equals(newItem)
+        return oldItem == newItem
     }
 
 }

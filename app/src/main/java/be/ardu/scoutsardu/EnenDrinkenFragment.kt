@@ -36,7 +36,7 @@ class EnenDrinkenFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val binding: FragmentEnenDrinkenBinding =
-            DataBindingUtil.inflate<FragmentEnenDrinkenBinding>(
+            DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_enen_drinken,
                 container,
@@ -60,7 +60,7 @@ class EnenDrinkenFragment : Fragment() {
         }*/
         binding.winkelwagenItemsRecycleView.layoutManager = manager
 
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         val adapter =
             EnenDrinkenAdapter(EnenDrinkenClickListener { winkelwagenItemAantal ->
@@ -80,23 +80,23 @@ class EnenDrinkenFragment : Fragment() {
             binding.Verder.visibility = View.GONE
             binding.statusImage.visibility = View.GONE
             binding.errorMessage.visibility = View.GONE
-            if (it.equals(ScoutsArduApiStatus.ERROR)) {
+            if (it == ScoutsArduApiStatus.ERROR) {
                 binding.statusImage.setImageResource(R.drawable.ic_connection_error)
                 binding.errorMessage.visibility = View.VISIBLE
                 binding.statusImage.visibility = View.VISIBLE
             }
-            if (it.equals(ScoutsArduApiStatus.LOADING)) {
+            if (it == ScoutsArduApiStatus.LOADING) {
                 binding.statusImage.setImageResource(R.drawable.loading_animation)
                 binding.statusImage.visibility = View.VISIBLE
             }
-            if (it.equals(ScoutsArduApiStatus.DONE)) {
+            if (it == ScoutsArduApiStatus.DONE) {
                 binding.Verder.visibility = View.VISIBLE
             }
         })
         //navigation: altijd in fragment
-        binding.Verder.setOnClickListener {
+        binding.Verder.setOnClickListener { it ->
             var verderGaanToegestaan = false
-            var wagen = Winkelwagen(0, 0,0,0,0,0, ArrayList(), false, AccountRepository.gebruiker!!)
+            val wagen = Winkelwagen(0, 0,0,0,0,0, ArrayList(), false, AccountRepository.gebruiker!!)
             viewModel.items.value?.forEach {
                 if (it.aantal > 0) {
                     verderGaanToegestaan = true

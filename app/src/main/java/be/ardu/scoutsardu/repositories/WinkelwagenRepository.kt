@@ -1,18 +1,20 @@
 package be.ardu.scoutsardu.repositories
 
-import be.ardu.scoutsardu.network.*
+import be.ardu.scoutsardu.network.ScoutsArduApi
+import be.ardu.scoutsardu.network.Winkelwagen
+import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 object WinkelwagenRepository {
 
     suspend fun getWinkelwagenItems(): ArrayList<WinkelwagenItemAantal> {
-        var uitvoer = ArrayList<WinkelwagenItemAantal>()
+        val uitvoer = ArrayList<WinkelwagenItemAantal>()
         withContext(Dispatchers.IO) {
-            var items = ScoutsArduApi.retrofitService.getWinkelwagenItems().await()
+            val items = ScoutsArduApi.retrofitService.getWinkelwagenItems()
 
             for (item in items) {
-                var w = WinkelwagenItemAantal(item, 0)
+                val w = WinkelwagenItemAantal(item, 0)
                 uitvoer.add(w)
             }
         }
@@ -23,7 +25,7 @@ object WinkelwagenRepository {
         var uitvoer = ArrayList<Winkelwagen>()
         withContext(Dispatchers.IO) {
             uitvoer =
-                ScoutsArduApi.retrofitService.getStamHistory(AccountRepository.bearerToken).await()
+                ScoutsArduApi.retrofitService.getStamHistory(AccountRepository.bearerToken)
         }
         return uitvoer
 
@@ -33,7 +35,7 @@ object WinkelwagenRepository {
         var uitvoer = ArrayList<Winkelwagen>()
         withContext(Dispatchers.IO) {
             uitvoer =
-                ScoutsArduApi.retrofitService.getMijnHistory(AccountRepository.bearerToken).await()
+                ScoutsArduApi.retrofitService.getMijnHistory(AccountRepository.bearerToken)
         }
         return uitvoer
 
@@ -43,7 +45,7 @@ object WinkelwagenRepository {
         var uitvoer = winkelwagen
         withContext(Dispatchers.IO) {
             uitvoer =
-                ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen, AccountRepository.bearerToken).await()
+                ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen, AccountRepository.bearerToken)
         }
         return uitvoer
 

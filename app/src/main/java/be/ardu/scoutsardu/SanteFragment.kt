@@ -23,7 +23,6 @@ import be.ardu.scoutsardu.viewmodels.SanteViewModelFactory
 class SanteFragment : Fragment() {
     private lateinit var viewModel: SanteViewModel
     private lateinit var viewModelFactory: SanteViewModelFactory
-    private var data: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +30,7 @@ class SanteFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding: FragmentSanteBinding =
-            DataBindingUtil.inflate<FragmentSanteBinding>(
+            DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_sante,
                 container,
@@ -85,7 +84,7 @@ class SanteFragment : Fragment() {
                 binding.statusImage.visibility = View.GONE
             }
             if(it == ScoutsArduApiStatus.ERROR){
-                var action =
+                val action =
                     SanteFragmentDirections.actionSanteFragmentToCheckWinkelwagenFragment(
                         viewModel.winkelwagen.value!!
                     )
@@ -96,7 +95,7 @@ class SanteFragment : Fragment() {
         return binding.root
     }
 
-    fun updateVelden(binding: FragmentSanteBinding, viewModel: SanteViewModel){
+    private fun updateVelden(binding: FragmentSanteBinding, viewModel: SanteViewModel){
         binding.naam.text = "Naam: " + viewModel.winkelwagen.value?.gebruiker!!.getFullNaam()
         binding.betaald.text = if(viewModel.winkelwagen.value!!.betaald) "Betaald: Ja!" else "Betaald: Neen!"
         binding.datum.text = "Datum: " + viewModel.winkelwagen.value!!.getDatum()

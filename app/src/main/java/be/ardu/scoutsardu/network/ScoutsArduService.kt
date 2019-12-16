@@ -1,22 +1,13 @@
 package be.ardu.scoutsardu.network
 
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Types
-import com.squareup.moshi.Types.newParameterizedType
-import okhttp3.ResponseBody
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
-import com.google.gson.GsonBuilder
-import com.google.gson.Gson
 
 
 private const val BASE_URL = "https://scoutsarduapinew.azurewebsites.net/"
@@ -27,7 +18,7 @@ private val moshi = Moshi.Builder()
 
 var gson = GsonBuilder()
     .setLenient()
-    .create()
+    .create()!!
 
 
 private val retrofit = Retrofit.Builder()
@@ -39,37 +30,37 @@ private val retrofit = Retrofit.Builder()
 
 interface ScoutsArduApiService {
     @GET("api/Winkelwagen/WinkelwagenItems")
-    fun getWinkelwagenItems(): Deferred<List<WinkelwagenItem>>
+    suspend fun getWinkelwagenItems(): List<WinkelwagenItem>
 
     @GET("api/Winkelwagen/stamhistoriek")
-    fun getStamHistory(@Header("Authorization") bearerToken: String): Deferred<ArrayList<Winkelwagen>>
+    suspend fun getStamHistory(@Header("Authorization") bearerToken: String): ArrayList<Winkelwagen>
 
     @GET("api/Winkelwagen/winkelwagens")
-    fun getMijnHistory(@Header("Authorization") bearerToken: String): Deferred<ArrayList<Winkelwagen>>
+    suspend fun getMijnHistory(@Header("Authorization") bearerToken: String): ArrayList<Winkelwagen>
 
     @POST("api/Winkelwagen")
-    fun postWinkelwagen(
+    suspend fun postWinkelwagen(
         @Body winkelwagen: Winkelwagen, @Header("Authorization") bearerToken: String
-    ): Deferred<Winkelwagen>
+    ): Winkelwagen
 
     @POST("api/Account/login")
-    fun login(
+    suspend fun login(
         @Body data: SendLoginData
-    ): Deferred<String>
+    ): String
 
     @POST("api/Account/register")
-    fun registreer(
+    suspend fun registreer(
         @Body data: SendRegistreerData
-    ): Deferred<String>
+    ): String
 
     @GET("api/Account")
-    fun getGebruiker(@Header("Authorization") bearerToken: String): Deferred<Gebruiker>
+    suspend fun getGebruiker(@Header("Authorization") bearerToken: String): Gebruiker
 
 
     @PUT("api/Account")
-    fun putGebruiker(
-        @Body data: putGebruikerData, @Header("Authorization") bearerToken: String
-    ): Deferred<Gebruiker>
+    suspend fun putGebruiker(
+        @Body data: PutGebruikerData, @Header("Authorization") bearerToken: String
+    ): Gebruiker
 }
 
 //singleton

@@ -27,7 +27,7 @@ class CheckWinkelwagenFragment : Fragment() {
     ): View? {
 
         val binding: FragmentCheckWinkelwagenBinding =
-            DataBindingUtil.inflate<FragmentCheckWinkelwagenBinding>(
+            DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_check_winkelwagen,
                 container,
@@ -56,7 +56,7 @@ class CheckWinkelwagenFragment : Fragment() {
 
         binding.Verder.text = "Totaal: € " + viewModel.winkelwagen.value!!.getTotaal().toString()
         binding.Verder.setOnClickListener {
-            var action =
+            val action =
                 CheckWinkelwagenFragmentDirections.actionCheckWinkelwagenFragmentToSanteFragment(
                     viewModel.winkelwagen.value!!
                 )

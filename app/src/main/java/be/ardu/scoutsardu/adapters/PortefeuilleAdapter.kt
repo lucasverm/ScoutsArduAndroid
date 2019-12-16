@@ -14,8 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private val ITEM_VIEW_TYPE_HEADER = 0
-private val ITEM_VIEW_TYPE_ITEM = 1
+private const val ITEM_VIEW_TYPE_HEADER = 0
+private const val ITEM_VIEW_TYPE_ITEM = 1
 
 class PortefeuilleAdapter(val clickListener: PortefeuilleClickListener) :
     ListAdapter<PortefeuilleDataItem, RecyclerView.ViewHolder>(PortefeuilleDiffCallBack()) {
@@ -52,7 +52,7 @@ class PortefeuilleAdapter(val clickListener: PortefeuilleClickListener) :
             ITEM_VIEW_TYPE_ITEM -> ViewHolder.from(
                 parent
             )
-            else -> throw ClassCastException("unknow viewtype ${viewType}")
+            else -> throw ClassCastException("unknow viewtype $viewType")
         }
     }
 
@@ -102,7 +102,7 @@ class PortefeuilleDiffCallBack : DiffUtil.ItemCallback<PortefeuilleDataItem>() {
     }
 
     override fun areContentsTheSame(oldItem: PortefeuilleDataItem, newItem: PortefeuilleDataItem): Boolean {
-        return oldItem.equals(newItem)
+        return oldItem == newItem
     }
 
 }

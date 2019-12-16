@@ -31,7 +31,7 @@ class AccountFragment : Fragment() {
     ): View? {
 
         val binding: FragmentAccountBinding =
-            DataBindingUtil.inflate<FragmentAccountBinding>(
+            DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_account,
                 container,
@@ -45,7 +45,7 @@ class AccountFragment : Fragment() {
        updateGebruiker(binding, viewModel)
 
         binding.uitloggen.setOnClickListener{
-            val intent: Intent = Intent(this.context, LoginActivity::class.java)
+            val intent = Intent(this.context, LoginActivity::class.java)
             startActivity(intent)
             this.activity!!.finish()
             AccountRepository.logout()
@@ -81,7 +81,7 @@ class AccountFragment : Fragment() {
     }
 
 
-    fun updateGebruiker(binding:FragmentAccountBinding, viewModel: AccountViewModel){
+    private fun updateGebruiker(binding:FragmentAccountBinding, viewModel: AccountViewModel){
         binding.achternaamInput.setText(this.viewModel.getGebruiker().achternaam)
         binding.voornaamInput.setText(this.viewModel.getGebruiker().voornaam)
         binding.telefoonNummerInput.setText(this.viewModel.getGebruiker().telefoonNummer)

@@ -24,9 +24,7 @@ fun TextView.setPrijsWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAanta
 
 @BindingAdapter("aantalWinkelwagenItem")
 fun EditText.setAantalWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAantal){
-    winkelwagenItemAantal.let{
-        setText(winkelwagenItemAantal.aantal.toString(), TextView.BufferType.EDITABLE);
-    }
+    setText(winkelwagenItemAantal.aantal.toString(), TextView.BufferType.EDITABLE)
 }
 
 @BindingAdapter("naamAndDatumWinkelwagen")
@@ -54,10 +52,10 @@ fun TextView.setTotaalPrijsWinkelwagen(winkelwagen: Winkelwagen){
 fun FontAwesomeTextViewSolid.setIcon(winkelwagen: Winkelwagen){
     winkelwagen.let{
         if(it.betaald){
-            setText("\uf00c")
+            text = "\uf00c"
             setTextColor(Color.GREEN)
         } else{
-            setText("\uf00d")
+            text = "\uf00d"
             setTextColor(Color.RED)
         }
 

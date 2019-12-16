@@ -8,6 +8,4 @@ data class WinkelwagenItem(
     var id: Int,
     var naam: String,
     var prijs: Double
-):Parcelable {
-
-}
+):Parcelable

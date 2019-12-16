@@ -55,7 +55,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.aanmelden.setOnClickListener {
-            var action = LoginFragmentDirections.actionLoginFragmentToRegistreerFragment()
+            val action = LoginFragmentDirections.actionLoginFragmentToRegistreerFragment()
             Navigation.findNavController(view!!).navigate(action)
         }
 
@@ -66,7 +66,7 @@ class LoginFragment : Fragment() {
                 binding.errorMessage.text ="Welkom!"
                 binding.errorMessage.setBackgroundColor(Color.GREEN)
                 binding.errorMessage.visibility = View.VISIBLE
-                val intent:Intent = Intent(this.context, MainActivity::class.java)
+                val intent = Intent(this.context, MainActivity::class.java)
                 startActivity(intent)
                 this.activity!!.finish()
             }

@@ -36,4 +36,6 @@
     <string name="wachtwoord_bevestiging_dubbelpunt">Wachtwoord bevestiging:</string>
     <string name="registreren">Registreren</string>
     <string name="ik_heb_al_een_account">Ik heb al een account!</string>
+    <string name="_0">0</string>
+    <string name="plus">+</string>
 </resources>

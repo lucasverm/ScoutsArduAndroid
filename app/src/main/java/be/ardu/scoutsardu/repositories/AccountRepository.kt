@@ -6,13 +6,13 @@ import kotlinx.coroutines.withContext
 
 object AccountRepository {
 
-    public var bearerToken = ""
-    public var gebruiker: Gebruiker? = null
+    var bearerToken = ""
+    var gebruiker: Gebruiker? = null
 
     suspend fun login(email: String, password: String): String {
-        var data = SendLoginData(email, password)
+        val data = SendLoginData(email, password)
         withContext(Dispatchers.IO) {
-            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.login(data).await()
+            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.login(data)
         }
         return bearerToken
     }
@@ -25,16 +25,14 @@ object AccountRepository {
         password: String,
         passwordBevestiging: String
     ): String {
-        var data = SendRegistreerData(
+        val data = SendRegistreerData(
             email,
             voornaam,
             achternaam,
-            telefoonNummer,
-            password,
-            passwordBevestiging
+            password
         )
         withContext(Dispatchers.IO) {
-            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.registreer(data).await()
+            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.registreer(data)
         }
         return bearerToken
     }
@@ -42,7 +40,7 @@ object AccountRepository {
 
     suspend fun getGebruiker(): Gebruiker {
         withContext(Dispatchers.IO) {
-            gebruiker = ScoutsArduApi.retrofitService.getGebruiker(bearerToken).await()
+            gebruiker = ScoutsArduApi.retrofitService.getGebruiker(bearerToken)
         }
         return gebruiker!!
     }
@@ -53,9 +51,9 @@ object AccountRepository {
     }
 
     suspend fun putGebruiker(voornaam: String, achternaam: String, telefoon: String): Gebruiker {
-        var data = putGebruikerData(voornaam, achternaam, telefoon)
+        val data = PutGebruikerData(voornaam, achternaam)
         withContext(Dispatchers.IO) {
-            gebruiker = ScoutsArduApi.retrofitService.putGebruiker(data, bearerToken).await()
+            gebruiker = ScoutsArduApi.retrofitService.putGebruiker(data, bearerToken)
         }
         return gebruiker!!
     }

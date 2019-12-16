@@ -1,15 +1,11 @@
 package be.ardu.scoutsardu
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import be.ardu.scoutsardu.R
 import be.ardu.scoutsardu.databinding.ActivityMainBinding
-import android.content.Intent
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        moveTaskToBack(true);
+        moveTaskToBack(true)
     }
 
 }

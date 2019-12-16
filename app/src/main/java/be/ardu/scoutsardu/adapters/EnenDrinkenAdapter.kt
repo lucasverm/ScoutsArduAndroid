@@ -9,15 +9,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import be.ardu.scoutsardu.R
-import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenRecycleviewRowBinding
+import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.roundToLong
 
-private val ITEM_VIEW_TYPE_HEADER = 0
-private val ITEM_VIEW_TYPE_ITEM = 1
+private const val ITEM_VIEW_TYPE_HEADER = 0
+private const val ITEM_VIEW_TYPE_ITEM = 1
 
 class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
     ListAdapter<DataItem, RecyclerView.ViewHolder>(EnenDrinkenDiffCallBack()) {
@@ -54,7 +55,7 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
             ITEM_VIEW_TYPE_ITEM -> ViewHolder.from(
                 parent
             )
-            else -> throw ClassCastException("unknow viewtype ${viewType}")
+            else -> throw ClassCastException("unknow viewtype $viewType")
         }
     }
 
@@ -79,8 +80,8 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun fixSubTotaal(winkelwagenItemAantal: WinkelwagenItemAantal){
-            val totaal = Math.round(winkelwagenItemAantal.item.prijs * winkelwagenItemAantal.aantal * 100.0) / 100.0
-            binding.totaal.setText("€ " + totaal.toString())
+            val totaal = (winkelwagenItemAantal.item.prijs * winkelwagenItemAantal.aantal * 100.0).roundToLong() / 100.0
+            binding.totaal.text = "€ $totaal"
         }
 
         fun bind(clickListener: EnenDrinkenClickListener, winkelwagenItemAantal: WinkelwagenItemAantal) {
@@ -100,11 +101,7 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
 
             })
 
-            if(winkelwagenItemAantal.aantal < 1) {
-                binding.min.isEnabled = false
-            }else{
-                binding.min.isEnabled = true
-            }
+            binding.min.isEnabled = winkelwagenItemAantal.aantal >= 1
 
             binding.min.setOnClickListener {
                 winkelwagenItemAantal.verminderrDrank()
@@ -144,7 +141,7 @@ class EnenDrinkenDiffCallBack : DiffUtil.ItemCallback<DataItem>() {
     }
 
     override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem.equals(newItem)
+        return oldItem == newItem
     }
 
 }

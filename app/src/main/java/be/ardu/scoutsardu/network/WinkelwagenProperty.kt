@@ -6,6 +6,7 @@ import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 import java.util.*
+import kotlin.math.roundToLong
 
 @Parcelize
 data class Winkelwagen(
@@ -27,22 +28,22 @@ data class Winkelwagen(
         for (item in winkelwagenItems) {
             totaal += item.item.prijs * item.aantal
         }
-        return (Math.round(totaal * 100.0) / 100.0)
+        return ((totaal * 100.0).roundToLong() / 100.0)
     }
 
     fun getDatum(): String {
-        var dag = addAdditionalZero(datumDag.toString())
-        var maand = addAdditionalZero(datumMaand.toString())
+        val dag = addAdditionalZero(datumDag.toString())
+        val maand = addAdditionalZero(datumMaand.toString())
         return dag + "/" + maand + "/" + this.datumJaar.toString()
     }
 
     fun getTijd(): String {
-        var uur = addAdditionalZero(datumUur.toString())
-        var minuten = addAdditionalZero(datumMinuten.toString())
-        return uur + ":" + minuten
+        val uur = addAdditionalZero(datumUur.toString())
+        val minuten = addAdditionalZero(datumMinuten.toString())
+        return "$uur:$minuten"
     }
 
-    fun addAdditionalZero(item: String):String{
+    private fun addAdditionalZero(item: String):String{
         var uitvoer = ""
         if(item.length == 1){
             uitvoer += "0"

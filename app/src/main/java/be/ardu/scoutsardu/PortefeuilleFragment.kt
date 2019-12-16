@@ -29,7 +29,7 @@ class PortefeuilleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentPortefeuilleBinding =
-            DataBindingUtil.inflate<FragmentPortefeuilleBinding>(
+            DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_portefeuille,
                 container,
@@ -40,21 +40,21 @@ class PortefeuilleFragment : Fragment() {
             ViewModelProviders.of(this, viewModelFactory).get(PortefeuilleViewModel::class.java)
         binding.portefeuilleViewModel = viewModel
 
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
             binding.statusImage.visibility = View.GONE
             binding.errorMessage.visibility = View.GONE
-            if (it.equals(ScoutsArduApiStatus.ERROR)) {
+            if (it == ScoutsArduApiStatus.ERROR) {
                 binding.statusImage.setImageResource(R.drawable.ic_connection_error)
                 binding.errorMessage.visibility = View.VISIBLE
                 binding.statusImage.visibility = View.VISIBLE
             }
-            if (it.equals(ScoutsArduApiStatus.LOADING)) {
+            if (it == ScoutsArduApiStatus.LOADING) {
                 binding.statusImage.setImageResource(R.drawable.loading_animation)
                 binding.statusImage.visibility = View.VISIBLE
             }
-            if (it.equals(ScoutsArduApiStatus.DONE)) {
+            if (it == ScoutsArduApiStatus.DONE) {
                 binding.schulden.text = "Uw totale schuld: € " + viewModel.berekenTotaleSchuld().toString()
             }
         })

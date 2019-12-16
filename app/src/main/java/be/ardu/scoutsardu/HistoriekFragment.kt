@@ -31,7 +31,7 @@ class HistoriekFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding: FragmentHistoriekBinding =
-            DataBindingUtil.inflate<FragmentHistoriekBinding>(
+            DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_historiek,
                 container,
@@ -43,9 +43,9 @@ class HistoriekFragment : Fragment() {
             ViewModelProviders.of(this, viewModelFactory).get(HistoriekViewModel::class.java)
         binding.historiekViewModel = viewModel
 
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
-        val displayMetrics = context!!.getResources().displayMetrics
+        val displayMetrics = context!!.resources.displayMetrics
         binding.mijnHistoriek.width = displayMetrics.widthPixels/2
         binding.stamHistoriek.width = displayMetrics.widthPixels/2
 
@@ -68,16 +68,16 @@ class HistoriekFragment : Fragment() {
         viewModel.status.observe(viewLifecycleOwner, Observer {
             binding.statusImage.visibility = View.GONE
             binding.errorMessage.visibility = View.GONE
-            if (it.equals(ScoutsArduApiStatus.ERROR)) {
+            if (it == ScoutsArduApiStatus.ERROR) {
                 binding.statusImage.setImageResource(R.drawable.ic_connection_error)
                 binding.errorMessage.visibility = View.VISIBLE
                 binding.statusImage.visibility = View.VISIBLE
             }
-            if (it.equals(ScoutsArduApiStatus.LOADING)) {
+            if (it == ScoutsArduApiStatus.LOADING) {
                 binding.statusImage.setImageResource(R.drawable.loading_animation)
                 binding.statusImage.visibility = View.VISIBLE
             }
-            if (it.equals(ScoutsArduApiStatus.DONE)) {
+            if (it == ScoutsArduApiStatus.DONE) {
 
             }
         })

@@ -1,13 +1,15 @@
 package be.ardu.scoutsardu.viewmodels
 
-import be.ardu.scoutsardu.network.ScoutsArduApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class EnenDrinkenViewModel : ViewModel() {
     private val _items = MutableLiveData<ArrayList<WinkelwagenItemAantal>>()
@@ -19,8 +21,6 @@ class EnenDrinkenViewModel : ViewModel() {
         get() = _status
 
     private val _navigateToCheckFragment = MutableLiveData<WinkelwagenItemAantal>()
-    val navigateToCheckFragemt: LiveData<WinkelwagenItemAantal>
-        get() = _navigateToCheckFragment
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -29,7 +29,7 @@ class EnenDrinkenViewModel : ViewModel() {
         getWinkelwagenItems()
     }
 
-    fun getWinkelwagenItems() {
+    private fun getWinkelwagenItems() {
         _status.value = ScoutsArduApiStatus.LOADING
         viewModelScope.launch {
             try {
@@ -50,7 +50,4 @@ class EnenDrinkenViewModel : ViewModel() {
         _navigateToCheckFragment.value = winkelwagenItemAantal
     }
 
-    fun onWinkelwagenToCheckFragmentNavigated() {
-        _navigateToCheckFragment.value = null
-    }
 }
