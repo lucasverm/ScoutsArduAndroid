@@ -22,8 +22,6 @@
     <string name="min">-</string>
     <string name="mijn_historiek">Mijn Historiek</string>
     <string name="stam_historiek">Stam Historiek</string>
-    <string name="er_liep_iets_fout_probeer_het_later_opnieuw">Er liep iets fout: probeer het later opnieuw!</string>
-    <string name="er_liep_iets_fout">Er liep iets fout!</string>
     <string name="wachtwoord">Wachtwoord:</string>
     <string name="email">Email:</string>
     <string name="log_in">Log in</string>
@@ -31,8 +29,6 @@
     <string name="ardulogo">arduLogo</string>
     <string name="tom_debakker_be">tom@debakker.be</string>
     <string name="er_is_geen_data_om_weer_te_geven">Er is geen data om weer te geven!</string>
-    <string name="er_liep_iets_fout_probeer_het_later_opnieuw">Er liep iets fout: probeer het later opnieuw!</string>
-    <string name="er_liep_iets_fout">Er liep iets fout!</string>
     <string name="tom">Tom</string>
     <string name="de_bakker">De Bakker</string>
     <string name="wachtwoord_bevestiging">Wachtwoord bevestiging:</string>

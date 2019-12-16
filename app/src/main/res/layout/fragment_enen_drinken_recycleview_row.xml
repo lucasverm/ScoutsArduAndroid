@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="winkelwagenItemAantal"
+            type="be.ardu.scoutsardu.network.WinkelwagenItemAantal" />
+
+        <variable
+            name="clickListener"
+            type="be.ardu.scoutsardu.adapters.EnenDrinkenClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/overzichtNaam"
+            style="@style/standaardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:naamWinkelwagenItem="@{winkelwagenItemAantal}"
+            tools:text="cola" />
+
+        <TextView
+            android:id="@+id/overzichtTotaal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/min"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/standaardText"
+            app:prijsWinkelwagenItem="@{winkelwagenItemAantal}"
+            tools:text="€ 3,00" />
+
+
+        <Button
+            android:id="@+id/min"
+            style="@style/defaultButtonColored"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/min"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/aantal"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/aantal"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="number"
+            android:labelFor="@id/min"
+            android:textAlignment="center"
+            app:aantalWinkelwagenItem="@{winkelwagenItemAantal}"
+            app:layout_constraintBottom_toBottomOf="@+id/min"
+            app:layout_constraintEnd_toStartOf="@+id/plus"
+            app:layout_constraintTop_toTopOf="@+id/min"
+            tools:text="3" />
+
+        <Button
+            android:id="@+id/plus"
+            style="@style/defaultButtonColored"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:text="+"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/aantal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/aantal"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <TextView
+            android:id="@+id/totaal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            style="@style/standaardText"
+            tools:text="1.95"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.51" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
