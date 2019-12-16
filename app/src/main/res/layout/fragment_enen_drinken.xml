@@ -6,7 +6,7 @@
     <data>
         <variable
             name="enenDrinkenViewModel"
-            type="be.ardu.scoutsardu.enen_drinken.EnenDrinkenViewModel"/>
+            type="be.ardu.scoutsardu.viewmodels.EnenDrinkenViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

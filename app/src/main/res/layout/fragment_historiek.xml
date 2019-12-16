@@ -6,7 +6,7 @@
     <data>
         <variable
             name="historiekViewModel"
-            type="be.ardu.scoutsardu.historiek.HistoriekViewModel"/>
+            type="be.ardu.scoutsardu.viewmodels.HistoriekViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
                     android:text="&#xf0fc;"
                     style="@style/fontAwesomeMenuItem"
                     />
@@ -44,7 +44,7 @@
                 android:orientation="vertical"
                 android:id="@+id/historiek">
 
-                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
                     android:text="&#xf1da;"
                     style="@style/fontAwesomeMenuItem"/>
 
@@ -62,7 +62,7 @@
                 android:orientation="vertical"
                 android:id="@+id/portefeuille">
 
-                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
                     android:text="&#xf555;"
                     style="@style/fontAwesomeMenuItem"/>
 
@@ -80,7 +80,7 @@
                 android:orientation="vertical"
                 android:id="@+id/account">>
 
-                <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+                <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
                     android:text="&#xf007;"
                     style="@style/fontAwesomeMenuItem"/>
 

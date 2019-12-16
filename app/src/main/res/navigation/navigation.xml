@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/enenDrinkenFragment"
-        android:name="be.ardu.scoutsardu.enen_drinken.EnenDrinkenFragment"
+        android:name="be.ardu.scoutsardu.EnenDrinkenFragment"
         android:label="Enen drinken ?!" >
         <action
             android:id="@+id/action_enenDrinkenFragment_to_checkWinkelwagenFragment"
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkWinkelwagenFragment"
-        android:name="be.ardu.scoutsardu.checkWinkelwagen.CheckWinkelwagenFragment"
+        android:name="be.ardu.scoutsardu.CheckWinkelwagenFragment"
         android:label="Controleer winkelwagen">
         <argument
             android:name="winkelwagen"
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/santeFragment"
-        android:name="be.ardu.scoutsardu.sante.SanteFragment"
+        android:name="be.ardu.scoutsardu.SanteFragment"
         android:label="Santé!" >
         <argument
             android:name="winkelwagen"
@@ -75,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/historiekFragment"
-        android:name="be.ardu.scoutsardu.historiek.HistoriekFragment"
+        android:name="be.ardu.scoutsardu.HistoriekFragment"
         android:label="Historiek"
         tools:layout="@layout/fragment_historiek" >
         <action
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/portefeuilleFragment"
-        android:name="be.ardu.scoutsardu.portefeuille.PortefeuilleFragment"
+        android:name="be.ardu.scoutsardu.PortefeuilleFragment"
         android:label="PortefeuilleFragment" >
         <action
             android:id="@+id/action_portefeuilleFragment_to_santeFragment"
@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="be.ardu.scoutsardu.account.AccountFragment"
+        android:name="be.ardu.scoutsardu.AccountFragment"
         android:label="Account informatie"
         tools:layout="@layout/fragment_account" />
 </navigation>

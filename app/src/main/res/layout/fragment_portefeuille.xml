@@ -6,7 +6,7 @@
     <data>
         <variable
             name="portefeuilleViewModel"
-            type="be.ardu.scoutsardu.portefeuille.PortefeuilleViewModel"/>
+            type="be.ardu.scoutsardu.viewmodels.PortefeuilleViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

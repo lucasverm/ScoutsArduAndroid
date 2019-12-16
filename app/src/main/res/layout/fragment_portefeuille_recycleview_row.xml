@@ -10,7 +10,7 @@
 
         <variable
             name="clickListener"
-            type="be.ardu.scoutsardu.portefeuille.PortefeuilleClickListener" />
+            type="be.ardu.scoutsardu.adapters.PortefeuilleClickListener" />
     </data>
 
 
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:datumWinkelwagen="@{winkelwagen}" />
 
-        <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+        <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

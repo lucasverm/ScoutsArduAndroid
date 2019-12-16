@@ -6,7 +6,7 @@
     <data>
         <variable
             name="SanteViewModel"
-            type="be.ardu.scoutsardu.sante.SanteViewModel"/>
+            type="be.ardu.scoutsardu.viewmodels.SanteViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

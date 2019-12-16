@@ -10,7 +10,7 @@
 
         <variable
             name="clickListener"
-            type="be.ardu.scoutsardu.enen_drinken.EnenDrinkenClickListener" />
+            type="be.ardu.scoutsardu.adapters.EnenDrinkenClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

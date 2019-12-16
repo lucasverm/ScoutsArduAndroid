@@ -1,4 +1,4 @@
-package be.ardu.scoutsardu.registreer
+package be.ardu.scoutsardu.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,40 +6,22 @@ import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import kotlinx.coroutines.*
+import java.lang.Exception
 
-class RegistreerViewModel : ViewModel() {
-
-    private val viewModelJob = SupervisorJob()
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+class LoginViewModel : ViewModel() {
 
     private val _status = MutableLiveData<ScoutsArduApiStatus>()
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun registreer(
-        email: String,
-        voornaam: String,
-        achternaam: String,
-        telefoonNummer: String,
-        password: String,
-        passwordBevestiging: String
-    ) {
+    fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
-                AccountRepository.registreer(
-                    email,
-                    voornaam,
-                    achternaam,
-                    telefoonNummer,
-                    password,
-                    passwordBevestiging
-                )
+                AccountRepository.login(email, password)
                 AccountRepository.getGebruiker()
                 _status.value = ScoutsArduApiStatus.DONE
                 _status.value = ScoutsArduApiStatus.DEFAULT
@@ -49,4 +31,10 @@ class RegistreerViewModel : ViewModel() {
         }
 
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
+    }
+
 }

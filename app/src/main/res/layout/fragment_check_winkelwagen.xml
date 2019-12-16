@@ -6,7 +6,7 @@
     <data>
         <variable
             name="checkWinkelwagenViewModel"
-            type="be.ardu.scoutsardu.checkWinkelwagen.CheckWinkelwagenViewModel"/>
+            type="be.ardu.scoutsardu.viewmodels.CheckWinkelwagenViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

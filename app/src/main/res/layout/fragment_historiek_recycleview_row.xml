@@ -10,7 +10,7 @@
 
         <variable
             name="clickListener"
-            type="be.ardu.scoutsardu.historiek.HistoriekClickListener" />
+            type="be.ardu.scoutsardu.adapters.HistoriekClickListener" />
     </data>
 
 
