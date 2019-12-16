@@ -5,6 +5,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 
@@ -29,28 +30,38 @@ fun EditText.setAantalWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAant
     }
 }
 
-@BindingAdapter("naamWinkelwagen")
+@BindingAdapter("naamAndDatumWinkelwagen")
 fun TextView.setNaamWinkelwagen(winkelwagen: Winkelwagen){
     winkelwagen.let{
         text = winkelwagen.gebruiker.getFullNaam() + " (" + winkelwagen.getDatum() + " - " + winkelwagen.getTijd() + ")"
     }
 }
 
-@BindingAdapter("totaalPrijsWinkelwagen")
-fun TextView.setTotaalPrijsWinkelwagen(winkelwagen: Winkelwagen){
+@BindingAdapter("datumWinkelwagen")
+fun TextView.setDatumWinkelwagen(winkelwagen: Winkelwagen){
     winkelwagen.let{
-        text = winkelwagen.getTotaal().toString()
+        text = winkelwagen.getDatum() + " - " + winkelwagen.getTijd()
     }
 }
 
-@BindingAdapter("setAchtergrondKleur")
-fun ConstraintLayout.setAchtergrond(winkelwagen: Winkelwagen){
+@BindingAdapter("totaalPrijsWinkelwagen")
+fun TextView.setTotaalPrijsWinkelwagen(winkelwagen: Winkelwagen){
+    winkelwagen.let{
+        text = "€ " + winkelwagen.getTotaal().toString()
+    }
+}
+
+@BindingAdapter("setIcon")
+fun FontAwesomeTextViewSolid.setIcon(winkelwagen: Winkelwagen){
     winkelwagen.let{
         if(it.betaald){
-            setBackgroundColor(Color.GREEN)
+            setText("\uf00c")
+            setTextColor(Color.GREEN)
         } else{
-            setBackgroundColor(Color.RED)
+            setText("\uf00d")
+            setTextColor(Color.RED)
         }
+
 
     }
 }

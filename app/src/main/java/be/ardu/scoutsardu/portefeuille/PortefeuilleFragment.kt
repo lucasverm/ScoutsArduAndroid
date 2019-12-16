@@ -52,7 +52,7 @@ class PortefeuilleFragment : Fragment() {
                 binding.statusImage.visibility = View.VISIBLE
             }
             if (it.equals(ScoutsArduApiStatus.DONE)) {
-
+                binding.schulden.text = "Uw totale schuld: € " + viewModel.berekenTotaleSchuld().toString()
             }
         })
 

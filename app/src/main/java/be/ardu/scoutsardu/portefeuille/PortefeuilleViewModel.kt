@@ -54,6 +54,16 @@ class PortefeuilleViewModel : ViewModel() {
         viewModelJob.cancel()
     }
 
+    fun berekenTotaleSchuld():Double{
+        var totaal = 0.0
+        this.winkelwagens.value!!.forEach { winkelwagen ->
+            if(!winkelwagen.betaald){
+                totaal += winkelwagen.getTotaal()
+            }
+        }
+        return totaal
+    }
+
     fun onWinkelwagenItemClicked(winkelwagen: Winkelwagen) {
         _navigateToSanteFragment.value = winkelwagen
     }

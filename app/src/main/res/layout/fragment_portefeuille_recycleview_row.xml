@@ -19,8 +19,7 @@
         android:layout_height="45dp"
         android:onClick="@{() -> clickListener.onClick(winkelwagen)}"
         android:padding="10dp"
-        app:setAchtergrondKleur="@{winkelwagen}">
-
+       >
 
         <TextView
             android:id="@+id/totaal"
@@ -38,14 +37,27 @@
             android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            android:text="14-12-2019 - 20:13"
+            tools:text="14-12-2019 - 20:13"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:datumWinkelwagen="@{winkelwagen}" />
+
+        <be.ardu.scoutsardu.fontAwesome.FontAwesomeTextViewSolid
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:width="25dp"
+            tools:text="&#xf0fc;"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:naamWinkelwagen="@{winkelwagen}" />
+            app:setIcon="@{winkelwagen}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
