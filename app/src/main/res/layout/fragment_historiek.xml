@@ -22,14 +22,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/loading" />
 
         <Button
             android:id="@+id/mijnHistoriek"
             style="@style/defaultButtonColored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Mijn Historiek"
+            android:text="@string/mijn_historiek"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/errorMessage" />
 
@@ -38,7 +39,7 @@
             style="@style/defaultButtonColored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Stam Historiek"
+            android:text="@string/stam_historiek"
             app:layout_constraintBottom_toBottomOf="@+id/mijnHistoriek"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -50,7 +51,7 @@
         <TextView
             android:id="@+id/errorMessage"
             style="@style/errorMessage"
-            android:text="Er liep iets fout: probeer het later opnieuw!"
+            android:text="@string/er_liep_iets_fout_probeer_het_later_opnieuw"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

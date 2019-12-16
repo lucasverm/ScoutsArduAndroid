@@ -28,7 +28,7 @@
             <TextView
                 android:id="@+id/errorMessage"
                 style="@style/errorMessage"
-                android:text="Er liep iets fout!"
+                android:text="@string/er_liep_iets_fout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ardu_logo" />
+                app:srcCompat="@drawable/ardu_logo"
+                android:contentDescription="@string/ardulogo" />
 
             <EditText
                 android:id="@+id/email"
@@ -50,7 +51,9 @@
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                android:importantForAutofill="no"
+                android:hint="@string/tom_debakker_be"/>
 
             <TextView
                 android:id="@+id/textView5"
@@ -60,7 +63,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Wachtwoord:"
+                android:text="@string/wachtwoord"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email" />
@@ -73,7 +76,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Email:"
+                android:text="@string/email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -88,7 +91,9 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                android:importantForAutofill="no"
+                android:hint="@string/wachtwoord"/>
 
             <Button
                 android:id="@+id/loginButton"
@@ -98,7 +103,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Log in"
+                android:text="@string/log_in"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +118,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Registreer nu!"
+                android:text="@string/registreer_nu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -38,7 +38,6 @@ class HistoriekViewModel : ViewModel() {
                 _winkelwagens.value = WinkelwagenRepository.getStamHistoriek()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (t: Exception) {
-                println(t)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
@@ -53,7 +52,6 @@ class HistoriekViewModel : ViewModel() {
                 _winkelwagens.value = WinkelwagenRepository.getMijnHistoriek()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (t: Exception) {
-                println(t)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.51"
             app:prijsWinkelwagenItem="@{winkelwagenItemAantal}"
-            tools:text="@string/_0_65" />
+            tools:text="€ 3,55" />
 
         <TextView
             android:id="@+id/overzichtAantal"
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="x"
+            android:text="@string/x"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/overzichtAantal"
             app:layout_constraintTop_toTopOf="parent" />

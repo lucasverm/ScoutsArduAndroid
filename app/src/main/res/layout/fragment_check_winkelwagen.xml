@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/errorMessage"
             style="@style/errorMessage"
-            android:text="Er liep iets fout: probeer het later opnieuw!"
+            android:text="@string/er_liep_iets_fout_probeer_het_later_opnieuw"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +34,7 @@
         <Button
             android:id="@+id/Verder"
             style="@style/defaultButtonColored"
-            android:text="Betaal nu!"
+            android:text="@string/betaal_nu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

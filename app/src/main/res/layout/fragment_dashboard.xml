@@ -67,7 +67,7 @@
                 android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">>
+                android:orientation="vertical">
 
                 <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
                     style="@style/fontAwesomeMenuItem"
@@ -75,7 +75,7 @@
 
                 <TextView
                     style="@style/MenuItemText"
-                    android:text="@string/Account" />
+                    android:text="@string/account" />
             </LinearLayout>
 
         </com.google.android.flexbox.FlexboxLayout>

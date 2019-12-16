@@ -39,7 +39,6 @@ class PortefeuilleViewModel : ViewModel() {
                 _winkelwagens.value = WinkelwagenRepository.getMijnHistoriek()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (t: Exception) {
-                println(t)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

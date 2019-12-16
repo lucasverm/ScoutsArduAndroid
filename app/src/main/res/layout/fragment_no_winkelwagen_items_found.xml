@@ -4,4 +4,4 @@
     style="@style/errorMessage"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Er is geen data om weer te geven!" />
+    android:text="@string/er_is_geen_data_om_weer_te_geven" />

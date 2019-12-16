@@ -1,18 +1,41 @@
 <resources>
     <string name="app_name">ScoutsArdu</string>
-    <string name="Stam">stam</string>
-    <string name="enen_drinken">Enen drinken</string>
+    <string name="voornaam">Voornaam:</string>
+    <string name="er_liep_iets_fout">Er liep iets fout!</string>
+    <string name="uitloggen">Uitloggen</string>
+    <string name="wijzigingen_opslaan">Wijzigingen opslaan</string>
+    <string name="achternaam">Achternaam:</string>
+    <string name="telefoonnummer">Telefoonnummer:</string>
+    <string name="voornaamHint">Tom</string>
+    <string name="achternaamHint">De Bakker</string>
+    <string name="telefoonHint">0498123456</string>
+    <string name="er_liep_iets_fout_probeer_het_later_opnieuw">Er liep iets fout: probeer het later opnieuw!</string>
+    <string name="betaal_nu">Betaal nu!</string>
+    <string name="x">x</string>
+    <string name="enen_drinken">Enen Drinken</string>
     <string name="historiek">Historiek</string>
     <string name="portefeuille">Portefeuille</string>
-    <string name="pintje">Pintje:</string>
-    <string name="_0_65">€ 0,65</string>
-    <string name="_3">3</string>
-    <string name="_1_95">€ 1,95</string>
+    <string name="account">Account</string>
+    <string name="er_liep_iets_fout_u_heeft_geen_internet_connectie">Er liep iets fout: u heeft geen internet connectie!</string>
+    <string name="verder">Verder</string>
+    <string name="loading">loading</string>
     <string name="min">-</string>
-    <string name="plus">+</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="ardulogo">ArduLogo</string>
-    <string name="Account">Mijn Account</string>
+    <string name="mijn_historiek">Mijn Historiek</string>
+    <string name="stam_historiek">Stam Historiek</string>
+    <string name="er_liep_iets_fout_probeer_het_later_opnieuw">Er liep iets fout: probeer het later opnieuw!</string>
+    <string name="er_liep_iets_fout">Er liep iets fout!</string>
+    <string name="wachtwoord">Wachtwoord:</string>
+    <string name="email">Email:</string>
+    <string name="log_in">Log in</string>
+    <string name="registreer_nu">Registreer nu!</string>
+    <string name="ardulogo">arduLogo</string>
+    <string name="tom_debakker_be">tom@debakker.be</string>
+    <string name="er_is_geen_data_om_weer_te_geven">Er is geen data om weer te geven!</string>
+    <string name="er_liep_iets_fout_probeer_het_later_opnieuw">Er liep iets fout: probeer het later opnieuw!</string>
+    <string name="er_liep_iets_fout">Er liep iets fout!</string>
+    <string name="tom">Tom</string>
+    <string name="de_bakker">De Bakker</string>
+    <string name="wachtwoord_bevestiging">Wachtwoord bevestiging:</string>
+    <string name="registreren">Registreren</string>
+    <string name="ik_heb_al_een_account">Ik heb al een account!</string>
 </resources>

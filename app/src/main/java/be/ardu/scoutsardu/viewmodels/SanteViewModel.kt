@@ -33,7 +33,6 @@ class SanteViewModel : ViewModel() {
                 winkelwagen.value = WinkelwagenRepository.postWinkelwagen(winkelwagen.value!!)
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
-                println(e)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
