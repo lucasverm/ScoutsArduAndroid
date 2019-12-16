@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "500450633027",
+    "firebase_url": "https://scoutsardu-6b676.firebaseio.com",
+    "project_id": "scoutsardu-6b676",
+    "storage_bucket": "scoutsardu-6b676.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500450633027:android:cbccf1bfd1e42392717bf6",
+        "android_client_info": {
+          "package_name": "be.ardu.scoutsardu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500450633027-hn1ookovjlerkem1fa8t7fem84ncs8d9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8BgDTYdaeJga6ZWB5VU7eq8Huf8595Pk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500450633027-hn1ookovjlerkem1fa8t7fem84ncs8d9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
