@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -55,7 +56,8 @@
 
                 <be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
                     style="@style/fontAwesomeMenuItem"
-                    android:text="&#xf555;" />
+                    android:text="&#xf555;"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     style="@style/MenuItemText"

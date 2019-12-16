@@ -1,6 +1,7 @@
 package be.ardu.scoutsardu
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -25,6 +26,7 @@ import be.ardu.scoutsardu.viewmodels.RegistreerViewModelFactory
 class RegistreerFragment : Fragment() {
     private lateinit var viewModel: RegistreerViewModel
     private lateinit var viewModelFactory: RegistreerViewModelFactory
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -102,7 +104,6 @@ class RegistreerFragment : Fragment() {
 
         }
 
-        binding.errorMessage.visibility = View.GONE
         viewModel.status.observe(viewLifecycleOwner, Observer {
             if (it == ScoutsArduApiStatus.DONE) {
                 binding.errorMessage.text = "Welkom!"

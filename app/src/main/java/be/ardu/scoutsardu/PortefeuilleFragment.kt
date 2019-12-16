@@ -1,6 +1,7 @@
 package be.ardu.scoutsardu
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ import be.ardu.scoutsardu.viewmodels.PortefeuilleViewModelFactory
 class PortefeuilleFragment : Fragment() {
     private lateinit var viewModel: PortefeuilleViewModel
     private lateinit var viewModelFactory: PortefeuilleViewModelFactory
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

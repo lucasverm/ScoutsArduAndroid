@@ -102,7 +102,7 @@ class PortefeuilleDiffCallBack : DiffUtil.ItemCallback<PortefeuilleDataItem>() {
     }
 
     override fun areContentsTheSame(oldItem: PortefeuilleDataItem, newItem: PortefeuilleDataItem): Boolean {
-        return oldItem == newItem
+        return oldItem.equals(newItem)
     }
 
 }

@@ -1,5 +1,6 @@
 package be.ardu.scoutsardu.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class SanteAdapter : RecyclerView.Adapter<SanteAdapter.ViewHolder>() {
         return data.count()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 

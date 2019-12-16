@@ -7,10 +7,7 @@ import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class PortefeuilleViewModel : ViewModel() {
     private val _winkelwagens = MutableLiveData<ArrayList<Winkelwagen>>()
@@ -33,7 +30,6 @@ class PortefeuilleViewModel : ViewModel() {
     }
 
     private fun getMijnHistoriek() {
-        _winkelwagens.value?.clear()
         viewModelScope.launch {
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
@@ -48,6 +44,7 @@ class PortefeuilleViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+        viewModelScope.cancel()
     }
 
     fun berekenTotaleSchuld():Double{

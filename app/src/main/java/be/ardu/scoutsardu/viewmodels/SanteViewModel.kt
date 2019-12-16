@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class SanteViewModel : ViewModel() {
     val winkelwagen = MutableLiveData<Winkelwagen>()
@@ -22,9 +19,6 @@ class SanteViewModel : ViewModel() {
     private val _status = MutableLiveData<ScoutsArduApiStatus>()
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
-
-    init {
-    }
 
     fun postWinkelwagen() {
         _status.value = ScoutsArduApiStatus.LOADING
@@ -42,5 +36,6 @@ class SanteViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+        viewModelScope.cancel()
     }
 }

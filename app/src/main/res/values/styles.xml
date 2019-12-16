@@ -32,7 +32,7 @@
 
     <style name="errorMessage">
         <item name="android:height">30dp</item>
-        <!--<item name="android:visibility">gone</item>-->
+        <item name="android:visibility">gone</item>
         <item name="android:background">@android:color/holo_red_dark</item><!--#FF0000-->
         <item name="android:gravity">center</item>
         <item name="android:textAlignment">center</item>

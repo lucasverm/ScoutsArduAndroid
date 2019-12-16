@@ -3,10 +3,9 @@ package be.ardu.scoutsardu.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
+import be.ardu.scoutsardu.repositories.AccountRepository
 import kotlinx.coroutines.*
-import java.lang.Exception
 
 class LoginViewModel : ViewModel() {
 
@@ -34,6 +33,7 @@ class LoginViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        viewModelJob.cancel()
         viewModelScope.cancel()
     }
 

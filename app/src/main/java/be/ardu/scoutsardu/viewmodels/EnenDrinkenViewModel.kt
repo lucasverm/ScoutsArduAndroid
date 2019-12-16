@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class EnenDrinkenViewModel : ViewModel() {
     private val _items = MutableLiveData<ArrayList<WinkelwagenItemAantal>>()
@@ -44,6 +41,7 @@ class EnenDrinkenViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+        viewModelScope.cancel()
     }
 
     fun onWinkelwagenItemClicked(winkelwagenItemAantal: WinkelwagenItemAantal) {

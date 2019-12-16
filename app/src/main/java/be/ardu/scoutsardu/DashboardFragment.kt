@@ -2,11 +2,11 @@ package be.ardu.scoutsardu
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import be.ardu.scoutsardu.databinding.FragmentDashboardBinding
 
@@ -19,7 +19,6 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentDashboardBinding>(inflater, R.layout.fragment_dashboard, container, false)
         binding.enenDrinken.setOnClickListener (
             Navigation.createNavigateOnClickListener(R.id.action_dashboardFragment_to_enenDrinkenFragment))

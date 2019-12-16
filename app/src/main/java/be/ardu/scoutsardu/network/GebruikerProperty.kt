@@ -8,14 +8,6 @@ import java.io.Serializable
 import java.util.*
 
 @Parcelize
-
-
-/*var voornaam: String = ""
-var achternaam: String = ""
-//var foto: String = ""
-var email: String = ""
-var telefoonNummer: String = ""
-var winkelwagens: [Winkelwagen] = []*/
 data class Gebruiker(
     var voornaam: String,
     var achternaam: String,
@@ -26,7 +18,7 @@ data class Gebruiker(
     var winkelwagens: ArrayList<Winkelwagen>
 ) : Serializable, Parcelable {
     fun getFullNaam(): String {
-        return this.voornaam.capitalize() + " " + this.achternaam.capitalize()
+        return voornaam.capitalize() + " " + achternaam.capitalize()
     }
 }
 

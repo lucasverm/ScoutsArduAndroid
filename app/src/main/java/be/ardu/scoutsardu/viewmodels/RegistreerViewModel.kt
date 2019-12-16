@@ -3,8 +3,8 @@ package be.ardu.scoutsardu.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
+import be.ardu.scoutsardu.repositories.AccountRepository
 import kotlinx.coroutines.*
 
 class RegistreerViewModel : ViewModel() {
@@ -19,6 +19,7 @@ class RegistreerViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+        viewModelScope.cancel()
     }
 
     fun registreer(

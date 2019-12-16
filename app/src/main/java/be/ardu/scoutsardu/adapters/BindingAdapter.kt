@@ -1,12 +1,13 @@
 package be.ardu.scoutsardu.adapters
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
+import be.ardu.scoutsardu.utilities.FontAwesomeTextViewSolid
 
 @BindingAdapter("naamWinkelwagenItem")
 fun TextView.setNaamWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAantal){
@@ -15,6 +16,7 @@ fun TextView.setNaamWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAantal
     }
 }
 
+@SuppressLint("SetTextI18n")
 @BindingAdapter("prijsWinkelwagenItem")
 fun TextView.setPrijsWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAantal){
     winkelwagenItemAantal.let{
@@ -27,6 +29,7 @@ fun EditText.setAantalWinkelwagenItem(winkelwagenItemAantal: WinkelwagenItemAant
     setText(winkelwagenItemAantal.aantal.toString(), TextView.BufferType.EDITABLE)
 }
 
+@SuppressLint("SetTextI18n")
 @BindingAdapter("naamAndDatumWinkelwagen")
 fun TextView.setNaamWinkelwagen(winkelwagen: Winkelwagen){
     winkelwagen.let{
@@ -34,6 +37,7 @@ fun TextView.setNaamWinkelwagen(winkelwagen: Winkelwagen){
     }
 }
 
+@SuppressLint("SetTextI18n")
 @BindingAdapter("datumWinkelwagen")
 fun TextView.setDatumWinkelwagen(winkelwagen: Winkelwagen){
     winkelwagen.let{
@@ -41,6 +45,7 @@ fun TextView.setDatumWinkelwagen(winkelwagen: Winkelwagen){
     }
 }
 
+@SuppressLint("SetTextI18n")
 @BindingAdapter("totaalPrijsWinkelwagen")
 fun TextView.setTotaalPrijsWinkelwagen(winkelwagen: Winkelwagen){
     winkelwagen.let{

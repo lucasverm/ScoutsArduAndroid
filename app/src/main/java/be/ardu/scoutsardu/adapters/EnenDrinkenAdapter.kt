@@ -1,5 +1,6 @@
 package be.ardu.scoutsardu.adapters
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -79,6 +80,7 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
     class ViewHolder private constructor(val binding: FragmentEnenDrinkenRecycleviewRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun fixSubTotaal(winkelwagenItemAantal: WinkelwagenItemAantal){
             val totaal = (winkelwagenItemAantal.item.prijs * winkelwagenItemAantal.aantal * 100.0).roundToLong() / 100.0
             binding.totaal.text = "€ $totaal"
@@ -120,7 +122,6 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
                 }
                 fixSubTotaal(winkelwagenItemAantal)
             }
-            //binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -137,11 +138,11 @@ class EnenDrinkenAdapter(val clickListener: EnenDrinkenClickListener) :
 
 class EnenDrinkenDiffCallBack : DiffUtil.ItemCallback<DataItem>() {
     override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.id.equals(newItem.id)
     }
 
     override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem == newItem
+        return oldItem.equals(newItem)
     }
 
 }

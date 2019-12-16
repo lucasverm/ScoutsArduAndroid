@@ -8,12 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".LoginActivity">
 
-        <!--<fragment
-            android:id="@+id/loginFragment"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:name="be.ardu.scoutsardu.LoginFragment" />-->
-
         <fragment
             android:id="@+id/navHostFragmentLogin"
             android:layout_height="match_parent"
