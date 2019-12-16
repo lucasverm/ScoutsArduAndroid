@@ -19,8 +19,6 @@ import com.google.gson.GsonBuilder
 import com.google.gson.Gson
 
 
-
-
 private const val BASE_URL = "https://scoutsarduapinew.azurewebsites.net/"
 
 private val moshi = Moshi.Builder()
@@ -39,7 +37,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface ScoutsArduApiService{
+interface ScoutsArduApiService {
     @GET("api/Winkelwagen/WinkelwagenItems")
     fun getWinkelwagenItems(): Deferred<List<WinkelwagenItem>>
 
@@ -67,6 +65,12 @@ interface ScoutsArduApiService{
     @GET("api/Account")
     suspend fun getGebruiker(@Header("Authorization") bearerToken: String): Gebruiker
 
+
+    @PUT("api/Account")
+    fun putGebruiker(
+        @Body data: putGebruikerData,
+        @Header("Authorization") bearerToken: String
+    ): Deferred<Gebruiker>
 }
 
 //singleton

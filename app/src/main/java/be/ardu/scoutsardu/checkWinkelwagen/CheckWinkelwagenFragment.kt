@@ -38,6 +38,8 @@ class CheckWinkelwagenFragment : Fragment() {
 
         val adapter = CheckWinkelwagenAdapter()
         binding.overzichtLijst.adapter = adapter
+
+
         viewModelFactory = CheckWinkelwagenViewModelFactory()
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(CheckWinkelwagenViewModel::class.java)

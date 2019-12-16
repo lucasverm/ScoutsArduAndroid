@@ -21,6 +21,7 @@ data class Gebruiker(
     var achternaam: String,
     var email: String,
     @Json(name = "telNr")
+    @SerializedName("telNr")
     var telefoonNummer: String,
     var winkelwagens: ArrayList<Winkelwagen>
 ) : Serializable, Parcelable {

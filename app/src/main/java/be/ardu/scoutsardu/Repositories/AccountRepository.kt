@@ -42,6 +42,7 @@ object AccountRepository {
 
     fun logout() {
         bearerToken = ""
+        gebruiker = null
     }
 }
 
