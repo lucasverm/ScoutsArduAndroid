@@ -15,7 +15,6 @@ import be.ardu.scoutsardu.adapters.PortefeuilleAdapter
 import be.ardu.scoutsardu.adapters.PortefeuilleClickListener
 import be.ardu.scoutsardu.databinding.FragmentPortefeuilleBinding
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
-import be.ardu.scoutsardu.repositories.HistoriekDatabaseRepository
 import be.ardu.scoutsardu.viewmodels.PortefeuilleViewModel
 import be.ardu.scoutsardu.viewmodels.PortefeuilleViewModelFactory
 
@@ -38,8 +37,7 @@ class PortefeuilleFragment : Fragment() {
                 container,
                 false
             )
-        var localDatabaseRepository = HistoriekDatabaseRepository(this.activity!!.application)
-        viewModelFactory = PortefeuilleViewModelFactory(localDatabaseRepository)
+        viewModelFactory = PortefeuilleViewModelFactory()
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(PortefeuilleViewModel::class.java)
         binding.portefeuilleViewModel = viewModel

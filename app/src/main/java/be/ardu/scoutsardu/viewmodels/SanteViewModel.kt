@@ -7,8 +7,10 @@ import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
 import kotlinx.coroutines.*
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class SanteViewModel : ViewModel() {
+class SanteViewModel : ViewModel(), KoinComponent {
     val winkelwagen = MutableLiveData<Winkelwagen>()
 
     var winkelwagenIsHistory: Boolean = true
@@ -20,11 +22,13 @@ class SanteViewModel : ViewModel() {
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
 
+    val winkelwagenRepository: WinkelwagenRepository by inject()
+
     fun postWinkelwagen() {
         _status.value = ScoutsArduApiStatus.LOADING
         viewModelScope.launch {
             try {
-                winkelwagen.value = WinkelwagenRepository.postWinkelwagen(winkelwagen.value!!)
+                winkelwagen.value = winkelwagenRepository.postWinkelwagen(winkelwagen.value!!)
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ScoutsArduApiStatus.ERROR

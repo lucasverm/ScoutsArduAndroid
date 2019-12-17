@@ -3,8 +3,12 @@ package be.ardu.scoutsardu.repositories
 import be.ardu.scoutsardu.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-object AccountRepository {
+class AccountRepository() : KoinComponent {
+
+    val scoutsArduApiService: ScoutsArduApiService by inject()
 
     var bearerToken = ""
     var gebruiker: Gebruiker? = null
@@ -12,7 +16,7 @@ object AccountRepository {
     suspend fun login(email: String, password: String): String {
         val data = SendLoginData(email, password)
         withContext(Dispatchers.IO) {
-            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.login(data)
+            bearerToken = "Bearer " + scoutsArduApiService.login(data)
         }
         return bearerToken
     }
@@ -32,7 +36,7 @@ object AccountRepository {
             password
         )
         withContext(Dispatchers.IO) {
-            bearerToken = "Bearer " + ScoutsArduApi.retrofitService.registreer(data)
+            bearerToken = "Bearer " + scoutsArduApiService.registreer(data)
         }
         return bearerToken
     }
@@ -40,7 +44,7 @@ object AccountRepository {
 
     suspend fun getGebruiker(): Gebruiker {
         withContext(Dispatchers.IO) {
-            gebruiker = ScoutsArduApi.retrofitService.getGebruiker(bearerToken)
+            gebruiker = scoutsArduApiService.getGebruiker(bearerToken)
         }
         return gebruiker!!
     }
@@ -53,7 +57,7 @@ object AccountRepository {
     suspend fun putGebruiker(voornaam: String, achternaam: String, telefoon: String): Gebruiker {
         val data = PutGebruikerData(voornaam, achternaam)
         withContext(Dispatchers.IO) {
-            gebruiker = ScoutsArduApi.retrofitService.putGebruiker(data, bearerToken)
+            gebruiker = scoutsArduApiService.putGebruiker(data, bearerToken)
         }
         return gebruiker!!
     }

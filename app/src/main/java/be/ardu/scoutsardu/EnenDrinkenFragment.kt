@@ -3,23 +3,22 @@ package be.ardu.scoutsardu
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenBinding
-import be.ardu.scoutsardu.network.Winkelwagen
-import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.adapters.EnenDrinkenAdapter
 import be.ardu.scoutsardu.adapters.EnenDrinkenClickListener
+import be.ardu.scoutsardu.databinding.FragmentEnenDrinkenBinding
+import be.ardu.scoutsardu.network.ScoutsArduApiStatus
+import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.viewmodels.EnenDrinkenViewModel
 import be.ardu.scoutsardu.viewmodels.EnenDrinkenViewModelFactory
-import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 
 
 /**
@@ -98,7 +97,18 @@ class EnenDrinkenFragment : Fragment() {
         //navigation: altijd in fragment
         binding.Verder.setOnClickListener { it ->
             var verderGaanToegestaan = false
-            val wagen = Winkelwagen(0, 0,0,0,0,0, ArrayList(), false, AccountRepository.gebruiker!!)
+            val wagen =
+                Winkelwagen(
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    ArrayList(),
+                    false,
+                    viewModel.getGebruiker()
+                )
             viewModel.items.value?.forEach {
                 if (it.aantal > 0) {
                     verderGaanToegestaan = true

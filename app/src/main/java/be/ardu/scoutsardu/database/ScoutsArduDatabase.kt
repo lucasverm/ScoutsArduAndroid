@@ -24,8 +24,7 @@ abstract class ScoutsArduDatabase : RoomDatabase() {
                         context.applicationContext,
                         ScoutsArduDatabase::class.java,
                         DATABASE_NAME
-                    )
-                        .fallbackToDestructiveMigration()
+                    ).fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
                 }

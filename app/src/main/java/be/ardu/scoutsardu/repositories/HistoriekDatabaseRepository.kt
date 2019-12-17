@@ -1,17 +1,19 @@
 package be.ardu.scoutsardu.repositories
 
-import android.app.Application
-import be.ardu.scoutsardu.database.ScoutsArduDatabase
+import be.ardu.scoutsardu.database.MijnHistoriekDao
 import be.ardu.scoutsardu.database.WinkelwagenDatabaseClass
 import be.ardu.scoutsardu.network.Winkelwagen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HistoriekDatabaseRepository(application: Application) {
+class HistoriekDatabaseRepository() : KoinComponent {
 
-    var database = ScoutsArduDatabase.getInstance(application).mijnHistoriek
+
+    val database: MijnHistoriekDao by inject()
 
     suspend fun clearMijnHistoriek(type:String) {
         withContext(Dispatchers.IO) {

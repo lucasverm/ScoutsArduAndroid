@@ -3,12 +3,16 @@ package be.ardu.scoutsardu.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import be.ardu.scoutsardu.network.Gebruiker
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
+import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
 import kotlinx.coroutines.*
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class EnenDrinkenViewModel : ViewModel() {
+class EnenDrinkenViewModel : ViewModel(), KoinComponent {
     private val _items = MutableLiveData<ArrayList<WinkelwagenItemAantal>>()
     val items: LiveData<ArrayList<WinkelwagenItemAantal>>
         get() = _items
@@ -22,15 +26,22 @@ class EnenDrinkenViewModel : ViewModel() {
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    val accountRepository: AccountRepository by inject()
+    val winkelwagenRepository: WinkelwagenRepository by inject()
+
     init {
         getWinkelwagenItems()
+    }
+
+    fun getGebruiker(): Gebruiker {
+        return accountRepository.gebruiker!!
     }
 
     private fun getWinkelwagenItems() {
         _status.value = ScoutsArduApiStatus.LOADING
         viewModelScope.launch {
             try {
-                _items.value = WinkelwagenRepository.getWinkelwagenItems()
+                _items.value = winkelwagenRepository.getWinkelwagenItems()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ScoutsArduApiStatus.ERROR

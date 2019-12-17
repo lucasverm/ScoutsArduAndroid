@@ -1,17 +1,22 @@
 package be.ardu.scoutsardu.repositories
 
-import be.ardu.scoutsardu.network.ScoutsArduApi
+import be.ardu.scoutsardu.network.ScoutsArduApiService
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.network.WinkelwagenItemAantal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-object WinkelwagenRepository {
+class WinkelwagenRepository(): KoinComponent {
+
+    val accountRepository: AccountRepository by inject()
+    val scoutsArduApiService: ScoutsArduApiService by inject()
 
     suspend fun getWinkelwagenItems(): ArrayList<WinkelwagenItemAantal> {
         val uitvoer = ArrayList<WinkelwagenItemAantal>()
         withContext(Dispatchers.IO) {
-            val items = ScoutsArduApi.retrofitService.getWinkelwagenItems()
+            val items = scoutsArduApiService.getWinkelwagenItems()
 
             for (item in items) {
                 val w = WinkelwagenItemAantal(item, 0)
@@ -25,7 +30,7 @@ object WinkelwagenRepository {
         var uitvoer = ArrayList<Winkelwagen>()
         withContext(Dispatchers.IO) {
             uitvoer =
-                ScoutsArduApi.retrofitService.getStamHistory(AccountRepository.bearerToken)
+                scoutsArduApiService.getStamHistory(accountRepository.bearerToken)
         }
         return uitvoer
 
@@ -35,7 +40,7 @@ object WinkelwagenRepository {
         var uitvoer = ArrayList<Winkelwagen>()
         withContext(Dispatchers.IO) {
             uitvoer =
-                ScoutsArduApi.retrofitService.getMijnHistory(AccountRepository.bearerToken)
+                scoutsArduApiService.getMijnHistory(accountRepository.bearerToken)
         }
         return uitvoer
 
@@ -45,7 +50,7 @@ object WinkelwagenRepository {
         var uitvoer = winkelwagen
         withContext(Dispatchers.IO) {
             uitvoer =
-                ScoutsArduApi.retrofitService.postWinkelwagen(winkelwagen, AccountRepository.bearerToken)
+                scoutsArduApiService.postWinkelwagen(winkelwagen, accountRepository.bearerToken)
         }
         return uitvoer
 

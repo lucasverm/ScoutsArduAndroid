@@ -38,8 +38,7 @@ class HistoriekFragment : Fragment() {
                 false
             )
 
-        var localDatabaseRepository = HistoriekDatabaseRepository(this.activity!!.application)
-        viewModelFactory = HistoriekViewModelFactory(localDatabaseRepository)
+        viewModelFactory = HistoriekViewModelFactory()
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(HistoriekViewModel::class.java)
         binding.historiekViewModel = viewModel
         binding.lifecycleOwner = this

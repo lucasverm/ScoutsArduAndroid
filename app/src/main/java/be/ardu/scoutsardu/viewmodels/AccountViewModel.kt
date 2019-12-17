@@ -7,10 +7,14 @@ import be.ardu.scoutsardu.network.Gebruiker
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.repositories.AccountRepository
 import kotlinx.coroutines.*
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class AccountViewModel : ViewModel() {
+class AccountViewModel : ViewModel(), KoinComponent {
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    val accountRepository: AccountRepository by inject()
 
     private val _status = MutableLiveData<ScoutsArduApiStatus>()
     val status: LiveData<ScoutsArduApiStatus>
@@ -20,13 +24,17 @@ class AccountViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
-                AccountRepository.putGebruiker(voornaam, achternaam, telefoon)
+                accountRepository.putGebruiker(voornaam, achternaam, telefoon)
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
 
+    }
+
+    fun logout(){
+        accountRepository.logout()
     }
 
     override fun onCleared() {
@@ -37,6 +45,6 @@ class AccountViewModel : ViewModel() {
     }
 
     fun getGebruiker(): Gebruiker {
-        return AccountRepository.gebruiker!!
+        return accountRepository.gebruiker!!
     }
 }

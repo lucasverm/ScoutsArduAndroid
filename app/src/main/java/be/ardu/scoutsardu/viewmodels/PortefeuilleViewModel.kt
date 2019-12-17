@@ -9,10 +9,10 @@ import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.repositories.HistoriekDatabaseRepository
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
 import kotlinx.coroutines.*
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class PortefeuilleViewModel(
-    var localDatabaseRepository: HistoriekDatabaseRepository
-) : ViewModel() {
+class PortefeuilleViewModel: ViewModel(), KoinComponent {
     private val _winkelwagens = MutableLiveData<ArrayList<Winkelwagen>>()
     val winkelwagens: LiveData<ArrayList<Winkelwagen>>
         get() = _winkelwagens
@@ -28,6 +28,9 @@ class PortefeuilleViewModel(
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    val winkelwagenRepository: WinkelwagenRepository by inject()
+    val historiekDatabaseRepository: HistoriekDatabaseRepository by inject()
+
     init{
         getMijnHistoriek()
     }
@@ -36,12 +39,12 @@ class PortefeuilleViewModel(
         viewModelScope.launch {
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
-                _winkelwagens.value = WinkelwagenRepository.getMijnHistoriek()
-                localDatabaseRepository.clearMijnHistoriek("mijnHistoriek")
-                localDatabaseRepository.insertWinkelwagens(winkelwagens.value!!,"mijnHistoriek")
+                _winkelwagens.value = winkelwagenRepository.getMijnHistoriek()
+                historiekDatabaseRepository.clearMijnHistoriek("mijnHistoriek")
+                historiekDatabaseRepository.insertWinkelwagens(winkelwagens.value!!,"mijnHistoriek")
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (t: Exception) {
-                _winkelwagens.value = localDatabaseRepository.getMijnHistoriek("mijnHistoriek")
+                _winkelwagens.value = historiekDatabaseRepository.getMijnHistoriek("mijnHistoriek")
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

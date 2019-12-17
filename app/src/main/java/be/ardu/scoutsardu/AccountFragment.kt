@@ -15,7 +15,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import be.ardu.scoutsardu.databinding.FragmentAccountBinding
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
-import be.ardu.scoutsardu.repositories.AccountRepository
 import be.ardu.scoutsardu.viewmodels.AccountViewModel
 import be.ardu.scoutsardu.viewmodels.AccountViewModelFactory
 
@@ -50,7 +49,7 @@ class AccountFragment : Fragment() {
             val intent = Intent(this.context, LoginActivity::class.java)
             startActivity(intent)
             this.activity!!.finish()
-            AccountRepository.logout()
+            viewModel.logout()
         }
 
         binding.wijzigingenOpslaan.setOnClickListener{
