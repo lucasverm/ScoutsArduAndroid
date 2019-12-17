@@ -6,6 +6,8 @@ import be.ardu.scoutsardu.database.WinkelwagenDatabaseClass
 import be.ardu.scoutsardu.network.Winkelwagen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.*
+import kotlin.collections.ArrayList
 
 class LocalDatabaseRepository(application: Application) {
 
@@ -23,6 +25,7 @@ class LocalDatabaseRepository(application: Application) {
             for(item in database.getAllWinkelwagens()){
                 uitvoer.add(item.toPropertyObject())
             }
+            Collections.reverse(uitvoer)
             uitvoer
         }
     }

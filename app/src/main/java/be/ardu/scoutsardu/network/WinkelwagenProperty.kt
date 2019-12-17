@@ -2,6 +2,7 @@ package be.ardu.scoutsardu.network
 
 import android.os.Parcelable
 import be.ardu.scoutsardu.database.WinkelwagenDatabaseClass
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
@@ -17,12 +18,12 @@ data class Winkelwagen(
     var datumJaar: Int,
     var datumUur: Int,
     var datumMinuten: Int,
-    @Json(name="items")
+    @Json(name = "items")
     @SerializedName("items")
     var winkelwagenItems: ArrayList<WinkelwagenItemAantal>,
     var betaald: Boolean,
     var gebruiker: Gebruiker
-): Serializable, Parcelable {
+) : Serializable, Parcelable {
 
     fun getTotaal(): Double {
         var totaal = 0.00
@@ -44,16 +45,16 @@ data class Winkelwagen(
         return "$uur:$minuten"
     }
 
-    private fun addAdditionalZero(item: String):String{
+    private fun addAdditionalZero(item: String): String {
         var uitvoer = ""
-        if(item.length == 1){
+        if (item.length == 1) {
             uitvoer += "0"
         }
         uitvoer += item
         return uitvoer
     }
 
-    fun toDatabaseObject():WinkelwagenDatabaseClass{
+    fun toDatabaseObject(): WinkelwagenDatabaseClass {
         return WinkelwagenDatabaseClass(
             this.id,
             this.datumDag,
@@ -63,8 +64,9 @@ data class Winkelwagen(
             this.datumMinuten,
             this.betaald,
             this.gebruiker.voornaam,
-            this.gebruiker.achternaam
-        )
+            this.gebruiker.achternaam,
+            Gson().toJson(winkelwagenItems)
+            )
     }
 }
 

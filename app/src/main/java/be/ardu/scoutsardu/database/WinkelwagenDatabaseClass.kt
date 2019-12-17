@@ -5,8 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import be.ardu.scoutsardu.network.Gebruiker
 import be.ardu.scoutsardu.network.Winkelwagen
+import be.ardu.scoutsardu.network.WinkelwagenItemAantal
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-@Entity(tableName = "winkelwagen_table")
+@Entity(
+    tableName = "winkelwagen_table"
+)
 data class WinkelwagenDatabaseClass(
 
     @PrimaryKey(autoGenerate = true)
@@ -34,10 +39,16 @@ data class WinkelwagenDatabaseClass(
     var gebruikerVoornaam: String,
 
     @ColumnInfo(name = "gebruikerAchternaam")
-    var gebruikerAchernaam: String
-) {
+    var gebruikerAchernaam: String,
+
+    @ColumnInfo(name = "data")
+    var data: String
+    ) {
+
+    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
 
     fun toPropertyObject(): Winkelwagen {
+
         return Winkelwagen(
             this.id,
             this.datumDag,
@@ -45,7 +56,7 @@ data class WinkelwagenDatabaseClass(
             this.datumJaar,
             this.datumUur,
             this.datumMinuten,
-            ArrayList(),
+            Gson().fromJson<ArrayList<WinkelwagenItemAantal>>(data),
             this.betaald,
             Gebruiker(gebruikerVoornaam, gebruikerAchernaam, "", "", ArrayList())
         )
