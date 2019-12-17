@@ -17,5 +17,5 @@ interface WinkelwagenDatabaseDao {
     fun deleteAllWinkelwagens(): Int
 
     @Query("SELECT * FROM winkelwagen_table")
-    fun getAllWinkelwagens(): ArrayList<WinkelwagenDatabaseClass>
+    fun getAllWinkelwagens(): List<WinkelwagenDatabaseClass>
 }

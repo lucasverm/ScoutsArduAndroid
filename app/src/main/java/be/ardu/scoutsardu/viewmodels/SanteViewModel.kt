@@ -37,5 +37,6 @@ class SanteViewModel : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
         viewModelScope.cancel()
+        _status.value = ScoutsArduApiStatus.ERROR
     }
 }

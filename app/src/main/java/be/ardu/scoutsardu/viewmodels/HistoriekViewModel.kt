@@ -1,20 +1,17 @@
 package be.ardu.scoutsardu.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import be.ardu.scoutsardu.database.WinkelwagenDatabaseClass
-import be.ardu.scoutsardu.database.WinkelwagenDatabaseDao
+import androidx.lifecycle.ViewModel
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
+import be.ardu.scoutsardu.repositories.LocalDatabaseRepository
 import be.ardu.scoutsardu.repositories.WinkelwagenRepository
 import kotlinx.coroutines.*
 
 class HistoriekViewModel(
-    val database: WinkelwagenDatabaseDao,
-    application: Application
-) : AndroidViewModel(application) {
+    var localDatabaseRepository: LocalDatabaseRepository
+) : ViewModel() {
     private val _winkelwagens = MutableLiveData<ArrayList<Winkelwagen>>()
     val winkelwagens: LiveData<ArrayList<Winkelwagen>>
         get() = _winkelwagens
@@ -34,35 +31,6 @@ class HistoriekViewModel(
         getMijnHistoriek()
     }
 
-    fun getDatabaseHistroiek() {
-        viewModelScope.launch {
-            //_winkelwagens.value = getHistoriekWinkelwagensFromDataBase()
-            println(getHistoriekWinkelwagensFromDataBase())
-        }
-    }
-
-    private suspend fun getHistoriekWinkelwagensFromDataBase(): ArrayList<Winkelwagen> {
-        return withContext(Dispatchers.IO) {
-            var winkelwagens = database.getAllWinkelwagens()
-            winkelwagens.value!!
-        }
-    }
-
-    fun zetWinkelwagensInDatabase(winkelwagens: ArrayList<Winkelwagen>) {
-        viewModelScope.launch {
-            for (item in winkelwagens) {
-                var w = WinkelwagenDatabaseClass(item.id,item.datumDag, item.datumMaand, item.datumJaar, item.datumUur,item.datumMinuten, item.betaald)
-                insertAWinkelwagen(w)
-            }
-        }
-    }
-
-    private suspend fun insertAWinkelwagen(winkelwagenDatabaseClass: WinkelwagenDatabaseClass) {
-        withContext(Dispatchers.IO) {
-            database.insert(winkelwagenDatabaseClass)
-        }
-    }
-
     fun getStamHistoriek() {
         viewModelScope.launch {
             try {
@@ -70,6 +38,7 @@ class HistoriekViewModel(
                 _winkelwagens.value = WinkelwagenRepository.getStamHistoriek()
                 _status.value = ScoutsArduApiStatus.DONE
             } catch (t: Exception) {
+                _winkelwagens.value = ArrayList()
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
@@ -81,10 +50,12 @@ class HistoriekViewModel(
             try {
                 _status.value = ScoutsArduApiStatus.LOADING
                 _winkelwagens.value = WinkelwagenRepository.getMijnHistoriek()
+                localDatabaseRepository.clearMijnHistoriek()
+                localDatabaseRepository.insertWinkelwagens(winkelwagens.value!!)
                 _status.value = ScoutsArduApiStatus.DONE
-                zetWinkelwagensInDatabase(winkelwagens.value!!)
-                getDatabaseHistroiek()
             } catch (t: Exception) {
+                _winkelwagens.value = localDatabaseRepository.getMijnHistoriek()
+                println(winkelwagens.value!!.count())
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }
@@ -94,6 +65,7 @@ class HistoriekViewModel(
         super.onCleared()
         viewModelJob.cancel()
         viewModelScope.cancel()
+        _status.value = ScoutsArduApiStatus.ERROR
     }
 
     fun onWinkelwagenItemClicked(winkelwagen: Winkelwagen) {
@@ -102,17 +74,5 @@ class HistoriekViewModel(
 
     fun onWinkelwagenToSanteFragmentNavigated() {
         _navigateToSanteFragment.value = null
-    }
-
-    fun verwijderAlleWinkelwagens(){
-        viewModelScope.launch {
-            verwijderAlleWinkelwagensSuspend()
-        }
-    }
-
-    fun verwijderAlleWinkelwagensSuspend(){
-        viewModelScope.launch {
-            database.deleteAllWinkelwagens()
-        }
     }
 }

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 const val DATABASE_NAME = "scouts-ardu-db"
 
-@Database(entities = [WinkelwagenDatabaseClass::class], version = 1, exportSchema = false)
+@Database(entities = [WinkelwagenDatabaseClass::class], version = 2, exportSchema = false)
 abstract class WinkelwagenDatabase : RoomDatabase() {
 
     abstract val winkelwagenDatabaseDao: WinkelwagenDatabaseDao

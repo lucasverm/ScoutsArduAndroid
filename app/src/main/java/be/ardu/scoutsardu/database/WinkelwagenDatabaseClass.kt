@@ -3,10 +3,13 @@ package be.ardu.scoutsardu.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import be.ardu.scoutsardu.network.Gebruiker
+import be.ardu.scoutsardu.network.Winkelwagen
 
 @Entity(tableName = "winkelwagen_table")
 data class WinkelwagenDatabaseClass(
-    @PrimaryKey (autoGenerate = true)
+
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
 
     @ColumnInfo(name = "datum_dag")
@@ -25,12 +28,27 @@ data class WinkelwagenDatabaseClass(
     var datumMinuten: Int,
 
     @ColumnInfo(name = "betaald")
-    var betaald: Boolean
+    var betaald: Boolean,
 
-){
+    @ColumnInfo(name = "gebruikerVoornaam")
+    var gebruikerVoornaam: String,
 
-    init{
+    @ColumnInfo(name = "gebruikerAchternaam")
+    var gebruikerAchernaam: String
+) {
 
+    fun toPropertyObject(): Winkelwagen {
+        return Winkelwagen(
+            this.id,
+            this.datumDag,
+            this.datumMaand,
+            this.datumJaar,
+            this.datumUur,
+            this.datumMinuten,
+            ArrayList(),
+            this.betaald,
+            Gebruiker(gebruikerVoornaam, gebruikerAchernaam, "", "", ArrayList())
+        )
     }
 }
 

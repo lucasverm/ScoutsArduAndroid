@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import be.ardu.scoutsardu.adapters.HistoriekAdapter
 import be.ardu.scoutsardu.adapters.HistoriekClickListener
-import be.ardu.scoutsardu.database.WinkelwagenDatabase
 import be.ardu.scoutsardu.databinding.FragmentHistoriekBinding
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
+import be.ardu.scoutsardu.repositories.LocalDatabaseRepository
 import be.ardu.scoutsardu.viewmodels.HistoriekViewModel
 import be.ardu.scoutsardu.viewmodels.HistoriekViewModelFactory
 
@@ -37,10 +37,9 @@ class HistoriekFragment : Fragment() {
                 container,
                 false
             )
-        val application = requireNotNull(this.activity).application
-        val dataSource = WinkelwagenDatabase.getInstance(application).winkelwagenDatabaseDao
 
-        viewModelFactory = HistoriekViewModelFactory(dataSource, application)
+        var localDatabaseRepository = LocalDatabaseRepository(this.activity!!.application)
+        viewModelFactory = HistoriekViewModelFactory(localDatabaseRepository)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(HistoriekViewModel::class.java)
         binding.historiekViewModel = viewModel
         binding.lifecycleOwner = this
@@ -87,8 +86,7 @@ class HistoriekFragment : Fragment() {
             if (it == ScoutsArduApiStatus.ERROR) {
                 binding.statusImage.setImageResource(R.drawable.ic_connection_error)
                 binding.errorMessage.visibility = View.VISIBLE
-                binding.statusImage.visibility = View.VISIBLE
-                binding.winkelwagens.visibility = View.GONE
+                binding.winkelwagens.visibility = View.VISIBLE
             }
             if (it == ScoutsArduApiStatus.LOADING) {
                 binding.statusImage.setImageResource(R.drawable.loading_animation)
@@ -119,7 +117,6 @@ class HistoriekFragment : Fragment() {
 
         viewModel.winkelwagens.observe(viewLifecycleOwner, Observer {
             it?.let {
-                println("gewijzigd")
                 adapter.addHeaderAndSubmitList(it)
             }
         })

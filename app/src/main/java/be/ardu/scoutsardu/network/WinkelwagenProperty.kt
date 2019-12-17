@@ -1,6 +1,7 @@
 package be.ardu.scoutsardu.network
 
 import android.os.Parcelable
+import be.ardu.scoutsardu.database.WinkelwagenDatabaseClass
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
@@ -50,6 +51,20 @@ data class Winkelwagen(
         }
         uitvoer += item
         return uitvoer
+    }
+
+    fun toDatabaseObject():WinkelwagenDatabaseClass{
+        return WinkelwagenDatabaseClass(
+            this.id,
+            this.datumDag,
+            this.datumMaand,
+            this.datumJaar,
+            this.datumUur,
+            this.datumMinuten,
+            this.betaald,
+            this.gebruiker.voornaam,
+            this.gebruiker.achternaam
+        )
     }
 }
 

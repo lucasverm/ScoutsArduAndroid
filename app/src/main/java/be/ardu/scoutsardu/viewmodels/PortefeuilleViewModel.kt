@@ -45,6 +45,7 @@ class PortefeuilleViewModel : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
         viewModelScope.cancel()
+        _status.value = ScoutsArduApiStatus.ERROR
     }
 
     fun berekenTotaleSchuld():Double{
