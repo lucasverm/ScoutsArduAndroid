@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import be.ardu.scoutsardu.adapters.HistoriekAdapter
 import be.ardu.scoutsardu.adapters.HistoriekClickListener
+import be.ardu.scoutsardu.database.WinkelwagenDatabase
 import be.ardu.scoutsardu.databinding.FragmentHistoriekBinding
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.viewmodels.HistoriekViewModel
@@ -36,31 +37,47 @@ class HistoriekFragment : Fragment() {
                 container,
                 false
             )
+        val application = requireNotNull(this.activity).application
+        val dataSource = WinkelwagenDatabase.getInstance(application).winkelwagenDatabaseDao
 
-        viewModelFactory = HistoriekViewModelFactory()
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(HistoriekViewModel::class.java)
+        viewModelFactory = HistoriekViewModelFactory(dataSource, application)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(HistoriekViewModel::class.java)
         binding.historiekViewModel = viewModel
-
         binding.lifecycleOwner = this
 
         val displayMetrics = context!!.resources.displayMetrics
-        binding.mijnHistoriek.width = displayMetrics.widthPixels/2
-        binding.stamHistoriek.width = displayMetrics.widthPixels/2
+        binding.mijnHistoriek.width = displayMetrics.widthPixels / 2
+        binding.stamHistoriek.width = displayMetrics.widthPixels / 2
 
         binding.mijnHistoriek.setBackgroundColor(
-            ContextCompat.getColor(context!!, R.color.colorPrimary))
-        binding.stamHistoriek.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorPrimaryLight))
-        binding.mijnHistoriek.setOnClickListener{
+            ContextCompat.getColor(context!!, R.color.colorPrimary)
+        )
+        binding.stamHistoriek.setBackgroundColor(
+            ContextCompat.getColor(
+                context!!,
+                R.color.colorPrimaryLight
+            )
+        )
+        binding.mijnHistoriek.setOnClickListener {
             viewModel.getMijnHistoriek()
             it.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorPrimary))
-            binding.stamHistoriek.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorPrimaryLight))
+            binding.stamHistoriek.setBackgroundColor(
+                ContextCompat.getColor(
+                    context!!,
+                    R.color.colorPrimaryLight
+                )
+            )
         }
 
-        binding.stamHistoriek.setOnClickListener{
+        binding.stamHistoriek.setOnClickListener {
             viewModel.getStamHistoriek()
             it.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorPrimary))
-            binding.mijnHistoriek.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorPrimaryLight))
+            binding.mijnHistoriek.setBackgroundColor(
+                ContextCompat.getColor(
+                    context!!,
+                    R.color.colorPrimaryLight
+                )
+            )
         }
 
 
@@ -83,7 +100,7 @@ class HistoriekFragment : Fragment() {
             }
         })
 
-        viewModel.navigateToSanteFragemt.observe(this, Observer {winkelwagen ->
+        viewModel.navigateToSanteFragemt.observe(this, Observer { winkelwagen ->
             winkelwagen?.let {
                 this.findNavController().navigate(
                     HistoriekFragmentDirections.actionHistoriekFragmentToSanteFragment(
@@ -107,7 +124,7 @@ class HistoriekFragment : Fragment() {
             }
         })
 
-       return binding.root
+        return binding.root
     }
 
 
