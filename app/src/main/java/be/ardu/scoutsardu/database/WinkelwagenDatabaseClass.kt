@@ -10,12 +10,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 @Entity(
-    tableName = "winkelwagen_table"
+    tableName = "winkelwagen_historiek"
 )
 data class WinkelwagenDatabaseClass(
-
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
 
     @ColumnInfo(name = "datum_dag")
     var datumDag: Int,
@@ -42,8 +39,14 @@ data class WinkelwagenDatabaseClass(
     var gebruikerAchernaam: String,
 
     @ColumnInfo(name = "data")
-    var data: String
+    var data: String,
+
+    @ColumnInfo(name = "type")
+    var type: String
     ) {
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 
     inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
 

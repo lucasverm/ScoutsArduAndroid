@@ -3,19 +3,19 @@ package be.ardu.scoutsardu
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-
 import be.ardu.scoutsardu.adapters.PortefeuilleAdapter
 import be.ardu.scoutsardu.adapters.PortefeuilleClickListener
 import be.ardu.scoutsardu.databinding.FragmentPortefeuilleBinding
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
+import be.ardu.scoutsardu.repositories.HistoriekDatabaseRepository
 import be.ardu.scoutsardu.viewmodels.PortefeuilleViewModel
 import be.ardu.scoutsardu.viewmodels.PortefeuilleViewModelFactory
 
@@ -25,19 +25,21 @@ import be.ardu.scoutsardu.viewmodels.PortefeuilleViewModelFactory
 class PortefeuilleFragment : Fragment() {
     private lateinit var viewModel: PortefeuilleViewModel
     private lateinit var viewModelFactory: PortefeuilleViewModelFactory
+    private lateinit var binding: FragmentPortefeuilleBinding
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentPortefeuilleBinding =
+        binding =
             DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_portefeuille,
                 container,
                 false
             )
-        viewModelFactory = PortefeuilleViewModelFactory()
+        var localDatabaseRepository = HistoriekDatabaseRepository(this.activity!!.application)
+        viewModelFactory = PortefeuilleViewModelFactory(localDatabaseRepository)
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(PortefeuilleViewModel::class.java)
         binding.portefeuilleViewModel = viewModel
@@ -48,16 +50,16 @@ class PortefeuilleFragment : Fragment() {
             binding.statusImage.visibility = View.GONE
             binding.errorMessage.visibility = View.GONE
             if (it == ScoutsArduApiStatus.ERROR) {
-                binding.statusImage.setImageResource(R.drawable.ic_connection_error)
+                setSchulden()
+                binding.statusImage.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
-                binding.statusImage.visibility = View.VISIBLE
             }
             if (it == ScoutsArduApiStatus.LOADING) {
                 binding.statusImage.setImageResource(R.drawable.loading_animation)
                 binding.statusImage.visibility = View.VISIBLE
             }
             if (it == ScoutsArduApiStatus.DONE) {
-                binding.schulden.text = "Uw totale schuld: € " + viewModel.berekenTotaleSchuld().toString()
+                setSchulden()
             }
         })
 
@@ -85,6 +87,10 @@ class PortefeuilleFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    fun setSchulden(){
+        binding.schulden.text = "Uw totale schuld: € " + viewModel.berekenTotaleSchuld().toString()
     }
 
 

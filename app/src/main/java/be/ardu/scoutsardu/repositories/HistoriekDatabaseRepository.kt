@@ -1,7 +1,7 @@
 package be.ardu.scoutsardu.repositories
 
 import android.app.Application
-import be.ardu.scoutsardu.database.WinkelwagenDatabase
+import be.ardu.scoutsardu.database.ScoutsArduDatabase
 import be.ardu.scoutsardu.database.WinkelwagenDatabaseClass
 import be.ardu.scoutsardu.network.Winkelwagen
 import kotlinx.coroutines.Dispatchers
@@ -9,20 +9,20 @@ import kotlinx.coroutines.withContext
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LocalDatabaseRepository(application: Application) {
+class HistoriekDatabaseRepository(application: Application) {
 
-    val database = WinkelwagenDatabase.getInstance(application).winkelwagenDatabaseDao
+    var database = ScoutsArduDatabase.getInstance(application).mijnHistoriek
 
-    suspend fun clearMijnHistoriek() {
+    suspend fun clearMijnHistoriek(type:String) {
         withContext(Dispatchers.IO) {
-            database.deleteAllWinkelwagens()
+            database.deleteHistoriek(type)
         }
     }
 
-    suspend fun getMijnHistoriek(): ArrayList<Winkelwagen> {
+    suspend fun getMijnHistoriek(type:String): ArrayList<Winkelwagen> {
         return withContext(Dispatchers.IO) {
             var uitvoer = ArrayList<Winkelwagen>()
-            for(item in database.getAllWinkelwagens()){
+            for(item in database.getHistoriek(type)){
                 uitvoer.add(item.toPropertyObject())
             }
             Collections.reverse(uitvoer)
@@ -30,9 +30,9 @@ class LocalDatabaseRepository(application: Application) {
         }
     }
 
-    suspend fun insertWinkelwagens(winkelwagens: ArrayList<Winkelwagen>) {
+    suspend fun insertWinkelwagens(winkelwagens: ArrayList<Winkelwagen>, type: String) {
         for (item in winkelwagens) {
-            insertWinkelwagen(item.toDatabaseObject())
+            insertWinkelwagen(item.toDatabaseObject(type))
         }
     }
 

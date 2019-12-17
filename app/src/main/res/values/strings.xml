@@ -9,7 +9,7 @@
     <string name="voornaamHint">Tom</string>
     <string name="achternaamHint">De Bakker</string>
     <string name="telefoonHint">0498123456</string>
-    <string name="er_liep_iets_fout_probeer_het_later_opnieuw">Er liep iets fout: probeer het later opnieuw!</string>
+    <string name="data_ophalen_mislukt">Data ophalen mislukt!</string>
     <string name="betaal_nu">Betaal nu!</string>
     <string name="x">x</string>
     <string name="enen_drinken">Enen Drinken</string>
@@ -38,4 +38,5 @@
     <string name="ik_heb_al_een_account">Ik heb al een account!</string>
     <string name="_0">0</string>
     <string name="plus">+</string>
+    <string name="er_liep_iets_fout_probeer_het_later_opnieuw">Er liep iets fout! Probeer het later opnieuw!</string>
 </resources>

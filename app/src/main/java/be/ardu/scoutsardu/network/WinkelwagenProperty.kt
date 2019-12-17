@@ -54,9 +54,8 @@ data class Winkelwagen(
         return uitvoer
     }
 
-    fun toDatabaseObject(): WinkelwagenDatabaseClass {
+    fun toDatabaseObject(type: String): WinkelwagenDatabaseClass {
         return WinkelwagenDatabaseClass(
-            this.id,
             this.datumDag,
             this.datumMaand,
             this.datumJaar,
@@ -65,8 +64,8 @@ data class Winkelwagen(
             this.betaald,
             this.gebruiker.voornaam,
             this.gebruiker.achternaam,
-            Gson().toJson(winkelwagenItems)
-            )
+            Gson().toJson(winkelwagenItems),
+            type)
     }
 }
 

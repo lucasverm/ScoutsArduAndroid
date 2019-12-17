@@ -28,7 +28,7 @@
         <TextView
             android:id="@+id/errorMessage"
             style="@style/errorMessage"
-            android:text="@string/er_liep_iets_fout_probeer_het_later_opnieuw"
+            android:text="@string/data_ophalen_mislukt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
