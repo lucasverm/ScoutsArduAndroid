@@ -21,7 +21,7 @@ buildscript {
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
 
         //firebase bot test
-        classpath 'com.google.gms:google-services:4.3.3'
+        //classpath 'com.google.gms:google-services:4.3.3'
     }
 }
 

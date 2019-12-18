@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 
 //firebase bot test
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
 
 
 android {
@@ -17,9 +17,10 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        //firebase
-        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //firebase
+        //multiDexEnabled true
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -81,8 +82,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.1.0"
 
     //firebase bot test
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    //implementation 'com.android.support:multidex:1.0.3'
+    //implementation 'com.google.firebase:firebase-analytics:17.2.1'
 
     //database
     implementation 'androidx.room:room-runtime:2.2.1'
@@ -96,9 +97,20 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-android-ext:$koin_version"
+
+    // testing
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    // Optional -- Hamcrest library
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+    // Optional -- UI testing with Espresso
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    // Optional -- UI testing with UI Automator
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+
 }
 
 //firebase bot test
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 
