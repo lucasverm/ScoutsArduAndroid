@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class AccountRepository() : KoinComponent {
+class AccountRepository : KoinComponent {
 
     val scoutsArduApiService: ScoutsArduApiService by inject()
 

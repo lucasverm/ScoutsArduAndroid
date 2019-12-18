@@ -5,6 +5,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">karla</item>
+        <item name="fontFamily">karla</item>
     </style>
 
     <style name="defaultButtonColored">

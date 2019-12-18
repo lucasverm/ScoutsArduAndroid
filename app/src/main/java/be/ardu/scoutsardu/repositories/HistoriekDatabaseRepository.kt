@@ -10,7 +10,7 @@ import org.koin.core.inject
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HistoriekDatabaseRepository() : KoinComponent {
+class HistoriekDatabaseRepository : KoinComponent {
 
 
     val database: MijnHistoriekDao by inject()

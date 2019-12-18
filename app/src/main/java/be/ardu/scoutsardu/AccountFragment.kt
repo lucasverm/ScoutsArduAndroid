@@ -58,19 +58,19 @@ class AccountFragment : Fragment() {
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
             if(it == ScoutsArduApiStatus.DONE){
-                binding.errorMessage.setText("Wijzigingen opgeslaan!")
+                binding.errorMessage.text = "Wijzigingen opgeslaan!"
                 binding.errorMessage.setBackgroundColor(Color.GREEN)
                 binding.errorMessage.visibility = View.VISIBLE
                 updateGebruiker()
             }
             if(it == ScoutsArduApiStatus.LOADING){
                 binding.errorMessage.visibility = View.VISIBLE
-                binding.errorMessage.setText("Wijzigingen opslaan...")
+                binding.errorMessage.text = "Wijzigingen opslaan..."
                 binding.errorMessage.setBackgroundColor(ContextCompat.getColor(context!!, R.color.orange))
             }
 
             if(it == ScoutsArduApiStatus.ERROR){
-                binding.errorMessage.setText("Er liep iets fout!")
+                binding.errorMessage.text = "Er liep iets fout!"
                 binding.errorMessage.visibility = View.VISIBLE
                 binding.errorMessage.setBackgroundColor(Color.RED)
             }

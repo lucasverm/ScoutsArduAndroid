@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class WinkelwagenItemAantal(
     var item: WinkelwagenItem,
     var aantal: Int
-):Parcelable{
+) : Parcelable {
     @IgnoredOnParcel
     var id: Int = 0
 
@@ -17,6 +17,8 @@ data class WinkelwagenItemAantal(
     }
 
     fun verminderrDrank() {
-        this.aantal -= 1
+        if (this.aantal > 0) {
+            this.aantal -= 1
+        }
     }
 }

@@ -45,7 +45,7 @@ data class Winkelwagen(
         return "$uur:$minuten"
     }
 
-    private fun addAdditionalZero(item: String): String {
+    fun addAdditionalZero(item: String): String {
         var uitvoer = ""
         if (item.length == 1) {
             uitvoer += "0"

@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class HistoriekViewModel() : ViewModel(), KoinComponent {
+class HistoriekViewModel : ViewModel(), KoinComponent {
     private val _winkelwagens = MutableLiveData<ArrayList<Winkelwagen>>()
     val winkelwagens: LiveData<ArrayList<Winkelwagen>>
         get() = _winkelwagens
