@@ -44,7 +44,7 @@ class HistoriekBekijkenTest {
             )
         )
         appCompatButton.perform(scrollTo(), click())
-
+        Thread.sleep(5000)
         val linearLayout = onView(
             allOf(
                 withId(R.id.historiek),
@@ -58,7 +58,7 @@ class HistoriekBekijkenTest {
             )
         )
         linearLayout.perform(scrollTo(), click())
-
+        Thread.sleep(5000)
         val appCompatButton2 = onView(
             allOf(
                 withId(R.id.stamHistoriek), withText("Stam Historiek"),
@@ -73,6 +73,7 @@ class HistoriekBekijkenTest {
             )
         )
         appCompatButton2.perform(click())
+        Thread.sleep(5000)
     }
 
     private fun childAtPosition(

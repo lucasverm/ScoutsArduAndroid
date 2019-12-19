@@ -44,7 +44,7 @@ class EnenDrinkenTest {
             )
         )
         appCompatButton.perform(scrollTo(), click())
-
+        Thread.sleep(5000)
         val linearLayout = onView(
             allOf(
                 withId(R.id.enenDrinken),
@@ -58,7 +58,7 @@ class EnenDrinkenTest {
             )
         )
         linearLayout.perform(scrollTo(), click())
-
+        Thread.sleep(5000)
         val appCompatButton2 = onView(
             allOf(
                 withId(R.id.plus), withText("+"),
@@ -73,7 +73,7 @@ class EnenDrinkenTest {
             )
         )
         appCompatButton2.perform(click())
-
+        Thread.sleep(5000)
         val appCompatButton3 = onView(
             allOf(
                 withId(R.id.Verder), withText("Verder"),
@@ -103,7 +103,7 @@ class EnenDrinkenTest {
             )
         )
         appCompatButton4.perform(click())
-
+        Thread.sleep(5000)
         val appCompatImageButton = onView(
             allOf(
                 withContentDescription("Navigate up"),
@@ -121,6 +121,7 @@ class EnenDrinkenTest {
             )
         )
         appCompatImageButton.perform(click())
+        Thread.sleep(5000)
     }
 
     private fun childAtPosition(

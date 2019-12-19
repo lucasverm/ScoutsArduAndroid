@@ -44,7 +44,7 @@ class PortefeuilleTest {
             )
         )
         appCompatButton.perform(scrollTo(), click())
-
+        Thread.sleep(5000)
         val linearLayout = onView(
             allOf(
                 withId(R.id.portefeuille),

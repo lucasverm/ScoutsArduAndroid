@@ -44,7 +44,7 @@ class LoginLogoutTest {
             )
         )
         appCompatButton.perform(scrollTo(), click())
-
+        Thread.sleep(5000)
         val linearLayout = onView(
             allOf(
                 withId(R.id.account),
@@ -58,6 +58,7 @@ class LoginLogoutTest {
             )
         )
         linearLayout.perform(scrollTo(), click())
+        Thread.sleep(5000)
 
         val appCompatButton2 = onView(
             allOf(
