@@ -8,7 +8,7 @@ import org.koin.core.inject
 
 class AccountRepository : KoinComponent {
 
-    val scoutsArduApiService: ScoutsArduApiService by inject()
+    private val scoutsArduApiService: ScoutsArduApiService by inject()
 
     var bearerToken = ""
     var gebruiker: Gebruiker? = null

@@ -47,7 +47,7 @@ data class WinkelwagenDatabaseClass(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
-    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)!!
+    private inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)!!
 
     fun toPropertyObject(): Winkelwagen {
 

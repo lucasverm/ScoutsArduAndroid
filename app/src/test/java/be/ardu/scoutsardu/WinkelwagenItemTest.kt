@@ -8,23 +8,23 @@ import org.junit.Test
 
 
 class WinkelwagenItemTest {
-    lateinit var winkelwagenItemAantal: WinkelwagenItemAantal
+    private lateinit var winkelwagenItemAantal: WinkelwagenItemAantal
     @Before
     fun before() {
-        var item1 = WinkelwagenItem(1, "Fanta", 3.0)
+        val item1 = WinkelwagenItem(1, "Fanta", 3.0)
         winkelwagenItemAantal = WinkelwagenItemAantal(item1, 3)
     }
 
     @Test
     fun winkelwagenItemAantal_vermeerderDrank_drank_vermeerderd_met_1() {
-        var aantal = winkelwagenItemAantal.aantal
+        val aantal = winkelwagenItemAantal.aantal
         winkelwagenItemAantal.vermeerderDrank()
         Assert.assertEquals(winkelwagenItemAantal.aantal, aantal + 1)
     }
 
     @Test
     fun winkelwagenItemAantal_verminderDrank_drank_verminderd_met_1() {
-        var aantal = winkelwagenItemAantal.aantal
+        val aantal = winkelwagenItemAantal.aantal
         winkelwagenItemAantal.verminderrDrank()
         Assert.assertEquals(winkelwagenItemAantal.aantal, aantal - 1)
     }

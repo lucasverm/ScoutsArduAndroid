@@ -4,8 +4,7 @@ package be.ardu.scoutsardu.Espresso
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -31,6 +30,66 @@ class PortefeuilleTest {
 
     @Test
     fun portefeuilleTest() {
+        val appCompatEditText = onView(
+            allOf(
+                withId(R.id.email),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText.perform(
+            scrollTo(),
+            replaceText("testgebruiker@test.test"),
+            closeSoftKeyboard()
+        )
+
+        val appCompatEditText2 = onView(
+            allOf(
+                withId(R.id.email), withText("testgebruiker@test.test"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText2.perform(pressImeActionButton())
+
+        val appCompatEditText3 = onView(
+            allOf(
+                withId(R.id.password),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    5
+                )
+            )
+        )
+        appCompatEditText3.perform(scrollTo(), replaceText("Test123!"), closeSoftKeyboard())
+
+        val appCompatEditText4 = onView(
+            allOf(
+                withId(R.id.password), withText("Test123!"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    5
+                )
+            )
+        )
+        appCompatEditText4.perform(pressImeActionButton())
+
         val appCompatButton = onView(
             allOf(
                 withId(R.id.loginButton), withText("Log in"),
@@ -58,6 +117,59 @@ class PortefeuilleTest {
             )
         )
         linearLayout.perform(scrollTo(), click())
+        Thread.sleep(5000)
+        val constraintLayout = onView(
+            allOf(
+                childAtPosition(
+                    allOf(
+                        withId(R.id.winkelwagens),
+                        childAtPosition(
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            2
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        constraintLayout.perform(click())
+        Thread.sleep(5000)
+        val appCompatImageButton = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    2
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton.perform(click())
+
+        val appCompatImageButton2 = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    2
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton2.perform(click())
     }
 
     private fun childAtPosition(

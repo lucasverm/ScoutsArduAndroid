@@ -22,7 +22,7 @@ class SanteViewModel : ViewModel(), KoinComponent {
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
 
-    val winkelwagenRepository: WinkelwagenRepository by inject()
+    private val winkelwagenRepository: WinkelwagenRepository by inject()
 
     fun postWinkelwagen() {
         _status.value = ScoutsArduApiStatus.LOADING

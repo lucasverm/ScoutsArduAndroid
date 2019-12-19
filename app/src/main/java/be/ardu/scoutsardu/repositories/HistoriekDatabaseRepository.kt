@@ -21,7 +21,7 @@ class HistoriekDatabaseRepository : KoinComponent {
 
     suspend fun getMijnHistoriek(type:String): ArrayList<Winkelwagen> {
         return withContext(Dispatchers.IO) {
-            var uitvoer = ArrayList<Winkelwagen>()
+            val uitvoer = ArrayList<Winkelwagen>()
             for(item in database.getHistoriek(type)){
                 uitvoer.add(item.toPropertyObject())
             }
@@ -36,7 +36,7 @@ class HistoriekDatabaseRepository : KoinComponent {
         }
     }
 
-    suspend fun insertWinkelwagen(winkelwagenDatabaseClass: WinkelwagenDatabaseClass) {
+    private suspend fun insertWinkelwagen(winkelwagenDatabaseClass: WinkelwagenDatabaseClass) {
         withContext(Dispatchers.IO) {
             database.insert(winkelwagenDatabaseClass)
         }

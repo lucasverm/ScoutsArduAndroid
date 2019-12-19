@@ -18,7 +18,7 @@ class RegistreerViewModel : ViewModel(), KoinComponent {
     val status: LiveData<ScoutsArduApiStatus>
         get() = _status
 
-    val accountRepository: AccountRepository by inject()
+    private val accountRepository: AccountRepository by inject()
 
     override fun onCleared() {
         super.onCleared()

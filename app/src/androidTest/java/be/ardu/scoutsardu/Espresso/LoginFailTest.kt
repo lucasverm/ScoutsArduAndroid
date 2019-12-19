@@ -4,8 +4,7 @@ package be.ardu.scoutsardu.Espresso
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -23,14 +22,74 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class EnenDrinkenZonderItemsTest {
+class LoginFailTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(LoginActivity::class.java)
 
     @Test
-    fun enenDrinkenZonderItemsTest() {
+    fun loginFailTest() {
+        val appCompatEditText = onView(
+            allOf(
+                withId(R.id.email),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText.perform(
+            scrollTo(),
+            replaceText("testgebruiker@test.test"),
+            closeSoftKeyboard()
+        )
+
+        val appCompatEditText2 = onView(
+            allOf(
+                withId(R.id.email), withText("testgebruiker@test.test"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText2.perform(pressImeActionButton())
+
+        val appCompatEditText3 = onView(
+            allOf(
+                withId(R.id.password),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    5
+                )
+            )
+        )
+        appCompatEditText3.perform(scrollTo(), replaceText("Test123"), closeSoftKeyboard())
+
+        val appCompatEditText4 = onView(
+            allOf(
+                withId(R.id.password), withText("Test123"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    5
+                )
+            )
+        )
+        appCompatEditText4.perform(pressImeActionButton())
+
         val appCompatButton = onView(
             allOf(
                 withId(R.id.loginButton), withText("Log in"),
@@ -44,35 +103,6 @@ class EnenDrinkenZonderItemsTest {
             )
         )
         appCompatButton.perform(scrollTo(), click())
-        Thread.sleep(5000)
-        val linearLayout = onView(
-            allOf(
-                withId(R.id.enenDrinken),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    0
-                )
-            )
-        )
-        linearLayout.perform(scrollTo(), click())
-        Thread.sleep(5000)
-        val appCompatButton2 = onView(
-            allOf(
-                withId(R.id.Verder), withText("Verder"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.navHostFragment),
-                        0
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatButton2.perform(click())
         Thread.sleep(5000)
     }
 

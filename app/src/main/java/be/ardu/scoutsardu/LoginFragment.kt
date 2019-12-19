@@ -38,16 +38,18 @@ class LoginFragment : Fragment() {
         binding.loginViewModel = viewModel
 
         binding.loginButton.setOnClickListener{
-            if(binding.email.text.toString().isBlank()){
-                binding.errorMessage.text = "Vul je email adress in!"
-                binding.errorMessage.isVisible = true
-                binding.errorMessage.setBackgroundColor(Color.RED)
-            } else if(binding.password.text.toString().isBlank()){
-                binding.errorMessage.text = "Vul je wachtwoord in!"
-                binding.errorMessage.isVisible = true
-                binding.errorMessage.setBackgroundColor(Color.RED)
-            } else {
-                viewModel.login(binding.email.text.toString(), binding.password.text.toString())
+            when {
+                binding.email.text.toString().isBlank() -> {
+                    binding.errorMessage.text = "Vul je email adress in!"
+                    binding.errorMessage.isVisible = true
+                    binding.errorMessage.setBackgroundColor(Color.RED)
+                }
+                binding.password.text.toString().isBlank() -> {
+                    binding.errorMessage.text = "Vul je wachtwoord in!"
+                    binding.errorMessage.isVisible = true
+                    binding.errorMessage.setBackgroundColor(Color.RED)
+                }
+                else -> viewModel.login(binding.email.text.toString(), binding.password.text.toString())
             }
         }
 

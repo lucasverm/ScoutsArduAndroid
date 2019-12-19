@@ -87,7 +87,7 @@ class PortefeuilleFragment : Fragment() {
         return binding.root
     }
 
-    fun setSchulden(){
+    private fun setSchulden(){
         binding.schulden.text = "Uw totale schuld: € " + viewModel.berekenTotaleSchuld().toString()
     }
 

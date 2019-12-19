@@ -18,7 +18,7 @@ class LoginViewModel : ViewModel(), KoinComponent {
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    val accountRepository: AccountRepository by inject()
+    private val accountRepository: AccountRepository by inject()
 
     fun login(email: String, password: String) {
         viewModelScope.launch {

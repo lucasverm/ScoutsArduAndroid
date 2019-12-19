@@ -22,14 +22,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class LoginLogoutTest {
+class HistoriekElementTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(LoginActivity::class.java)
 
     @Test
-    fun loginLogoutTest() {
+    fun historiekElementTest() {
         val appCompatEditText = onView(
             allOf(
                 withId(R.id.email),
@@ -106,32 +106,120 @@ class LoginLogoutTest {
         Thread.sleep(5000)
         val linearLayout = onView(
             allOf(
-                withId(R.id.account),
+                withId(R.id.historiek),
                 childAtPosition(
                     childAtPosition(
                         withClassName(`is`("android.widget.ScrollView")),
                         0
                     ),
-                    3
+                    1
                 )
             )
         )
         linearLayout.perform(scrollTo(), click())
+        Thread.sleep(5000)
+        val constraintLayout = onView(
+            allOf(
+                childAtPosition(
+                    allOf(
+                        withId(R.id.winkelwagens),
+                        childAtPosition(
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            4
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        constraintLayout.perform(click())
+        Thread.sleep(5000)
+        val appCompatImageButton = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    2
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton.perform(click())
 
         val appCompatButton2 = onView(
             allOf(
-                withId(R.id.uitloggen), withText("Uitloggen"),
+                withId(R.id.stamHistoriek), withText("Stam Historiek"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.navHostFragment),
                         0
                     ),
-                    8
+                    2
                 ),
                 isDisplayed()
             )
         )
         appCompatButton2.perform(click())
+        Thread.sleep(7000)
+        val constraintLayout2 = onView(
+            allOf(
+                childAtPosition(
+                    allOf(
+                        withId(R.id.winkelwagens),
+                        childAtPosition(
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            4
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        constraintLayout2.perform(click())
+
+        val appCompatImageButton2 = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    2
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton2.perform(click())
+
+        val appCompatImageButton3 = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    2
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton3.perform(click())
     }
 
     private fun childAtPosition(

@@ -4,8 +4,7 @@ package be.ardu.scoutsardu.Espresso
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -31,6 +30,52 @@ class LoginTest {
 
     @Test
     fun loginTest() {
+        val appCompatEditText = onView(
+            allOf(
+                withId(R.id.email),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText.perform(
+            scrollTo(),
+            replaceText("testgebruiker@test.test"),
+            closeSoftKeyboard()
+        )
+
+        val appCompatEditText2 = onView(
+            allOf(
+                withId(R.id.email), withText("testgebruiker@test.test"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText2.perform(pressImeActionButton())
+
+        val appCompatEditText3 = onView(
+            allOf(
+                withId(R.id.password),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    5
+                )
+            )
+        )
+        appCompatEditText3.perform(scrollTo(), replaceText("Test123!"), closeSoftKeyboard())
+
         val appCompatButton = onView(
             allOf(
                 withId(R.id.loginButton), withText("Log in"),
@@ -44,6 +89,7 @@ class LoginTest {
             )
         )
         appCompatButton.perform(scrollTo(), click())
+        Thread.sleep(5000)
     }
 
     private fun childAtPosition(

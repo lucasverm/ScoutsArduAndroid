@@ -11,10 +11,10 @@ import org.junit.Test
 
 class WinkelwagenTest {
 
-    lateinit var testWinkelwagen: Winkelwagen
-    lateinit var winkelwagenItemsAantal: ArrayList<WinkelwagenItemAantal>
-    lateinit var gebruiker: Gebruiker
-    lateinit var testWinkelwagenDatabaseClass: WinkelwagenDatabaseClass
+    private lateinit var testWinkelwagen: Winkelwagen
+    private lateinit var winkelwagenItemsAantal: ArrayList<WinkelwagenItemAantal>
+    private lateinit var gebruiker: Gebruiker
+    private lateinit var testWinkelwagenDatabaseClass: WinkelwagenDatabaseClass
     @Before
     fun before() {
         gebruiker = Gebruiker(
@@ -25,11 +25,11 @@ class WinkelwagenTest {
             ArrayList()
         )
         winkelwagenItemsAantal = ArrayList()
-        var item1 = WinkelwagenItem(1, "Fanta", 3.0)
-        var itemAantal1 = WinkelwagenItemAantal(item1, 3)
+        val item1 = WinkelwagenItem(1, "Fanta", 3.0)
+        val itemAantal1 = WinkelwagenItemAantal(item1, 3)
         winkelwagenItemsAantal.add(itemAantal1)
-        var item2 = WinkelwagenItem(2, "Cola", 2.0)
-        var itemAantal2 = WinkelwagenItemAantal(item2, 2)
+        val item2 = WinkelwagenItem(2, "Cola", 2.0)
+        val itemAantal2 = WinkelwagenItemAantal(item2, 2)
         winkelwagenItemsAantal.add(itemAantal2)
         testWinkelwagen =
             Winkelwagen(

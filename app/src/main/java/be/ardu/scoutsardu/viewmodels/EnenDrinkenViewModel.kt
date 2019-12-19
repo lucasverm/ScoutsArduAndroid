@@ -26,8 +26,8 @@ class EnenDrinkenViewModel : ViewModel(), KoinComponent {
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    val accountRepository: AccountRepository by inject()
-    val winkelwagenRepository: WinkelwagenRepository by inject()
+    private val accountRepository: AccountRepository by inject()
+    private val winkelwagenRepository: WinkelwagenRepository by inject()
 
     init {
         getWinkelwagenItems()

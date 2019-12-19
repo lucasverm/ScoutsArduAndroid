@@ -15,7 +15,6 @@ import be.ardu.scoutsardu.adapters.HistoriekAdapter
 import be.ardu.scoutsardu.adapters.HistoriekClickListener
 import be.ardu.scoutsardu.databinding.FragmentHistoriekBinding
 import be.ardu.scoutsardu.network.ScoutsArduApiStatus
-import be.ardu.scoutsardu.repositories.HistoriekDatabaseRepository
 import be.ardu.scoutsardu.viewmodels.HistoriekViewModel
 import be.ardu.scoutsardu.viewmodels.HistoriekViewModelFactory
 

@@ -27,8 +27,8 @@ class HistoriekViewModel : ViewModel(), KoinComponent {
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    val winkelwagenRepository: WinkelwagenRepository by inject()
-    val historiekDatabaseRepository: HistoriekDatabaseRepository by inject()
+    private val winkelwagenRepository: WinkelwagenRepository by inject()
+    private val historiekDatabaseRepository: HistoriekDatabaseRepository by inject()
 
     init {
         getMijnHistoriek()

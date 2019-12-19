@@ -4,7 +4,8 @@ package be.ardu.scoutsardu.Espresso
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -22,116 +23,119 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class LoginLogoutTest {
+class RegistratieTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(LoginActivity::class.java)
 
     @Test
-    fun loginLogoutTest() {
-        val appCompatEditText = onView(
-            allOf(
-                withId(R.id.email),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    2
-                )
-            )
-        )
-        appCompatEditText.perform(
-            scrollTo(),
-            replaceText("testgebruiker@test.test"),
-            closeSoftKeyboard()
-        )
-
-        val appCompatEditText2 = onView(
-            allOf(
-                withId(R.id.email), withText("testgebruiker@test.test"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    2
-                )
-            )
-        )
-        appCompatEditText2.perform(pressImeActionButton())
-
-        val appCompatEditText3 = onView(
-            allOf(
-                withId(R.id.password),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    5
-                )
-            )
-        )
-        appCompatEditText3.perform(scrollTo(), replaceText("Test123!"), closeSoftKeyboard())
-
-        val appCompatEditText4 = onView(
-            allOf(
-                withId(R.id.password), withText("Test123!"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    5
-                )
-            )
-        )
-        appCompatEditText4.perform(pressImeActionButton())
-
+    fun registratieTest() {
         val appCompatButton = onView(
             allOf(
-                withId(R.id.loginButton), withText("Log in"),
+                withId(R.id.aanmelden), withText("Registreer nu!"),
                 childAtPosition(
                     childAtPosition(
                         withClassName(`is`("android.widget.ScrollView")),
                         0
                     ),
-                    6
+                    7
                 )
             )
         )
         appCompatButton.perform(scrollTo(), click())
-        Thread.sleep(5000)
-        val linearLayout = onView(
+
+        val appCompatImageButton = onView(
             allOf(
-                withId(R.id.account),
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    2
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton.perform(click())
+
+        val appCompatButton2 = onView(
+            allOf(
+                withId(R.id.aanmelden), withText("Registreer nu!"),
                 childAtPosition(
                     childAtPosition(
                         withClassName(`is`("android.widget.ScrollView")),
                         0
                     ),
-                    3
+                    7
                 )
             )
         )
-        linearLayout.perform(scrollTo(), click())
+        appCompatButton2.perform(scrollTo(), click())
 
-        val appCompatButton2 = onView(
+        val appCompatButton3 = onView(
             allOf(
-                withId(R.id.uitloggen), withText("Uitloggen"),
+                withId(R.id.alEenAccountButton), withText("Ik heb al een account!"),
                 childAtPosition(
                     childAtPosition(
-                        withId(R.id.navHostFragment),
+                        withClassName(`is`("android.widget.ScrollView")),
                         0
                     ),
-                    8
+                    15
+                )
+            )
+        )
+        appCompatButton3.perform(scrollTo(), click())
+
+        val appCompatButton4 = onView(
+            allOf(
+                withId(R.id.aanmelden), withText("Registreer nu!"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    7
+                )
+            )
+        )
+        appCompatButton4.perform(scrollTo(), click())
+
+        val appCompatButton5 = onView(
+            allOf(
+                withId(R.id.registreerButton), withText("Registreren"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    14
+                )
+            )
+        )
+        appCompatButton5.perform(scrollTo(), click())
+
+        val appCompatImageButton2 = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    2
                 ),
                 isDisplayed()
             )
         )
-        appCompatButton2.perform(click())
+        appCompatImageButton2.perform(click())
     }
 
     private fun childAtPosition(

@@ -4,8 +4,7 @@ package be.ardu.scoutsardu.Espresso
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -31,6 +30,52 @@ class EnenDrinkenTest {
 
     @Test
     fun enenDrinkenTest() {
+        val appCompatEditText = onView(
+            allOf(
+                withId(R.id.email),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText.perform(
+            scrollTo(),
+            replaceText("testgebruiker@test.test"),
+            closeSoftKeyboard()
+        )
+
+        val appCompatEditText2 = onView(
+            allOf(
+                withId(R.id.email), withText("testgebruiker@test.test"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    2
+                )
+            )
+        )
+        appCompatEditText2.perform(pressImeActionButton())
+
+        val appCompatEditText3 = onView(
+            allOf(
+                withId(R.id.password),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    5
+                )
+            )
+        )
+        appCompatEditText3.perform(scrollTo(), replaceText("Test123!"), closeSoftKeyboard())
+
         val appCompatButton = onView(
             allOf(
                 withId(R.id.loginButton), withText("Log in"),
@@ -45,6 +90,7 @@ class EnenDrinkenTest {
         )
         appCompatButton.perform(scrollTo(), click())
         Thread.sleep(5000)
+
         val linearLayout = onView(
             allOf(
                 withId(R.id.enenDrinken),
@@ -59,13 +105,14 @@ class EnenDrinkenTest {
         )
         linearLayout.perform(scrollTo(), click())
         Thread.sleep(5000)
+
         val appCompatButton2 = onView(
             allOf(
                 withId(R.id.plus), withText("+"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.winkelwagenItemsRecycleView),
-                        0
+                        1
                     ),
                     4
                 ),
@@ -73,7 +120,7 @@ class EnenDrinkenTest {
             )
         )
         appCompatButton2.perform(click())
-        Thread.sleep(5000)
+
         val appCompatButton3 = onView(
             allOf(
                 withId(R.id.Verder), withText("Verder"),
@@ -91,7 +138,7 @@ class EnenDrinkenTest {
 
         val appCompatButton4 = onView(
             allOf(
-                withId(R.id.Verder), withText("Totaal: € 1.0"),
+                withId(R.id.Verder), withText("Totaal: € 2.0"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.navHostFragment),
@@ -104,6 +151,7 @@ class EnenDrinkenTest {
         )
         appCompatButton4.perform(click())
         Thread.sleep(5000)
+
         val appCompatImageButton = onView(
             allOf(
                 withContentDescription("Navigate up"),
@@ -121,7 +169,6 @@ class EnenDrinkenTest {
             )
         )
         appCompatImageButton.perform(click())
-        Thread.sleep(5000)
     }
 
     private fun childAtPosition(

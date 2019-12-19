@@ -10,8 +10,8 @@ import org.koin.core.inject
 
 class WinkelwagenRepository : KoinComponent {
 
-    val accountRepository: AccountRepository by inject()
-    val scoutsArduApiService: ScoutsArduApiService by inject()
+    private val accountRepository: AccountRepository by inject()
+    private val scoutsArduApiService: ScoutsArduApiService by inject()
 
     suspend fun getWinkelwagenItems(): ArrayList<WinkelwagenItemAantal> {
         val uitvoer = ArrayList<WinkelwagenItemAantal>()
