@@ -33,7 +33,9 @@ class AccountRepository : KoinComponent {
             email,
             voornaam,
             achternaam,
-            password
+            password,
+            passwordBevestiging,
+            telefoonNummer
         )
         withContext(Dispatchers.IO) {
             bearerToken = "Bearer " + scoutsArduApiService.registreer(data)
@@ -55,7 +57,7 @@ class AccountRepository : KoinComponent {
     }
 
     suspend fun putGebruiker(voornaam: String, achternaam: String, telefoon: String): Gebruiker {
-        val data = PutGebruikerData(voornaam, achternaam)
+        val data = PutGebruikerData(voornaam, achternaam,telefoon)
         withContext(Dispatchers.IO) {
             gebruiker = scoutsArduApiService.putGebruiker(data, bearerToken)
         }

@@ -133,5 +133,4 @@ class RegistreerFragment : Fragment() {
         })
         return binding.root
     }
-
 }

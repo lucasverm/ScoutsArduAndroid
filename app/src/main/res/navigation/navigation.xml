@@ -46,9 +46,7 @@
             android:id="@+id/action_enenDrinkenFragment_to_checkWinkelwagenFragment"
             app:destination="@+id/checkWinkelwagenFragment"
             app:enterAnim="@anim/left_to_right_new"
-            app:exitAnim="@anim/left_to_right_old"
-            app:popEnterAnim="@anim/right_to_left_old"
-            app:popExitAnim="@anim/right_to_left_new">
+            app:popEnterAnim="@anim/right_to_left_old">
             <argument
                 android:name="toonError"
                 android:defaultValue="false" />
@@ -64,10 +62,7 @@
         <action
             android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment"
             app:destination="@id/santeFragment"
-            app:enterAnim="@anim/left_to_right_new"
-            app:exitAnim="@anim/left_to_right_old"
-            app:popEnterAnim="@anim/right_to_left_old"
-            app:popExitAnim="@anim/right_to_left_new">
+            app:popUpTo="@+id/dashboardFragment">
             <argument
                 android:name="history"
                 android:defaultValue="true" />

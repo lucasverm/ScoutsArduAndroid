@@ -50,6 +50,7 @@ class RegistreerViewModel : ViewModel(), KoinComponent {
                 _status.value = ScoutsArduApiStatus.DONE
                 _status.value = ScoutsArduApiStatus.DEFAULT
             } catch (e: Exception) {
+                println(e)
                 _status.value = ScoutsArduApiStatus.ERROR
             }
         }

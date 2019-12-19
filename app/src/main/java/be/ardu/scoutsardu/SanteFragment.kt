@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,9 +17,6 @@ import be.ardu.scoutsardu.network.ScoutsArduApiStatus
 import be.ardu.scoutsardu.network.Winkelwagen
 import be.ardu.scoutsardu.viewmodels.SanteViewModel
 import be.ardu.scoutsardu.viewmodels.SanteViewModelFactory
-
-
-
 
 
 /**
@@ -110,24 +106,5 @@ class SanteFragment : Fragment() {
         binding.datum.text = "Datum: " + viewModel.winkelwagen.value!!.getDatum()
         binding.tijdstip.text = "Tijdstip: " + viewModel.winkelwagen.value!!.getTijd()
     }
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // This callback will only be called when MyFragment is at least Started.
-        super.onCreate(savedInstanceState)
-        // This callback will only be called when MyFragment is at least Started.
-        val callback = object : OnBackPressedCallback(true /* enabled by default */) {
-            override fun handleOnBackPressed() {
-                // Handle the back button event
-                println("-------")
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-        // The callback can be enabled or disabled here or in the lambda
-    }
-
 
 }
