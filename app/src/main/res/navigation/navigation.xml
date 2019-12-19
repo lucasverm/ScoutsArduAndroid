@@ -11,16 +11,32 @@
         android:label="Dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_enenDrinkenFragment"
-            app:destination="@id/enenDrinkenFragment" />
+            app:destination="@id/enenDrinkenFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new" />
         <action
             android:id="@+id/action_dashboardFragment_to_historiekFragment"
-            app:destination="@id/historiekFragment" />
+            app:destination="@id/historiekFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new" />
         <action
             android:id="@+id/action_dashboardFragment_to_portefeuilleFragment"
-            app:destination="@id/portefeuilleFragment" />
+            app:destination="@id/portefeuilleFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new" />
         <action
             android:id="@+id/action_dashboardFragment_to_accountFragment"
-            app:destination="@id/accountFragment" />
+            app:destination="@id/accountFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new" />
     </fragment>
     <fragment
         android:id="@+id/enenDrinkenFragment"
@@ -28,7 +44,11 @@
         android:label="Enen drinken ?!" >
         <action
             android:id="@+id/action_enenDrinkenFragment_to_checkWinkelwagenFragment"
-            app:destination="@+id/checkWinkelwagenFragment" >
+            app:destination="@+id/checkWinkelwagenFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new">
             <argument
                 android:name="toonError"
                 android:defaultValue="false" />
@@ -44,7 +64,10 @@
         <action
             android:id="@+id/action_checkWinkelwagenFragment_to_santeFragment"
             app:destination="@id/santeFragment"
-            app:popUpTo="@+id/dashboardFragment" >
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new">
             <argument
                 android:name="history"
                 android:defaultValue="true" />
@@ -64,6 +87,10 @@
         <action
             android:id="@+id/action_santeFragment_to_checkWinkelwagenFragment"
             app:destination="@id/checkWinkelwagenFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new"
             app:popUpTo="@+id/enenDrinkenFragment">
             <argument
                 android:name="toonError"
@@ -72,6 +99,13 @@
         <argument
             android:name="history"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_santeFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new" />
     </fragment>
     <fragment
         android:id="@+id/historiekFragment"
@@ -80,7 +114,11 @@
         tools:layout="@layout/fragment_historiek" >
         <action
             android:id="@+id/action_historiekFragment_to_santeFragment"
-            app:destination="@id/santeFragment" >
+            app:destination="@id/santeFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new">
             <argument
                 android:name="history"
                 android:defaultValue="false" />
@@ -92,9 +130,14 @@
         android:label="PortefeuilleFragment" >
         <action
             android:id="@+id/action_portefeuilleFragment_to_santeFragment"
-            app:destination="@id/santeFragment" >
-            <argument android:defaultValue="false"
-                android:name="history" />
+            app:destination="@id/santeFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new">
+            <argument
+                android:name="history"
+                android:defaultValue="false" />
         </action>
     </fragment>
     <fragment

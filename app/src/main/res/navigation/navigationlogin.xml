@@ -9,7 +9,11 @@
         android:label="Login" >
         <action
             android:id="@+id/action_loginFragment_to_registreerFragment"
-            app:destination="@id/registreerFragment" />
+            app:destination="@id/registreerFragment"
+            app:enterAnim="@anim/left_to_right_new"
+            app:exitAnim="@anim/left_to_right_old"
+            app:popEnterAnim="@anim/right_to_left_old"
+            app:popExitAnim="@anim/right_to_left_new" />
     </fragment>
     <fragment
         android:id="@+id/registreerFragment"
@@ -17,6 +21,10 @@
         android:label="Registreer" >
         <action
             android:id="@+id/action_registreerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/right_to_left_old"
+            app:exitAnim="@anim/right_to_left_new"
+            app:popEnterAnim="@anim/left_to_right_new"
+            app:popExitAnim="@anim/left_to_right_old" />
     </fragment>
 </navigation>
