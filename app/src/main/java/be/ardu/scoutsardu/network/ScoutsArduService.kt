@@ -3,7 +3,7 @@ package be.ardu.scoutsardu.network
 import retrofit2.http.*
 
 
-const val BASE_URL = "https://scoutsarduapinew.azurewebsites.net/"
+const val BASE_URL = "https://scoutsardunewk.azurewebsites.net/"
 
 interface ScoutsArduApiService {
     @GET("api/Winkelwagen/WinkelwagenItems")
